@@ -1,22 +1,19 @@
-from datetime import datetime, date, time
 from flask import Flask, render_template, redirect, url_for
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 import seaborn as sns
-from . import app
+from . import app, plt
 import os
 
 
 @app.route('/')
 def index_page():
-    year = datetime.now().year
-    data = pd.read_csv("files/skills_relatives.csv")
-    costs = [str(round(i, 2) * 100) for i in data.iloc[0, :].to_list()]
+    df = pd.read_csv("files/skills_relatives.csv")
     sns.set(style="darkgrid")
-    fig = sns.displot(data.iloc[0, :], x=data.columns )
+    plt.figure(figsize=(10,4), edgecolor = '0', layout='constrained')
+    plot = sns.barplot(data=df, x="Название", y="Ценность ₽", color = '0', width = 0.9)
+    fig = plot.get_figure()
     fig.savefig("app/static/table.jpg")
-    return render_template('index.html', columns=data.columns, data=costs, length=len(costs), image = fig)
+    return render_template('index.html', names= df.iloc[:, 0].to_list(), costs = [round(i,2) for i in df.iloc[:, 1].to_list()], length=len(df))
 
 
 @app.errorhandler(404)

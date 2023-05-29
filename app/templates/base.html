@@ -13,10 +13,10 @@
             {% block header %} {% endblock header %}
             <hr>
         <div class="row">
-        <div class="col-9">
+        <div class="col-10">
             {% block content %} {% endblock content %}
         </div>
-        <div class="col-3 pt-5 links-primary">
+        <div class="col-2 ">
            {% include "side_navigation.html" %} 
         </div>
         <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script> 

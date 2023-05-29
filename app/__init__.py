@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for
-
+import  matplotlib.pyplot as plt
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
