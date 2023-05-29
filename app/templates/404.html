@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+Страница не найдена
+{% endblock  title%}
+{% block header%} 
+    <h1>Error 404 occured|Произошла ошибка 404</h1>
+{% endblock header%}
+{% block content %}
+<br> Текст ошибки </br>
+        <p> {{e}} </p>
+{% endblock  content%}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name = viewport content="width=device_width, initial_scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <title>{% block title %} {% endblock title %} </title>
+    </head>
+    <body>
+        <div id="wrapper">
+        {% include "navigation.html" %}
+        <div class="container my-3"> 
+            {% block header %} {% endblock header %}
+            <hr>
+        <div class="row">
+        <div class="col-9">
+            {% block content %} {% endblock content %}
+        </div>
+        <div class="col-3 pt-5 links-primary">
+           {% include "side_navigation.html" %} 
+        </div>
+        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script> 
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+        </div>
+        
+        
+    </div>
+    {% include "footer.html" %}
+    </div>
+    </body>
+</html>

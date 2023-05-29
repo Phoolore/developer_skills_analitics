@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+ {% block title %}
+Навыки, аналитика
+ {% endblock  title%}
+ {% block header%} 
+ <h1>Главная</h1>
+ {% endblock header%}
+{% block content %}
+       <center> <h3>Навыки Backend Developer</h3> </center>
+       <img src="{{ url_for('static', filename='table.jpg') }}" >
+       <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in range(length) %}
+          <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td>{{columns[i]}}</td>
+            <td>{{data[i][:5] + "%"}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+      
+{% endblock  content%}
