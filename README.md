@@ -32,8 +32,6 @@ pip install -r requirements.txt
 
 '''.env
 
-DATABASE_URI = sqlite:///db.sqlite3
-
 SECRET_KEY = YOUR_SECRET_KEY 
 
 '''
