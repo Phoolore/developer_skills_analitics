@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ skill[0]}}
+{% endblock  title%}
+{% block header%} 
+    <h1> Статистика по навыку "{{skill[0]}}"</h1>
+{% endblock header%}
+{% block content %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Property</th>
+        <th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in range(1, length) %}
+      <tr>
+        <th scope="row">{{i + 1}}</th>
+        <td>{{skill.index[i]}}</td>
+        <td>{{skill[i]}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endblock  content%}
