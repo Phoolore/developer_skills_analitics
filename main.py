@@ -45,7 +45,7 @@ df = pd.DataFrame(columns={
 })
 
 # Цикл по страницам
-for page in range(1):
+for page in range(pages_count):
     params['page'] = str(page)
     response = requests.get('https://api.hh.ru/vacancies', params=params, headers=headers)
     result += response.json()['items']
