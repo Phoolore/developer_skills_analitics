@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import math
 
 
-df = pd.read_csv('files/skills_relatives_copy.csv', encoding='utf8')
+df = pd.read_csv('files/skills_relatives_copy.csv', encoding='utf8').sort_values(by='percent', ascending=False)
 desc = ['питoн или пaйтон,высокоуровневый язык программирования общего назначения с динамической строгой типизацией и автоматическим управлением памятью, ориентированный на повышение производительности разработчика, читаемости кода и его качества, а также на обеспечение переносимости написанных на нём программ.',
         'pаспределенное программное обеспечение для управления версиями. Контроль версий - это способ сохранять изменения с течением времени, не перезаписывая предыдущие версии. Распространение означает, что каждый разработчик, работающий с репозиторием Git, имеет копию всего этого репозитория.',
         'технология программирования, которая связывает базы данных с концепциями объектно-ориентированных языков программирования, создавая «виртуальную объектную базу данных».',
@@ -35,7 +35,7 @@ hover_text, buble_size = [], []
 
 
 for index, row in df.iterrows():
-    hover_text.append('{name}<br>Value: {percent}<br>{desc}'.format(name = row['name'], percent = row['percent'], desc = row['description']))
+    hover_text.append('{name}<br>Частота встречаемости/процент спроса: {percent}<br>{desc}'.format(name = row['name'], percent = row['percent'], desc = row['description']))
     buble_size.append(math.sqrt(row.percent))
     
     
@@ -69,7 +69,7 @@ for name, value in categories_data.items():
     
     
 fig.update_traces(visible=True, mode = 'markers', marker=dict(sizemode='area', sizeref=sizeref, line_width = 5))
-fig.update_layout(title = "Value expectancy",
+fig.update_layout(width=1000, title = "Value expectancy",
                 xaxis=dict(
                     title='Value',
                     gridcolor='rgb(243, 243, 243)',
