@@ -3,6 +3,10 @@ web site with analitics for back-developer skills value in Russia in rubles
 ## Технологии
 Использовали Flask, seaborn. В процессе сбора и обработки данных pandas.
 
+
+## Сайт с аналитикой
+![Главная страница](files/index.jpg "Главная страница")
+![Страница навыка](files/Skill.jpg "Страница навыка")
 ## Как запустить
 1. Клонируем репозиторий
 

@@ -1,12 +1,19 @@
 from flask import Flask, render_template, redirect, url_for
 import  matplotlib.pyplot as plt
+from dash import Dash, html, dash_table, dcc, callback, Output, Input
+import pandas as pd
+import plotly.graph_objects as go
+import asyncio
+
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
+dash = Dash(__name__, server=app, url_base_pathname='/dash/')
 
 
-from . import views
+
+from . import views, dashboards
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

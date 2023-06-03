@@ -18,11 +18,12 @@ def index_page():
 
 @app.route('/skill/<string:name>')
 def skill_page(name):
-    df = pd.read_csv("files/skill.csv")
+    df = pd.read_csv("files/skill.csv", delimiter=';')
     skill = df.loc[df.name == name].squeeze(axis = 0)
-    length = len(skill)
+    length = len(skill) - 1
     print(type(skill))
     return render_template('skill.html', skill = skill, length = length)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
