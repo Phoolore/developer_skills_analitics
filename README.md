@@ -1,7 +1,7 @@
 # developer_skills_analitics
 web site with analitics for back-developer skills value in Russia in rubles
 ## Технологии
-Использовали Flask, seaborn. В процессе сбора и обработки данных pandas.
+Использовали Flask, seaborn, dash, plotly. В процессе сбора и обработки данных pandas.
 
 
 ## Сайт с аналитикой
