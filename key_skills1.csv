@@ -1,1500 +1,1500 @@
-python;
-postgresql;
-git;
-django framework;
-sql;
-linux;
-docker;
-flask;
-django;
-redis;
-ооп;
-rabbitmq;
-английский язык;
-mysql;
-javascript;
-mongodb;
-fastapi;
-kubernetes;
-rest;
-asyncio;
-celery;
-api;
-kafka;
-aiohttp;
-html;
-css;
-rest api;
-базы данных;
-sqlalchemy;
-c++;
-clickhouse;
-atlassian jira;
-backend;
-удаленная работа;
-работа в команде;
-ci/cd;
-bash;
-nginx;
-elasticsearch;
-golang;
-pandas;
-java;
-go;
-nosql;
-aws;
-c/c++;
-разработка нового продукта;
-docker-compose;
-pytest;
-spark;
-big data;
-unit testing;
-ml;
-django rest framework;
-react;
-scrum;
-gitlab;
-ms sql;
-php;
-etl;
-http;
-numpy;
-orm;
-работа с базами данных;
-html5;
-xml;
-agile;
-hadoop;
-асинхронное программирование;
-drf;
-субд;
-qt;
-vue.js;
-c#;
-jquery;
-machine learning;
-анализ данных;
-js;
-pycharm;
-saas;
-devops;
-алгоритмы;
-airflow;
-node.js;
-soap;
-разработка по;
-unix;
-jenkins;
-управление проектами;
-oracle;
-оптимизация кода;
-graphql;
-tcp/ip;
-elk;
-tensorflow;
-data science;
-json api;
-agile project management;
-opencv;
-алгоритмы и структуры данных;
-обучение и развитие;
-аналитическое мышление;
-pytorch;
-rust;
-tornado;
-ansible;
-atlassian confluence;
-jira;
-solid;
-веб-программирование;
-blockchain;
-css3;
-грамотная речь;
-typescript;
-openstack;
-tdd;
-nlp;
-swagger;
-k8s;
-web;
-умение работать в условиях многозадачности;
-apache kafka;
-работа в условиях многозадачности;
-highload;
-json;
-машинное обучение;
-bootstrap;
-information security;
-работа с большим объемом информации;
-teamcity;
-ci;
-hive;
-grpc;
-системное мышление;
-github;
-тестирование;
-microservices;
-математическая статистика;
-математический анализ;
-преподаватель;
-html/css;
-управление командой;
-sanic;
-fast api;
-грамотность;
-teamleading;
-selenium;
-adobe photoshop;
-gitlab ci;
-data analysis;
-ajax;
-computer vision;
-pyqt;
-terraform;
-сетевые технологии;
-websocket;
-ориентация на результат;
-angular;
-scrapy;
-kotlin;
-желание учиться и развиваться;
-dwh;
-с#;
-openshift;
-java script;
-memcached;
-vuejs;
-react.js;
-деловая коммуникация;
-pyramid;
-паттерны проектирования;
-oracle pl/sql;
-vue;
-odoo;
-confluence;
-парсинг;
-svn;
-нейронные сети;
-soft skills;
-scala;
-selenium ide;
-творческое мышление;
-apache http server;
-design patterns;
-мобильные приложения;
-ms sql server;
-bpmn;
-креативность;
-grafana;
-restapi;
-qa;
-bitbucket;
-лидерство;
-r;
-data mining;
-cmake;
-laravel;
-наставничество;
-keras;
-умение принимать решения;
-web application development;
-информационная безопасность;
-websockets;
-многозадачность;
-telegram;
-обучение;
-data engineering;
-python3;
-планирование карьеры;
-stl;
-ms powerpoint;
-cистемы управления базами данных;
-perl;
-pydantic;
-работа с банками;
-web api;
-architecture;
-google docs;
-redux;
-apache airflow;
-1с программирование;
-python 3;
-english;
-sentry;
-jupyter notebook;
-pl/sql;
-databases;
-prometheus;
-.net framework;
-frontend;
-администрирование серверов linux;
-vba;
-микросервисы;
-руководство командой разработчиков;
-falcon;
-знание английского языка;
-deep learning;
-crm;
-cassandra;
-mercurial;
-oop;
-управление временем;
-django rest;
-pl/python;
-ubuntu server;
-автоматизация процессов;
-пользователь пк;
-sqlite;
-gulp;
-руководство коллективом;
-математика;
-статистический анализ;
-pyside;
-restful api;
-линейное программирование;
-gunicorn;
-postgres;
-it;
-cms wordpress;
-influxdb;
-unix-like системы;
-оптимизация запросов;
-ubuntu;
-macos;
-теория вероятностей;
-iohttp;
-мобильность;
-деловое общение;
-elascticsearch;
-djangoorm;
-starlette;
-postgis;
-jupiter;
-логика;
-jupyter;
-requests;
-elastic search;
-умение адаптироваться;
-управление персоналом;
-компьютерное зрение;
-software development;
-аналитические способности;
-ответственность и пунктуальность;
-ведение переговоров;
-firewall;
-ms excel;
-разработка платформы;
-информационные технологии;
-адекватность;
-yii;
-nuxt.js;
-mvc;
-automation;
-vmware;
-alm системы;
-ответственность;
-mlops;
-kibana;
-деловая переписка;
-google cloud platform;
-symfony;
-windows;
-wireshark;
-знание базы данных postgresql;
-networking;
-django/flask;
-анализ кода;
-командная строка linux;
-erp;
-плис xilinx;
-скада системы;
-библиотеки;
-game programming;
-qt(pyqt);
-cuda;
-чтение и написание документации;
-notion;
-сетевой стек;
-организационные навыки;
-clean architecture;
-блокчейн;
-django orm;
-базовые знания и понимание игры сs:go;
-unity;
-организация учебного процесса;
-web3;
-c;
-ruby;
-сбор и анализ информации;
-sklearn;
-ai;
-scikit-learn;
-voip;
-mathematical statistics;
-angularjs;
-хорошая обучаемость;
-организация мероприятий;
-gcp;
-openapi;
-математическое моделирование;
-grapgql;
-figma;
-code review;
-raspberry pi;
-autodesk maya;
-alembic;
-ddd;
-zabbix;
-микросервисная архитектура;
-английский — b2 — средне-продвинутый;
-проектная работа;
-аналитика;
-reactjs;
-android;
-vertica;
-spring framework;
-retail;
-криптовалюта;
-энтузиазм;
-разработка технических заданий;
-kanban;
-amocrm;
-коммуникабельность, стрессоустойчивость;
-нагрузочное тестирование;
-gdal;
-умение работать в коллективе;
-java se;
-настройка dns;
-pyspark;
-мотивация персонала;
-uml;
-подбор персонала;
-algorithms;
-организаторские навыки;
-ros;
-внутренний контроль;
-debian;
-dash;
-разработка компьютерных игр;
-boost;
-высоконагруженные системы;
-ответственное отношение к работе;
-публичные выступления;
-powershell;
-3d моделирование;
-b2b;
-github actions;
-разработка продукта;
-back-end;
-vpn;
-shell scripting;
-plotly;
-mssql;
-embedded;
-worldskills;
-trello;
-citrix;
-математическое программирование;
-желание обучаться;
-teamplayer;
-selenium webdriver;
-flash mysql;
-db;
-solr;
-оперативный поиск информации в сети интернет;
-проведение тестирований;
-arduino;
-arm cortex m;
-google cloud;
-fullstack;
-aiogram;
-рефакторинг кода;
-phyton;
-высокий уровень самоорганизации;
-разработка архитектуры;
-аsyncio;
-умение быстро усваивать новую информацию;
-ruby on rails;
-mariadb;
-power bi;
-rabbit;
-умение слушать;
-gitlab ci/cd;
-computer science;
-docker compose;
-test automation;
-групповое обучение;
-английский язык (intermediate);
-backend developer;
-matlab;
-scipy;
-async;
-с/с++/с#;
-testing framework;
-внимательность, ответственность;
-sql-запросы;
-dchp;
-typescript/javascript;
-проектирование пользовательских интерфейсов;
-умение работать в команде;
-business english;
-aerospike;
-опп;
-google bigquery;
-visual studio code;
-development;
-druid;
-statistics;
-инициативность;
-activemq;
-fastcgi;
-бэкенд;
-ios;
-unix shell scripts;
-transact-sql;
-управление разработкой;
-xsd;
-joomla cms;
-opencart;
-ms visio;
-позитивное мышление;
-виртуализация;
-биоинформатика;
-fluent english;
-asyncpg;
-poetry;
-1с: предприятие 8;
-tarantool;
-aiosmtplib;
-cd;
-cmd;
-asr;
-speech-to-text;
-решение проблем;
-генерация идей;
-база данных: oracle;
-преподавание;
-robot framework;
-continuous integration;
-logstash;
-multithreading;
-http api;
-gis;
-статистика;
-широкий кругозор;
-azure;
-решение нестандартных задач;
-asana;
-react/redux;
-techlead;
-openoffice;
-разработка поисковых технологий;
-точность и внимательность к деталям;
-bdd;
-pulsar;
-arm;
-scada;
-sphinx;
-helm;
-puppet;
-http, json;
-.net core;
-webpack;
-организация мероприятий для сотрудников;
-blender 3d;
-3d;
-постановка задач разработчикам;
-internet;
-engine;
-sdk;
-citrix systems;
-опыт работы в команде;
-tibbo aggregate;
-sas;
-эффективное принятие решений;
-youtrack;
-efk;
-стремление к профессиональному развитию;
-astra linux;
-создание сайтов;
-стабильность;
-ninja;
-навыки межличностного общения;
-restful;
-gitlabci;
-лояльность;
-картография;
-presto;
-minlo;
-dry;
-индивидуальное обучение;
-киберполигон;
-vue js;
-airflow/dagster;
-опытный пользователь пк;
-a/b-experiments;
-beautifulsoup;
-робототехника;
-с++;
-sass;
-pyapi;
-rubbitmq;
-open vino;
-microsoft access;
-olap (online analytical processing);
-самокритичность;
-серверное программирование;
-делопроизводство;
-внутренние коммуникации;
-дистанционное обучение;
-самостоятельная работа;
-squid;
-математическая логика;
-vkontakte api;
-netbox;
-dvs;
-tensorrt;
-готовность обучаться;
-doker;
-visual studio c#;
-amazon cloud;
-выполнение поставленных задач;
-scratch;
-тайм-менеджмент;
-godot;
-3d-графика;
-обработка видео;
-game;
-педагогика;
-разговорный английский;
-дружелюбие;
-google api;
-английский - в2 - средне-продвинутый;
-multiprocessing;
-time management;
-2d;
-ипотечные кредиты;
-mongo;
-администрирование сайтов;
-matplotlib;
-huawei;
-asterisk;
-kiss;
-allure;
-rabbit mq;
-chromium embedded framework;
-ms access;
-groovy;
-ssh;
-iptables;
-office;
-asp.net;
-npm;
-продвинутый пользователь пк;
-redmine;
-greenplum;
-работа с документацией;
-developer;
-datadog;
-container;
-zoom;
-reackt;
-dns;
-ведение документации;
-blueprints;
-unreal engine 5;
-kvm;
-tools;
-fronend;
-houdini;
-unreal engine 4;
-teamlead;
-принимать решения и за их результаты отвечать самостоятельно;
-libreoffice;
-apache ignite;
-оптимизация бизнес-процессов;
-mathematical analysis;
-pipline td;
-самоконтроль;
-crm bitrix24;
-стратегическое мышление;
-l3 vpn;
-hibernate orm;
-firmware;
-python, aiohttp, fastapi, trending, linux;
-нефтегаз;
-системный подход;
-powerbi;
-терпимость;
-udp;
-product management;
-стремление к профессиональному росту;
-схд;
-бизнес-анализ;
-elt;
-django rest api;
-pentaho;
-pentest;
-onnx;
-командная работа;
-intelligent geospatial services;
-json-rpc;
-ibm mq;
-умение планировать;
-cg prodaction;
-разработчик;
-wpf;
-team management;
-replication graph;
-dq;
-bs4;
-bigdata;
-работа с компьютером;
-adobe illustrator;
-mac software;
-sentry apm;
-delphi;
-конкурентная разведка;
-1с: управление предприятием;
-teradata;
-ffmpeg;
-технический английский;
-контроль исполнения решений;
-коммуникабельность;
-1с: управление торговлей;
-настройка сетевых подключений;
-коммуникация;
-ci\cd;
-aaa project;
-sql alchemy;
-работа с людьми;
-artifactory;
-vuetify 3 + nuxt 3;
-административная поддержка руководителя;
-celery, redis;
-умение изучать;
-автотесты;
-ext js;
-software design patterns;
-mac os;
-pyqt5;
-business strategy;
-организация рабочих мест;
-apache;
-logging;
-разработка;
-computational geometry;
-spring;
-mathematical programming;
-управление процессами;
-проведение презентаций;
-навыки публичных выступлений;
-maxpatrol;
-oauth;
-informix;
-graphite;
-базовые знания sql;
-solidity;
-визуализация данных;
-умение расставлять приоритеты;
-архитектура;
-веб-дизайн;
-подготовка презентаций;
-acl;
-google sheets;
-dax;
-flack;
-phpmyadmin;
-ms windows;
-добросовестность;
-itsm;
-devsecops;
-устойчивость к стрессам;
-wordpress;
-теория тестирования;
-менеджмент;
-amazon;
-multithread programming;
-django-rest;
-гибкость;
-cockroachdb;
-sql server;
-python 3.7;
-pyhton;
-yandex cloud;
-backbone;
-channels;
-composer;
-posgressql;
-postman;
-rpm;
-rstudio;
-slack;
-snowflake;
-sqlachemy;
-sql запросы;
-tfs;
-typing skills;
-uvicorn;
-vue-router;
-yandex maps api;
-высшее образование;
-желание учиться;
-линейная алгебра;
-проведение семинаров;
-nxgin;
-virtualization;
-qa automation;
-php7;
-поисковые системы;
-искусственный интеллект;
-htmx;
-критическое мышление;
-https;
-microsoft visual studio;
-yagni;
-обязательность;
-имитационное моделирование;
-работать;
-informatica data qualit;
-сelery;
-профессиональный пользователь пк;
-web разработка;
-старший (senior);
-koalas;
-1с: торговля;
-автоматизация медицинских процессов;
-powercurve;
-разработка cms;
-умение эффективно работать в команде;
-яндекс.облако;
-fico;
-системы видеонаблюдения;
-ms power bi;
-dbms;
-fastap;
-фреймворки;
-grafana/telegraf;
-gpgpu;
-dl;
-dockerfile;
-erp systems;
-разработка стратегий принятия решений;
-amqp;
-nexus;
-jinja2;
-1с: розница;
-технологии разработки по на языке python;
-es6;
-dramatiq;
-yii2;
-billing;
-организация рабочего процесса;
-разработка мобильных приложений;
-airlow;
-iot;
-c++17;
-alt linux;
-rpa;
-вовлеченность;
-ms visual studio;
-dart;
-seo;
-consumer goods;
-unittest;
-flask-restful;
-full stack;
-работа в коллективе;
-инженер;
-siem;
-моделирование;
-ldap;
-фильтр частиц;
-модульное тестирование;
-средства криптографической защиты информации;
-тестирование пользовательского интерфейса;
-clean code;
-обучаемый;
-творчество;
-системность;
-автоматизация;
-pywebview;
-qwebkit;
-parsing;
-continuous integration / continious delivery;
-aggregate;
-маркетплейс;
-leadership skills;
-network;
-работать в команде;
-настройка по;
-apache maven;
-радиосигналы;
-умение организовать работу;
-prefect;
-piramid framework;
-git flow;
-pinia;
-vue3;
-data structure;
-ux;
-vuex;
-message queue;
-исполнительность;
-навыки презентации;
-знание английского;
-настройка vps/vds серверов;
-gitflow;
-twisted;
-naumen;
-cherrypy;
-linux bash;
-технолог;
-junit;
-etcd;
-firebase;
-php5;
-nltk;
-decentralized finance;
-yaml;
-проведение опросов клиентов;
-performance reviews;
-бэм;
-трейдинг;
-ngnix;
-gamedev;
-коммуникабильность;
-typing;
-cpu;
-extjs;
-video;
-smarty;
-twig;
-python/django;
-ide;
-vlan;
-data lake;
-pyarrow;
-artemis;
-spark api;
-yandex.cloud;
-система контроля версий;
-системная интеграция;
-mongo db;
-собеседование;
-соблюдение сроков;
-юриспруденция;
-стремление развиваться;
-стриминг платформы;
-aioredis;
-техническая поддержка;
-aio_pica;
-shell;
-jython;
-keycloak;
-hyperopt;
-compose;
-знание компьютерных программ;
-исполнение поручений руководителя;
-качественный код;
-коммерческая разработка;
-консультирование;
-проектирование ha/hl систем;
-chromium;
-кредитные риски;
-camunda;
-java чтение кода;
-buildbot;
-build;
-настройка серверов;
-обучаемость;
-vcs;
-bitrix;
-опрятность;
-bim;
-vite;
-beautiful soup;
-ответственный подход к работе;
-отличное знание пк;
-парус;
-поиск информации в интернет;
-удаленно;
-умение анализировать;
-aio-http;
-aiohttp, sanic, fastapi, starlette, django, flask, etc;
-no-sql;
-построение команды;
-reddis;
-stripe;
-cryptocurrency;
-эффективность;
-luigi;
-python 3.6;
-ос linux;
-построение архитектуры;
-google chrome;
-kerastase;
-network development;
-apache spark;
-glide;
-wso2 stream processor;
-мотивированность на результат обучения;
-руководство людьми;
-google таблицы;
-fasapi;
-wagtail;
-командный игрок;
-codereview;
-active directory;
-оценка кандидатов;
-ssg;
-django 2, drf;
-pipenv;
-portainer;
-debezium;
-python 3,;
-python unittest;
-react js;
-git django;
-senior;
-snmp;
-datavault;
-business intelligence systems;
-soa/msa;
-socket programming;
-express.js;
-frontend api;
-scrappy;
-math;
-nixos;
-яндекс.поиск;
-open source;
-телеграм бот;
-latex;
-sdlc;
-sip;
-postgresql/postgresql pro;
-высокая скорость работы;
-knime;
-ibm unica;
-redis-om;
-api docker;
-apigateway server;
-siddhi;
-облачные сервисы;
-построение модульных приложений;
-опыт team lead;
-python 3.8;
-elixir;
-dynamodb;
-pymorphy;
-temporal.io;
-python 3, fastapi, postgresql;
-nlp/nlu;
-безопасность;
-googletest;
-g-код;
-wsgi;
-djangorestframework;
-спорт;
-reinforcement learning;
-sensor fusion (kalman filter);
-java virtual machine;
-docker/openshift;
-e-commerce;
-flask/django;
-sox;
-сетевой протокол;
-suffix tree;
-microsoft;
-финансовая отчетность;
-java scipt;
-серверная разработка;
-обеспечение жизнедеятельности офиса;
-bitrix24;
-.net;
-pandas, numpy, xgboost,;
-forex;
-умение добиваться поставленных целей;
-middle;
-qlick view;
-virtualenv;
-vr;
-gnu;
-mqtt;
-самостоятельность;
-xpath;
-conan;
-микро-сервисная архитектура;
-обработка изображений;
-material ui;
-minio latest;
-gstreamer;
-nginx js,;
-olap;
-gnss;
-1с: предприятие;
-1c: предприятие;
-elasticksearch;
-docker контейнеры;
-dockercompose;
-sse;
-start-up project;
-django framewor;
-strawberry;
-superset;
-django 3;
-telegrambotapi;
-c/с++;
-crypto;
-web-проекты;
-xgboost;
-xslt;
-администрирование;
-анализ бизнес показателей;
-аналитические навыки;
-архитектура приложений;
-ведение проектов;
-желание расти и развиваться;
-знание excel;
-знание web-фреймворков в python (любых);
-электроника;
-1с-битрикс;
-application server django;
-apollo;
-apache nifi;
-прогнозирование;
-apache2;
-angular 1-13;
-сетевая безопасность;
-jatoba (postgresql);
-web scraping;
-автопилотирование;
-cloud;
-знание основных нейросетевых архитектур;
-коммуникабельность, ответственность;
-mlflow;
-многопоточные приложения;
-модель osi;
-godep;
-ds;
-spring boot;
-работа с системами аналитики;
-django-admin;
-rancher;
-unit тестирование;
-unit-тесты;
-vendoring;
-социальные сети;
-ms paint;
-pygame;
-grpc/protobuf;
-thread;
-splash;
-энергичность;
-rq;
-cpython;
-ci/di;
-«django framework», «sql», «vue»;
-bigquery;
-системы контроля версий;
-message brokers;
-dnn;
-smart contract;
-nft;
-electron.js;
-maria db;
-nat;
-facebook api;
-рефакторинг;
-исполнение личных поручений руководителя;
-mapreduce;
-postgree;
-pymystem;
-ts;
-oracle bi;
-заинтересованность;
-gnu c++;
-autodesk revit;
-oracle db;
-computervision;
-apache superset;
-traefik;
-торговая площадка;
-умение работать самостоятельно;
-корпоративная этика;
-hbase;
-kerberos;
-imu;
-web-разработка;
-промышленные роботы;
-стремление к карьерному росту;
-spacy;
-whatsapp;
-streaming;
-domain driven design;
-информационная система;
-redis (memcached);
-ibm spss;
-управленческая отчетность;
-pyramyd;
-телеметрия;
-wxpython;
-ос windows;
-bpml;
-lxml;
-s3;
-pyside2;
-front;
-web services;
-leadership development;
-kinesis;
-threading;
-идейность;
-backend python;
-modbus;
-прием посетителей;
-nodejs;
-музыка;
-обучение персонала;
-мотивация;
-python django;
-интеграционное тестирование;
-django git;
-анализ рынка;
-http proxy;
-управление рисками;
-оформление документации;
-xml/xslt;
-высокая ответственность;
-автоматизированное тестирование;
-selenide;
-английский — b1 — средний;
-результативность;
-форсайт;
-intellij idea;
-nestjs;
-cython;
-genism;
-анализ требований;
-information technology;
-quant;
-mobx;
-problem solving;
-mathematical modeling;
-битрикс 24;
-chromium code base;
-elastic;
-lightgbm;
-aurelia;
-hardware;
-vaex;
-basic;
-логическое мышление;
-ffmeg;
-гибкость мышления;
-умение находить общий язык;
-alembic docker;
-импортозамещение;
-merge requests;
-высоконагруженные сервисы;
-fashion;
-интеграция с внешними сервисами;
-spa;
-raw sql;
-apache cassandra;
-вендинг;
-aiohhtp;
-boto3;
-docker + docker-compose;
-dvc;
-участие в конференциях и мастер-классах;
-assembler;
-сапр;
-java core;
-telegram bot;
-samba;
-yii1;
-arp;
-architect;
-уверенное знание пк;
-улаживание конфликтов;
-microservices architecture;
-ms integration services;
-kamailio;
-jupyterlab;
-js css html;
-nlu;
-nsu;
-object pascal/delphi;
-objectscript;
-onnx runtime;
-ood patterns;
-ooп;
-open cv;
-opengl;
-openwrt;
-oracle crm;
-oracle virtualbox;
-командообразование;
-умение аналитически мыслить;
-умение договариваться;
-нацелен на результат;
-умение общаться с людьми;
-умение объяснять;
-codeception;
-tox;
-разработка api;
-yandex.datalens;
-брокеры сообщений;
-футбол;
-owasp;
-wfs;
-whs;
-wms;
-djangodrf;
-субд postgresql;
-json rpc;
-django 3/drf;
-yolov5;
-разработка проектной документации;
-настройка оборудования;
-chatgpt;
-iam;
-llm;
-talend;
-ugc сервис;
-vosk;
-vosper;
-vuetify+ts;
-whisper;
-голосовой помощник;
-четкая дикция;
-rasa;
-pytest,;
-postgresq;
-алгоритмическое программирование;
-веб-аналитика;
-правильно расставлять приоритеты;
-cbv;
-целеполагание;
-web-scraping;
-mockito;
-nextjs;
-maple;
-sso;
-технический английский язык;
-argparse;
-gitlabcl;
-unittest/doctest/pytes;
-ms analysis server;
-sql lite;
-устная речь;
-sensor fusion;
-разработка алгоритмов;
-less;
-многопоточность;
-customer orientation;
-библиотеки распознавания речи;
-etc marine systems;
-linux-embedded;
-ml engineer;
-чат-бот;
-stylus/sass/less;
-ms-sql, kafka, ооп, docker;
-внешняя оптимизация сайта;
-back end;
-структуры данных;
-руководитель группы;
-engineering;
-qlikview;
-r programming;
-ssis;
-structure from motion;
-реализация проектов;
-corporate governance;
-djangigo;
-jupter hub\lab;
-proxy;
-ad;
-presale;
-orm sqlalchemy;
-ии;
-joomla;
-git bash python linux docker ansible gitlab kubernetes devops prometheus gitlab ci cicd английский;
-умение обрабатывать большое количество информации;
-apache flex;
-jinja;
-pony orm;
-программирование микроконтроллеров;
-socket;
-основы теории графов;
-weka;
-битрис24;
-быстро учусь;
-верстка веб-страниц, в том числе адаптивная;
-высокий уровень дисциплины;
-высоконагруженный клиентский сервис;
-multitasking;
-геофизика;
-грамотная устная и письменная речь;
-mq;
-должностные инструкции;
-желание работать и зарабатывать;
-техническое сопровождение;
-map tiles;
-инфраструктура данных;
-linuxcnc;
-java-ml;
-janus;
-jaicp;
-imageproxy;
-graphana;
-ar;
-написание алгоритмов;
-настойчивость;
-google analytics;
-gino;
-appium;
-обработка сигналов;
-apm;
-api,;
-geo;
-обучение сотрудников;
-обучении машинных моделей;
-freelance;
-описание пользовательского опыта;
-framework;
-flyway;
-flume;
-flask api;
-flake8;
-умный дом;
-эффективное решение проблем;
-dbt;
-развитие продаж;
-csv;
-css-верстка;
-cron;
-разработчик python;
-распределённые сервисы;
-ремонт пк;
-aiohtpp;
-cmmi;
-clickhouse,;
-click house;
-charles;
-1-wire;
-сffi;
-chakraui;
-celery + rabbitmq;
-самообучение;
-celery + flower;
-celary;
-bullet;
-streamlit;
-substrate;
-stock market;
-stereo correspondence;
-swagger,;
-swig;
-systemd;
-system design;
-tableau;
-sqoop;
-socketio;
-soa;
-sms gateway;
-telegram api;
-согласование договоров;
-smpp protocol;
-создание образовательных программ;
-bpm;
-thrift;
-senior python developer;
-time-series db;
-tls;
-tomcat;
-security;
-sds;
-tortoiseorm;
-sdn;
-screadsheets;
-tsu;
-san;
-сосредоточенность;
-rest/rpc;
-ui/ux;
-research and development;
-request;
-составление тз;
-redisfastap;
-unreal engine;
-rdbms databases;
-способность обучать других;
-visiology;
-rabbitqm;
-способность работать в команде;
-queries;
-vmware workstation;
-vs code;
-vue 3;
-pyton;
-python разработчик;
-python, postgresql;
-vuetify;
-python, django framework, git, sql, postgresql, backend, rest;
-autodevops;
-scraping;
-автоматизация тестирования;
-играющий тренер;
-deeplearning;
-навыки разрешения спорных ситуаций;
-боты;
-metabase;
-html, css, javascript;
-игры;
-разработка концепции;
-type script;
-английский язык (upper-intermediate);
-tpu;
-zennoposter;
-базы orm;
-геймдев;
-ico;
-киберспорт;
-acid;
-graph ql;
-опыт работы в 1с;
-excel;
-cms;
-разработка логистики;
-ssas;
-supply chain optimisation;
-sap;
-research;
-python backend developer;
-webhooks;
-amazon ws;
-doctest;
-bootstrap 4/5;
-python django rest framework pytest rabbitmq celery redis clickhouse mongodb postgresql fas;
-digital ocean;
-оптимизация процессов;
-mypy;
-web-framework;
-аудит учебных программ;
-cad;
-хранение и обработка данных;
-protobuf;
-асинхронное взаимодействие;
-программист;
-алготрейдинг;
-бизнес-планирование;
-асу;
-server sent events;
-quality control;
-continuous dilivery;
-rebbitmq;
-scrapper;
+python
+postgresql
+git
+django framework
+sql
+linux
+docker
+flask
+django
+redis
+РѕРѕРї
+rabbitmq
+Р°РЅРіР»РёР№СЃРєРёР№ СЏР·С‹Рє
+mysql
+javascript
+mongodb
+fastapi
+kubernetes
+rest
+asyncio
+celery
+api
+kafka
+aiohttp
+html
+css
+rest api
+Р±Р°Р·С‹ РґР°РЅРЅС‹С…
+sqlalchemy
+c++
+clickhouse
+atlassian jira
+backend
+СѓРґР°Р»РµРЅРЅР°СЏ СЂР°Р±РѕС‚Р°
+СЂР°Р±РѕС‚Р° РІ РєРѕРјР°РЅРґРµ
+ci/cd
+bash
+nginx
+elasticsearch
+golang
+pandas
+java
+go
+nosql
+aws
+c/c++
+СЂР°Р·СЂР°Р±РѕС‚РєР° РЅРѕРІРѕРіРѕ РїСЂРѕРґСѓРєС‚Р°
+docker-compose
+pytest
+spark
+big data
+unit testing
+ml
+django rest framework
+react
+scrum
+gitlab
+ms sql
+php
+etl
+http
+numpy
+orm
+СЂР°Р±РѕС‚Р° СЃ Р±Р°Р·Р°РјРё РґР°РЅРЅС‹С…
+html5
+xml
+agile
+hadoop
+Р°СЃРёРЅС…СЂРѕРЅРЅРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ
+drf
+СЃСѓР±Рґ
+qt
+vue.js
+c#
+jquery
+machine learning
+Р°РЅР°Р»РёР· РґР°РЅРЅС‹С…
+js
+pycharm
+saas
+devops
+Р°Р»РіРѕСЂРёС‚РјС‹
+airflow
+node.js
+soap
+СЂР°Р·СЂР°Р±РѕС‚РєР° РїРѕ
+unix
+jenkins
+СѓРїСЂР°РІР»РµРЅРёРµ РїСЂРѕРµРєС‚Р°РјРё
+oracle
+РѕРїС‚РёРјРёР·Р°С†РёСЏ РєРѕРґР°
+graphql
+tcp/ip
+elk
+tensorflow
+data science
+json api
+agile project management
+opencv
+Р°Р»РіРѕСЂРёС‚РјС‹ Рё СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С…
+РѕР±СѓС‡РµРЅРёРµ Рё СЂР°Р·РІРёС‚РёРµ
+Р°РЅР°Р»РёС‚РёС‡РµСЃРєРѕРµ РјС‹С€Р»РµРЅРёРµ
+pytorch
+rust
+tornado
+ansible
+atlassian confluence
+jira
+solid
+РІРµР±-РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ
+blockchain
+css3
+РіСЂР°РјРѕС‚РЅР°СЏ СЂРµС‡СЊ
+typescript
+openstack
+tdd
+nlp
+swagger
+k8s
+web
+СѓРјРµРЅРёРµ СЂР°Р±РѕС‚Р°С‚СЊ РІ СѓСЃР»РѕРІРёСЏС… РјРЅРѕРіРѕР·Р°РґР°С‡РЅРѕСЃС‚Рё
+apache kafka
+СЂР°Р±РѕС‚Р° РІ СѓСЃР»РѕРІРёСЏС… РјРЅРѕРіРѕР·Р°РґР°С‡РЅРѕСЃС‚Рё
+highload
+json
+РјР°С€РёРЅРЅРѕРµ РѕР±СѓС‡РµРЅРёРµ
+bootstrap
+information security
+СЂР°Р±РѕС‚Р° СЃ Р±РѕР»СЊС€РёРј РѕР±СЉРµРјРѕРј РёРЅС„РѕСЂРјР°С†РёРё
+teamcity
+ci
+hive
+grpc
+СЃРёСЃС‚РµРјРЅРѕРµ РјС‹С€Р»РµРЅРёРµ
+github
+С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ
+microservices
+РјР°С‚РµРјР°С‚РёС‡РµСЃРєР°СЏ СЃС‚Р°С‚РёСЃС‚РёРєР°
+РјР°С‚РµРјР°С‚РёС‡РµСЃРєРёР№ Р°РЅР°Р»РёР·
+РїСЂРµРїРѕРґР°РІР°С‚РµР»СЊ
+html/css
+СѓРїСЂР°РІР»РµРЅРёРµ РєРѕРјР°РЅРґРѕР№
+sanic
+fast api
+РіСЂР°РјРѕС‚РЅРѕСЃС‚СЊ
+teamleading
+selenium
+adobe photoshop
+gitlab ci
+data analysis
+ajax
+computer vision
+pyqt
+terraform
+СЃРµС‚РµРІС‹Рµ С‚РµС…РЅРѕР»РѕРіРёРё
+websocket
+РѕСЂРёРµРЅС‚Р°С†РёСЏ РЅР° СЂРµР·СѓР»СЊС‚Р°С‚
+angular
+scrapy
+kotlin
+Р¶РµР»Р°РЅРёРµ СѓС‡РёС‚СЊСЃСЏ Рё СЂР°Р·РІРёРІР°С‚СЊСЃСЏ
+dwh
+СЃ#
+openshift
+java script
+memcached
+vuejs
+react.js
+РґРµР»РѕРІР°СЏ РєРѕРјРјСѓРЅРёРєР°С†РёСЏ
+pyramid
+РїР°С‚С‚РµСЂРЅС‹ РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёСЏ
+oracle pl/sql
+vue
+odoo
+confluence
+РїР°СЂСЃРёРЅРі
+svn
+РЅРµР№СЂРѕРЅРЅС‹Рµ СЃРµС‚Рё
+soft skills
+scala
+selenium ide
+С‚РІРѕСЂС‡РµСЃРєРѕРµ РјС‹С€Р»РµРЅРёРµ
+apache http server
+design patterns
+РјРѕР±РёР»СЊРЅС‹Рµ РїСЂРёР»РѕР¶РµРЅРёСЏ
+ms sql server
+bpmn
+РєСЂРµР°С‚РёРІРЅРѕСЃС‚СЊ
+grafana
+restapi
+qa
+bitbucket
+Р»РёРґРµСЂСЃС‚РІРѕ
+r
+data mining
+cmake
+laravel
+РЅР°СЃС‚Р°РІРЅРёС‡РµСЃС‚РІРѕ
+keras
+СѓРјРµРЅРёРµ РїСЂРёРЅРёРјР°С‚СЊ СЂРµС€РµРЅРёСЏ
+web application development
+РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅР°СЏ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ
+websockets
+РјРЅРѕРіРѕР·Р°РґР°С‡РЅРѕСЃС‚СЊ
+telegram
+РѕР±СѓС‡РµРЅРёРµ
+data engineering
+python3
+РїР»Р°РЅРёСЂРѕРІР°РЅРёРµ РєР°СЂСЊРµСЂС‹
+stl
+ms powerpoint
+cРёСЃС‚РµРјС‹ СѓРїСЂР°РІР»РµРЅРёСЏ Р±Р°Р·Р°РјРё РґР°РЅРЅС‹С…
+perl
+pydantic
+СЂР°Р±РѕС‚Р° СЃ Р±Р°РЅРєР°РјРё
+web api
+architecture
+google docs
+redux
+apache airflow
+1СЃ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ
+python 3
+english
+sentry
+jupyter notebook
+pl/sql
+databases
+prometheus
+.net framework
+frontend
+Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ СЃРµСЂРІРµСЂРѕРІ linux
+vba
+РјРёРєСЂРѕСЃРµСЂРІРёСЃС‹
+СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ РєРѕРјР°РЅРґРѕР№ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРѕРІ
+falcon
+Р·РЅР°РЅРёРµ Р°РЅРіР»РёР№СЃРєРѕРіРѕ СЏР·С‹РєР°
+deep learning
+crm
+cassandra
+mercurial
+oop
+СѓРїСЂР°РІР»РµРЅРёРµ РІСЂРµРјРµРЅРµРј
+django rest
+pl/python
+ubuntu server
+Р°РІС‚РѕРјР°С‚РёР·Р°С†РёСЏ РїСЂРѕС†РµСЃСЃРѕРІ
+РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РїРє
+sqlite
+gulp
+СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ РєРѕР»Р»РµРєС‚РёРІРѕРј
+РјР°С‚РµРјР°С‚РёРєР°
+СЃС‚Р°С‚РёСЃС‚РёС‡РµСЃРєРёР№ Р°РЅР°Р»РёР·
+pyside
+restful api
+Р»РёРЅРµР№РЅРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ
+gunicorn
+postgres
+it
+cms wordpress
+influxdb
+unix-like СЃРёСЃС‚РµРјС‹
+РѕРїС‚РёРјРёР·Р°С†РёСЏ Р·Р°РїСЂРѕСЃРѕРІ
+ubuntu
+macos
+С‚РµРѕСЂРёСЏ РІРµСЂРѕСЏС‚РЅРѕСЃС‚РµР№
+iohttp
+РјРѕР±РёР»СЊРЅРѕСЃС‚СЊ
+РґРµР»РѕРІРѕРµ РѕР±С‰РµРЅРёРµ
+elascticsearch
+djangoorm
+starlette
+postgis
+jupiter
+Р»РѕРіРёРєР°
+jupyter
+requests
+elastic search
+СѓРјРµРЅРёРµ Р°РґР°РїС‚РёСЂРѕРІР°С‚СЊСЃСЏ
+СѓРїСЂР°РІР»РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р»РѕРј
+РєРѕРјРїСЊСЋС‚РµСЂРЅРѕРµ Р·СЂРµРЅРёРµ
+software development
+Р°РЅР°Р»РёС‚РёС‡РµСЃРєРёРµ СЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё
+РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ Рё РїСѓРЅРєС‚СѓР°Р»СЊРЅРѕСЃС‚СЊ
+РІРµРґРµРЅРёРµ РїРµСЂРµРіРѕРІРѕСЂРѕРІ
+firewall
+ms excel
+СЂР°Р·СЂР°Р±РѕС‚РєР° РїР»Р°С‚С„РѕСЂРјС‹
+РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅС‹Рµ С‚РµС…РЅРѕР»РѕРіРёРё
+Р°РґРµРєРІР°С‚РЅРѕСЃС‚СЊ
+yii
+nuxt.js
+mvc
+automation
+vmware
+alm СЃРёСЃС‚РµРјС‹
+РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ
+mlops
+kibana
+РґРµР»РѕРІР°СЏ РїРµСЂРµРїРёСЃРєР°
+google cloud platform
+symfony
+windows
+wireshark
+Р·РЅР°РЅРёРµ Р±Р°Р·С‹ РґР°РЅРЅС‹С… postgresql
+networking
+django/flask
+Р°РЅР°Р»РёР· РєРѕРґР°
+РєРѕРјР°РЅРґРЅР°СЏ СЃС‚СЂРѕРєР° linux
+erp
+РїР»РёСЃ xilinx
+СЃРєР°РґР° СЃРёСЃС‚РµРјС‹
+Р±РёР±Р»РёРѕС‚РµРєРё
+game programming
+qt(pyqt)
+cuda
+С‡С‚РµРЅРёРµ Рё РЅР°РїРёСЃР°РЅРёРµ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё
+notion
+СЃРµС‚РµРІРѕР№ СЃС‚РµРє
+РѕСЂРіР°РЅРёР·Р°С†РёРѕРЅРЅС‹Рµ РЅР°РІС‹РєРё
+clean architecture
+Р±Р»РѕРєС‡РµР№РЅ
+django orm
+Р±Р°Р·РѕРІС‹Рµ Р·РЅР°РЅРёСЏ Рё РїРѕРЅРёРјР°РЅРёРµ РёРіСЂС‹ СЃs:go
+unity
+РѕСЂРіР°РЅРёР·Р°С†РёСЏ СѓС‡РµР±РЅРѕРіРѕ РїСЂРѕС†РµСЃСЃР°
+web3
+c
+ruby
+СЃР±РѕСЂ Рё Р°РЅР°Р»РёР· РёРЅС„РѕСЂРјР°С†РёРё
+sklearn
+ai
+scikit-learn
+voip
+mathematical statistics
+angularjs
+С…РѕСЂРѕС€Р°СЏ РѕР±СѓС‡Р°РµРјРѕСЃС‚СЊ
+РѕСЂРіР°РЅРёР·Р°С†РёСЏ РјРµСЂРѕРїСЂРёСЏС‚РёР№
+gcp
+openapi
+РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРµ РјРѕРґРµР»РёСЂРѕРІР°РЅРёРµ
+grapgql
+figma
+code review
+raspberry pi
+autodesk maya
+alembic
+ddd
+zabbix
+РјРёРєСЂРѕСЃРµСЂРІРёСЃРЅР°СЏ Р°СЂС…РёС‚РµРєС‚СѓСЂР°
+Р°РЅРіР»РёР№СЃРєРёР№ вЂ” b2 вЂ” СЃСЂРµРґРЅРµ-РїСЂРѕРґРІРёРЅСѓС‚С‹Р№
+РїСЂРѕРµРєС‚РЅР°СЏ СЂР°Р±РѕС‚Р°
+Р°РЅР°Р»РёС‚РёРєР°
+reactjs
+android
+vertica
+spring framework
+retail
+РєСЂРёРїС‚РѕРІР°Р»СЋС‚Р°
+СЌРЅС‚СѓР·РёР°Р·Рј
+СЂР°Р·СЂР°Р±РѕС‚РєР° С‚РµС…РЅРёС‡РµСЃРєРёС… Р·Р°РґР°РЅРёР№
+kanban
+amocrm
+РєРѕРјРјСѓРЅРёРєР°Р±РµР»СЊРЅРѕСЃС‚СЊ, СЃС‚СЂРµСЃСЃРѕСѓСЃС‚РѕР№С‡РёРІРѕСЃС‚СЊ
+РЅР°РіСЂСѓР·РѕС‡РЅРѕРµ С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ
+gdal
+СѓРјРµРЅРёРµ СЂР°Р±РѕС‚Р°С‚СЊ РІ РєРѕР»Р»РµРєС‚РёРІРµ
+java se
+РЅР°СЃС‚СЂРѕР№РєР° dns
+pyspark
+РјРѕС‚РёРІР°С†РёСЏ РїРµСЂСЃРѕРЅР°Р»Р°
+uml
+РїРѕРґР±РѕСЂ РїРµСЂСЃРѕРЅР°Р»Р°
+algorithms
+РѕСЂРіР°РЅРёР·Р°С‚РѕСЂСЃРєРёРµ РЅР°РІС‹РєРё
+ros
+РІРЅСѓС‚СЂРµРЅРЅРёР№ РєРѕРЅС‚СЂРѕР»СЊ
+debian
+dash
+СЂР°Р·СЂР°Р±РѕС‚РєР° РєРѕРјРїСЊСЋС‚РµСЂРЅС‹С… РёРіСЂ
+boost
+РІС‹СЃРѕРєРѕРЅР°РіСЂСѓР¶РµРЅРЅС‹Рµ СЃРёСЃС‚РµРјС‹
+РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕРµ РѕС‚РЅРѕС€РµРЅРёРµ Рє СЂР°Р±РѕС‚Рµ
+РїСѓР±Р»РёС‡РЅС‹Рµ РІС‹СЃС‚СѓРїР»РµРЅРёСЏ
+powershell
+3d РјРѕРґРµР»РёСЂРѕРІР°РЅРёРµ
+b2b
+github actions
+СЂР°Р·СЂР°Р±РѕС‚РєР° РїСЂРѕРґСѓРєС‚Р°
+back-end
+vpn
+shell scripting
+plotly
+mssql
+embedded
+worldskills
+trello
+citrix
+РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ
+Р¶РµР»Р°РЅРёРµ РѕР±СѓС‡Р°С‚СЊСЃСЏ
+teamplayer
+selenium webdriver
+flash mysql
+db
+solr
+РѕРїРµСЂР°С‚РёРІРЅС‹Р№ РїРѕРёСЃРє РёРЅС„РѕСЂРјР°С†РёРё РІ СЃРµС‚Рё РёРЅС‚РµСЂРЅРµС‚
+РїСЂРѕРІРµРґРµРЅРёРµ С‚РµСЃС‚РёСЂРѕРІР°РЅРёР№
+arduino
+arm cortex m
+google cloud
+fullstack
+aiogram
+СЂРµС„Р°РєС‚РѕСЂРёРЅРі РєРѕРґР°
+phyton
+РІС‹СЃРѕРєРёР№ СѓСЂРѕРІРµРЅСЊ СЃР°РјРѕРѕСЂРіР°РЅРёР·Р°С†РёРё
+СЂР°Р·СЂР°Р±РѕС‚РєР° Р°СЂС…РёС‚РµРєС‚СѓСЂС‹
+Р°syncio
+СѓРјРµРЅРёРµ Р±С‹СЃС‚СЂРѕ СѓСЃРІР°РёРІР°С‚СЊ РЅРѕРІСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ
+ruby on rails
+mariadb
+power bi
+rabbit
+СѓРјРµРЅРёРµ СЃР»СѓС€Р°С‚СЊ
+gitlab ci/cd
+computer science
+docker compose
+test automation
+РіСЂСѓРїРїРѕРІРѕРµ РѕР±СѓС‡РµРЅРёРµ
+Р°РЅРіР»РёР№СЃРєРёР№ СЏР·С‹Рє (intermediate)
+backend developer
+matlab
+scipy
+async
+СЃ/СЃ++/СЃ#
+testing framework
+РІРЅРёРјР°С‚РµР»СЊРЅРѕСЃС‚СЊ, РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ
+sql-Р·Р°РїСЂРѕСЃС‹
+dchp
+typescript/javascript
+РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РёРЅС‚РµСЂС„РµР№СЃРѕРІ
+СѓРјРµРЅРёРµ СЂР°Р±РѕС‚Р°С‚СЊ РІ РєРѕРјР°РЅРґРµ
+business english
+aerospike
+РѕРїРї
+google bigquery
+visual studio code
+development
+druid
+statistics
+РёРЅРёС†РёР°С‚РёРІРЅРѕСЃС‚СЊ
+activemq
+fastcgi
+Р±СЌРєРµРЅРґ
+ios
+unix shell scripts
+transact-sql
+СѓРїСЂР°РІР»РµРЅРёРµ СЂР°Р·СЂР°Р±РѕС‚РєРѕР№
+xsd
+joomla cms
+opencart
+ms visio
+РїРѕР·РёС‚РёРІРЅРѕРµ РјС‹С€Р»РµРЅРёРµ
+РІРёСЂС‚СѓР°Р»РёР·Р°С†РёСЏ
+Р±РёРѕРёРЅС„РѕСЂРјР°С‚РёРєР°
+fluent english
+asyncpg
+poetry
+1СЃ: РїСЂРµРґРїСЂРёСЏС‚РёРµ 8
+tarantool
+aiosmtplib
+cd
+cmd
+asr
+speech-to-text
+СЂРµС€РµРЅРёРµ РїСЂРѕР±Р»РµРј
+РіРµРЅРµСЂР°С†РёСЏ РёРґРµР№
+Р±Р°Р·Р° РґР°РЅРЅС‹С…: oracle
+РїСЂРµРїРѕРґР°РІР°РЅРёРµ
+robot framework
+continuous integration
+logstash
+multithreading
+http api
+gis
+СЃС‚Р°С‚РёСЃС‚РёРєР°
+С€РёСЂРѕРєРёР№ РєСЂСѓРіРѕР·РѕСЂ
+azure
+СЂРµС€РµРЅРёРµ РЅРµСЃС‚Р°РЅРґР°СЂС‚РЅС‹С… Р·Р°РґР°С‡
+asana
+react/redux
+techlead
+openoffice
+СЂР°Р·СЂР°Р±РѕС‚РєР° РїРѕРёСЃРєРѕРІС‹С… С‚РµС…РЅРѕР»РѕРіРёР№
+С‚РѕС‡РЅРѕСЃС‚СЊ Рё РІРЅРёРјР°С‚РµР»СЊРЅРѕСЃС‚СЊ Рє РґРµС‚Р°Р»СЏРј
+bdd
+pulsar
+arm
+scada
+sphinx
+helm
+puppet
+http, json
+.net core
+webpack
+РѕСЂРіР°РЅРёР·Р°С†РёСЏ РјРµСЂРѕРїСЂРёСЏС‚РёР№ РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ
+blender 3d
+3d
+РїРѕСЃС‚Р°РЅРѕРІРєР° Р·Р°РґР°С‡ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј
+internet
+engine
+sdk
+citrix systems
+РѕРїС‹С‚ СЂР°Р±РѕС‚С‹ РІ РєРѕРјР°РЅРґРµ
+tibbo aggregate
+sas
+СЌС„С„РµРєС‚РёРІРЅРѕРµ РїСЂРёРЅСЏС‚РёРµ СЂРµС€РµРЅРёР№
+youtrack
+efk
+СЃС‚СЂРµРјР»РµРЅРёРµ Рє РїСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅРѕРјСѓ СЂР°Р·РІРёС‚РёСЋ
+astra linux
+СЃРѕР·РґР°РЅРёРµ СЃР°Р№С‚РѕРІ
+СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚СЊ
+ninja
+РЅР°РІС‹РєРё РјРµР¶Р»РёС‡РЅРѕСЃС‚РЅРѕРіРѕ РѕР±С‰РµРЅРёСЏ
+restful
+gitlabci
+Р»РѕСЏР»СЊРЅРѕСЃС‚СЊ
+РєР°СЂС‚РѕРіСЂР°С„РёСЏ
+presto
+minlo
+dry
+РёРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕРµ РѕР±СѓС‡РµРЅРёРµ
+РєРёР±РµСЂРїРѕР»РёРіРѕРЅ
+vue js
+airflow/dagster
+РѕРїС‹С‚РЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РїРє
+a/b-experiments
+beautifulsoup
+СЂРѕР±РѕС‚РѕС‚РµС…РЅРёРєР°
+СЃ++
+sass
+pyapi
+rubbitmq
+open vino
+microsoft access
+olap (online analytical processing)
+СЃР°РјРѕРєСЂРёС‚РёС‡РЅРѕСЃС‚СЊ
+СЃРµСЂРІРµСЂРЅРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ
+РґРµР»РѕРїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ
+РІРЅСѓС‚СЂРµРЅРЅРёРµ РєРѕРјРјСѓРЅРёРєР°С†РёРё
+РґРёСЃС‚Р°РЅС†РёРѕРЅРЅРѕРµ РѕР±СѓС‡РµРЅРёРµ
+СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅР°СЏ СЂР°Р±РѕС‚Р°
+squid
+РјР°С‚РµРјР°С‚РёС‡РµСЃРєР°СЏ Р»РѕРіРёРєР°
+vkontakte api
+netbox
+dvs
+tensorrt
+РіРѕС‚РѕРІРЅРѕСЃС‚СЊ РѕР±СѓС‡Р°С‚СЊСЃСЏ
+doker
+visual studio c#
+amazon cloud
+РІС‹РїРѕР»РЅРµРЅРёРµ РїРѕСЃС‚Р°РІР»РµРЅРЅС‹С… Р·Р°РґР°С‡
+scratch
+С‚Р°Р№Рј-РјРµРЅРµРґР¶РјРµРЅС‚
+godot
+3d-РіСЂР°С„РёРєР°
+РѕР±СЂР°Р±РѕС‚РєР° РІРёРґРµРѕ
+game
+РїРµРґР°РіРѕРіРёРєР°
+СЂР°Р·РіРѕРІРѕСЂРЅС‹Р№ Р°РЅРіР»РёР№СЃРєРёР№
+РґСЂСѓР¶РµР»СЋР±РёРµ
+google api
+Р°РЅРіР»РёР№СЃРєРёР№ - РІ2 - СЃСЂРµРґРЅРµ-РїСЂРѕРґРІРёРЅСѓС‚С‹Р№
+multiprocessing
+time management
+2d
+РёРїРѕС‚РµС‡РЅС‹Рµ РєСЂРµРґРёС‚С‹
+mongo
+Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ СЃР°Р№С‚РѕРІ
+matplotlib
+huawei
+asterisk
+kiss
+allure
+rabbit mq
+chromium embedded framework
+ms access
+groovy
+ssh
+iptables
+office
+asp.net
+npm
+РїСЂРѕРґРІРёРЅСѓС‚С‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РїРє
+redmine
+greenplum
+СЂР°Р±РѕС‚Р° СЃ РґРѕРєСѓРјРµРЅС‚Р°С†РёРµР№
+developer
+datadog
+container
+zoom
+reackt
+dns
+РІРµРґРµРЅРёРµ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё
+blueprints
+unreal engine 5
+kvm
+tools
+fronend
+houdini
+unreal engine 4
+teamlead
+РїСЂРёРЅРёРјР°С‚СЊ СЂРµС€РµРЅРёСЏ Рё Р·Р° РёС… СЂРµР·СѓР»СЊС‚Р°С‚С‹ РѕС‚РІРµС‡Р°С‚СЊ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ
+libreoffice
+apache ignite
+РѕРїС‚РёРјРёР·Р°С†РёСЏ Р±РёР·РЅРµСЃ-РїСЂРѕС†РµСЃСЃРѕРІ
+mathematical analysis
+pipline td
+СЃР°РјРѕРєРѕРЅС‚СЂРѕР»СЊ
+crm bitrix24
+СЃС‚СЂР°С‚РµРіРёС‡РµСЃРєРѕРµ РјС‹С€Р»РµРЅРёРµ
+l3 vpn
+hibernate orm
+firmware
+python, aiohttp, fastapi, trending, linux
+РЅРµС„С‚РµРіР°Р·
+СЃРёСЃС‚РµРјРЅС‹Р№ РїРѕРґС…РѕРґ
+powerbi
+С‚РµСЂРїРёРјРѕСЃС‚СЊ
+udp
+product management
+СЃС‚СЂРµРјР»РµРЅРёРµ Рє РїСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅРѕРјСѓ СЂРѕСЃС‚Сѓ
+СЃС…Рґ
+Р±РёР·РЅРµСЃ-Р°РЅР°Р»РёР·
+elt
+django rest api
+pentaho
+pentest
+onnx
+РєРѕРјР°РЅРґРЅР°СЏ СЂР°Р±РѕС‚Р°
+intelligent geospatial services
+json-rpc
+ibm mq
+СѓРјРµРЅРёРµ РїР»Р°РЅРёСЂРѕРІР°С‚СЊ
+cg prodaction
+СЂР°Р·СЂР°Р±РѕС‚С‡РёРє
+wpf
+team management
+replication graph
+dq
+bs4
+bigdata
+СЂР°Р±РѕС‚Р° СЃ РєРѕРјРїСЊСЋС‚РµСЂРѕРј
+adobe illustrator
+mac software
+sentry apm
+delphi
+РєРѕРЅРєСѓСЂРµРЅС‚РЅР°СЏ СЂР°Р·РІРµРґРєР°
+1СЃ: СѓРїСЂР°РІР»РµРЅРёРµ РїСЂРµРґРїСЂРёСЏС‚РёРµРј
+teradata
+ffmpeg
+С‚РµС…РЅРёС‡РµСЃРєРёР№ Р°РЅРіР»РёР№СЃРєРёР№
+РєРѕРЅС‚СЂРѕР»СЊ РёСЃРїРѕР»РЅРµРЅРёСЏ СЂРµС€РµРЅРёР№
+РєРѕРјРјСѓРЅРёРєР°Р±РµР»СЊРЅРѕСЃС‚СЊ
+1СЃ: СѓРїСЂР°РІР»РµРЅРёРµ С‚РѕСЂРіРѕРІР»РµР№
+РЅР°СЃС‚СЂРѕР№РєР° СЃРµС‚РµРІС‹С… РїРѕРґРєР»СЋС‡РµРЅРёР№
+РєРѕРјРјСѓРЅРёРєР°С†РёСЏ
+ci\cd
+aaa project
+sql alchemy
+СЂР°Р±РѕС‚Р° СЃ Р»СЋРґСЊРјРё
+artifactory
+vuetify 3 + nuxt 3
+Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅР°СЏ РїРѕРґРґРµСЂР¶РєР° СЂСѓРєРѕРІРѕРґРёС‚РµР»СЏ
+celery, redis
+СѓРјРµРЅРёРµ РёР·СѓС‡Р°С‚СЊ
+Р°РІС‚РѕС‚РµСЃС‚С‹
+ext js
+software design patterns
+mac os
+pyqt5
+business strategy
+РѕСЂРіР°РЅРёР·Р°С†РёСЏ СЂР°Р±РѕС‡РёС… РјРµСЃС‚
+apache
+logging
+СЂР°Р·СЂР°Р±РѕС‚РєР°
+computational geometry
+spring
+mathematical programming
+СѓРїСЂР°РІР»РµРЅРёРµ РїСЂРѕС†РµСЃСЃР°РјРё
+РїСЂРѕРІРµРґРµРЅРёРµ РїСЂРµР·РµРЅС‚Р°С†РёР№
+РЅР°РІС‹РєРё РїСѓР±Р»РёС‡РЅС‹С… РІС‹СЃС‚СѓРїР»РµРЅРёР№
+maxpatrol
+oauth
+informix
+graphite
+Р±Р°Р·РѕРІС‹Рµ Р·РЅР°РЅРёСЏ sql
+solidity
+РІРёР·СѓР°Р»РёР·Р°С†РёСЏ РґР°РЅРЅС‹С…
+СѓРјРµРЅРёРµ СЂР°СЃСЃС‚Р°РІР»СЏС‚СЊ РїСЂРёРѕСЂРёС‚РµС‚С‹
+Р°СЂС…РёС‚РµРєС‚СѓСЂР°
+РІРµР±-РґРёР·Р°Р№РЅ
+РїРѕРґРіРѕС‚РѕРІРєР° РїСЂРµР·РµРЅС‚Р°С†РёР№
+acl
+google sheets
+dax
+flack
+phpmyadmin
+ms windows
+РґРѕР±СЂРѕСЃРѕРІРµСЃС‚РЅРѕСЃС‚СЊ
+itsm
+devsecops
+СѓСЃС‚РѕР№С‡РёРІРѕСЃС‚СЊ Рє СЃС‚СЂРµСЃСЃР°Рј
+wordpress
+С‚РµРѕСЂРёСЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+РјРµРЅРµРґР¶РјРµРЅС‚
+amazon
+multithread programming
+django-rest
+РіРёР±РєРѕСЃС‚СЊ
+cockroachdb
+sql server
+python 3.7
+pyhton
+yandex cloud
+backbone
+channels
+composer
+posgressql
+postman
+rpm
+rstudio
+slack
+snowflake
+sqlachemy
+sql Р·Р°РїСЂРѕСЃС‹
+tfs
+typing skills
+uvicorn
+vue-router
+yandex maps api
+РІС‹СЃС€РµРµ РѕР±СЂР°Р·РѕРІР°РЅРёРµ
+Р¶РµР»Р°РЅРёРµ СѓС‡РёС‚СЊСЃСЏ
+Р»РёРЅРµР№РЅР°СЏ Р°Р»РіРµР±СЂР°
+РїСЂРѕРІРµРґРµРЅРёРµ СЃРµРјРёРЅР°СЂРѕРІ
+nxgin
+virtualization
+qa automation
+php7
+РїРѕРёСЃРєРѕРІС‹Рµ СЃРёСЃС‚РµРјС‹
+РёСЃРєСѓСЃСЃС‚РІРµРЅРЅС‹Р№ РёРЅС‚РµР»Р»РµРєС‚
+htmx
+РєСЂРёС‚РёС‡РµСЃРєРѕРµ РјС‹С€Р»РµРЅРёРµ
+https
+microsoft visual studio
+yagni
+РѕР±СЏР·Р°С‚РµР»СЊРЅРѕСЃС‚СЊ
+РёРјРёС‚Р°С†РёРѕРЅРЅРѕРµ РјРѕРґРµР»РёСЂРѕРІР°РЅРёРµ
+СЂР°Р±РѕС‚Р°С‚СЊ
+informatica data qualit
+СЃelery
+РїСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РїРє
+web СЂР°Р·СЂР°Р±РѕС‚РєР°
+СЃС‚Р°СЂС€РёР№ (senior)
+koalas
+1СЃ: С‚РѕСЂРіРѕРІР»СЏ
+Р°РІС‚РѕРјР°С‚РёР·Р°С†РёСЏ РјРµРґРёС†РёРЅСЃРєРёС… РїСЂРѕС†РµСЃСЃРѕРІ
+powercurve
+СЂР°Р·СЂР°Р±РѕС‚РєР° cms
+СѓРјРµРЅРёРµ СЌС„С„РµРєС‚РёРІРЅРѕ СЂР°Р±РѕС‚Р°С‚СЊ РІ РєРѕРјР°РЅРґРµ
+СЏРЅРґРµРєСЃ.РѕР±Р»Р°РєРѕ
+fico
+СЃРёСЃС‚РµРјС‹ РІРёРґРµРѕРЅР°Р±Р»СЋРґРµРЅРёСЏ
+ms power bi
+dbms
+fastap
+С„СЂРµР№РјРІРѕСЂРєРё
+grafana/telegraf
+gpgpu
+dl
+dockerfile
+erp systems
+СЂР°Р·СЂР°Р±РѕС‚РєР° СЃС‚СЂР°С‚РµРіРёР№ РїСЂРёРЅСЏС‚РёСЏ СЂРµС€РµРЅРёР№
+amqp
+nexus
+jinja2
+1СЃ: СЂРѕР·РЅРёС†Р°
+С‚РµС…РЅРѕР»РѕРіРёРё СЂР°Р·СЂР°Р±РѕС‚РєРё РїРѕ РЅР° СЏР·С‹РєРµ python
+es6
+dramatiq
+yii2
+billing
+РѕСЂРіР°РЅРёР·Р°С†РёСЏ СЂР°Р±РѕС‡РµРіРѕ РїСЂРѕС†РµСЃСЃР°
+СЂР°Р·СЂР°Р±РѕС‚РєР° РјРѕР±РёР»СЊРЅС‹С… РїСЂРёР»РѕР¶РµРЅРёР№
+airlow
+iot
+c++17
+alt linux
+rpa
+РІРѕРІР»РµС‡РµРЅРЅРѕСЃС‚СЊ
+ms visual studio
+dart
+seo
+consumer goods
+unittest
+flask-restful
+full stack
+СЂР°Р±РѕС‚Р° РІ РєРѕР»Р»РµРєС‚РёРІРµ
+РёРЅР¶РµРЅРµСЂ
+siem
+РјРѕРґРµР»РёСЂРѕРІР°РЅРёРµ
+ldap
+С„РёР»СЊС‚СЂ С‡Р°СЃС‚РёС†
+РјРѕРґСѓР»СЊРЅРѕРµ С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ
+СЃСЂРµРґСЃС‚РІР° РєСЂРёРїС‚РѕРіСЂР°С„РёС‡РµСЃРєРѕР№ Р·Р°С‰РёС‚С‹ РёРЅС„РѕСЂРјР°С†РёРё
+С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР°
+clean code
+РѕР±СѓС‡Р°РµРјС‹Р№
+С‚РІРѕСЂС‡РµСЃС‚РІРѕ
+СЃРёСЃС‚РµРјРЅРѕСЃС‚СЊ
+Р°РІС‚РѕРјР°С‚РёР·Р°С†РёСЏ
+pywebview
+qwebkit
+parsing
+continuous integration / continious delivery
+aggregate
+РјР°СЂРєРµС‚РїР»РµР№СЃ
+leadership skills
+network
+СЂР°Р±РѕС‚Р°С‚СЊ РІ РєРѕРјР°РЅРґРµ
+РЅР°СЃС‚СЂРѕР№РєР° РїРѕ
+apache maven
+СЂР°РґРёРѕСЃРёРіРЅР°Р»С‹
+СѓРјРµРЅРёРµ РѕСЂРіР°РЅРёР·РѕРІР°С‚СЊ СЂР°Р±РѕС‚Сѓ
+prefect
+piramid framework
+git flow
+pinia
+vue3
+data structure
+ux
+vuex
+message queue
+РёСЃРїРѕР»РЅРёС‚РµР»СЊРЅРѕСЃС‚СЊ
+РЅР°РІС‹РєРё РїСЂРµР·РµРЅС‚Р°С†РёРё
+Р·РЅР°РЅРёРµ Р°РЅРіР»РёР№СЃРєРѕРіРѕ
+РЅР°СЃС‚СЂРѕР№РєР° vps/vds СЃРµСЂРІРµСЂРѕРІ
+gitflow
+twisted
+naumen
+cherrypy
+linux bash
+С‚РµС…РЅРѕР»РѕРі
+junit
+etcd
+firebase
+php5
+nltk
+decentralized finance
+yaml
+РїСЂРѕРІРµРґРµРЅРёРµ РѕРїСЂРѕСЃРѕРІ РєР»РёРµРЅС‚РѕРІ
+performance reviews
+Р±СЌРј
+С‚СЂРµР№РґРёРЅРі
+ngnix
+gamedev
+РєРѕРјРјСѓРЅРёРєР°Р±РёР»СЊРЅРѕСЃС‚СЊ
+typing
+cpu
+extjs
+video
+smarty
+twig
+python/django
+ide
+vlan
+data lake
+pyarrow
+artemis
+spark api
+yandex.cloud
+СЃРёСЃС‚РµРјР° РєРѕРЅС‚СЂРѕР»СЏ РІРµСЂСЃРёР№
+СЃРёСЃС‚РµРјРЅР°СЏ РёРЅС‚РµРіСЂР°С†РёСЏ
+mongo db
+СЃРѕР±РµСЃРµРґРѕРІР°РЅРёРµ
+СЃРѕР±Р»СЋРґРµРЅРёРµ СЃСЂРѕРєРѕРІ
+СЋСЂРёСЃРїСЂСѓРґРµРЅС†РёСЏ
+СЃС‚СЂРµРјР»РµРЅРёРµ СЂР°Р·РІРёРІР°С‚СЊСЃСЏ
+СЃС‚СЂРёРјРёРЅРі РїР»Р°С‚С„РѕСЂРјС‹
+aioredis
+С‚РµС…РЅРёС‡РµСЃРєР°СЏ РїРѕРґРґРµСЂР¶РєР°
+aio_pica
+shell
+jython
+keycloak
+hyperopt
+compose
+Р·РЅР°РЅРёРµ РєРѕРјРїСЊСЋС‚РµСЂРЅС‹С… РїСЂРѕРіСЂР°РјРј
+РёСЃРїРѕР»РЅРµРЅРёРµ РїРѕСЂСѓС‡РµРЅРёР№ СЂСѓРєРѕРІРѕРґРёС‚РµР»СЏ
+РєР°С‡РµСЃС‚РІРµРЅРЅС‹Р№ РєРѕРґ
+РєРѕРјРјРµСЂС‡РµСЃРєР°СЏ СЂР°Р·СЂР°Р±РѕС‚РєР°
+РєРѕРЅСЃСѓР»СЊС‚РёСЂРѕРІР°РЅРёРµ
+РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёРµ ha/hl СЃРёСЃС‚РµРј
+chromium
+РєСЂРµРґРёС‚РЅС‹Рµ СЂРёСЃРєРё
+camunda
+java С‡С‚РµРЅРёРµ РєРѕРґР°
+buildbot
+build
+РЅР°СЃС‚СЂРѕР№РєР° СЃРµСЂРІРµСЂРѕРІ
+РѕР±СѓС‡Р°РµРјРѕСЃС‚СЊ
+vcs
+bitrix
+РѕРїСЂСЏС‚РЅРѕСЃС‚СЊ
+bim
+vite
+beautiful soup
+РѕС‚РІРµС‚СЃС‚РІРµРЅРЅС‹Р№ РїРѕРґС…РѕРґ Рє СЂР°Р±РѕС‚Рµ
+РѕС‚Р»РёС‡РЅРѕРµ Р·РЅР°РЅРёРµ РїРє
+РїР°СЂСѓСЃ
+РїРѕРёСЃРє РёРЅС„РѕСЂРјР°С†РёРё РІ РёРЅС‚РµСЂРЅРµС‚
+СѓРґР°Р»РµРЅРЅРѕ
+СѓРјРµРЅРёРµ Р°РЅР°Р»РёР·РёСЂРѕРІР°С‚СЊ
+aio-http
+aiohttp, sanic, fastapi, starlette, django, flask, etc
+no-sql
+РїРѕСЃС‚СЂРѕРµРЅРёРµ РєРѕРјР°РЅРґС‹
+reddis
+stripe
+cryptocurrency
+СЌС„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ
+luigi
+python 3.6
+РѕСЃ linux
+РїРѕСЃС‚СЂРѕРµРЅРёРµ Р°СЂС…РёС‚РµРєС‚СѓСЂС‹
+google chrome
+kerastase
+network development
+apache spark
+glide
+wso2 stream processor
+РјРѕС‚РёРІРёСЂРѕРІР°РЅРЅРѕСЃС‚СЊ РЅР° СЂРµР·СѓР»СЊС‚Р°С‚ РѕР±СѓС‡РµРЅРёСЏ
+СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ Р»СЋРґСЊРјРё
+google С‚Р°Р±Р»РёС†С‹
+fasapi
+wagtail
+РєРѕРјР°РЅРґРЅС‹Р№ РёРіСЂРѕРє
+codereview
+active directory
+РѕС†РµРЅРєР° РєР°РЅРґРёРґР°С‚РѕРІ
+ssg
+django 2, drf
+pipenv
+portainer
+debezium
+python 3,
+python unittest
+react js
+git django
+senior
+snmp
+datavault
+business intelligence systems
+soa/msa
+socket programming
+express.js
+frontend api
+scrappy
+math
+nixos
+СЏРЅРґРµРєСЃ.РїРѕРёСЃРє
+open source
+С‚РµР»РµРіСЂР°Рј Р±РѕС‚
+latex
+sdlc
+sip
+postgresql/postgresql pro
+РІС‹СЃРѕРєР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ СЂР°Р±РѕС‚С‹
+knime
+ibm unica
+redis-om
+api docker
+apigateway server
+siddhi
+РѕР±Р»Р°С‡РЅС‹Рµ СЃРµСЂРІРёСЃС‹
+РїРѕСЃС‚СЂРѕРµРЅРёРµ РјРѕРґСѓР»СЊРЅС‹С… РїСЂРёР»РѕР¶РµРЅРёР№
+РѕРїС‹С‚ team lead
+python 3.8
+elixir
+dynamodb
+pymorphy
+temporal.io
+python 3, fastapi, postgresql
+nlp/nlu
+Р±РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ
+googletest
+g-РєРѕРґ
+wsgi
+djangorestframework
+СЃРїРѕСЂС‚
+reinforcement learning
+sensor fusion (kalman filter)
+java virtual machine
+docker/openshift
+e-commerce
+flask/django
+sox
+СЃРµС‚РµРІРѕР№ РїСЂРѕС‚РѕРєРѕР»
+suffix tree
+microsoft
+С„РёРЅР°РЅСЃРѕРІР°СЏ РѕС‚С‡РµС‚РЅРѕСЃС‚СЊ
+java scipt
+СЃРµСЂРІРµСЂРЅР°СЏ СЂР°Р·СЂР°Р±РѕС‚РєР°
+РѕР±РµСЃРїРµС‡РµРЅРёРµ Р¶РёР·РЅРµРґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё РѕС„РёСЃР°
+bitrix24
+.net
+pandas, numpy, xgboost,
+forex
+СѓРјРµРЅРёРµ РґРѕР±РёРІР°С‚СЊСЃСЏ РїРѕСЃС‚Р°РІР»РµРЅРЅС‹С… С†РµР»РµР№
+middle
+qlick view
+virtualenv
+vr
+gnu
+mqtt
+СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕСЃС‚СЊ
+xpath
+conan
+РјРёРєСЂРѕ-СЃРµСЂРІРёСЃРЅР°СЏ Р°СЂС…РёС‚РµРєС‚СѓСЂР°
+РѕР±СЂР°Р±РѕС‚РєР° РёР·РѕР±СЂР°Р¶РµРЅРёР№
+material ui
+minio latest
+gstreamer
+nginx js,
+olap
+gnss
+1СЃ: РїСЂРµРґРїСЂРёСЏС‚РёРµ
+1c: РїСЂРµРґРїСЂРёСЏС‚РёРµ
+elasticksearch
+docker РєРѕРЅС‚РµР№РЅРµСЂС‹
+dockercompose
+sse
+start-up project
+django framewor
+strawberry
+superset
+django 3
+telegrambotapi
+c/СЃ++
+crypto
+web-РїСЂРѕРµРєС‚С‹
+xgboost
+xslt
+Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ
+Р°РЅР°Р»РёР· Р±РёР·РЅРµСЃ РїРѕРєР°Р·Р°С‚РµР»РµР№
+Р°РЅР°Р»РёС‚РёС‡РµСЃРєРёРµ РЅР°РІС‹РєРё
+Р°СЂС…РёС‚РµРєС‚СѓСЂР° РїСЂРёР»РѕР¶РµРЅРёР№
+РІРµРґРµРЅРёРµ РїСЂРѕРµРєС‚РѕРІ
+Р¶РµР»Р°РЅРёРµ СЂР°СЃС‚Рё Рё СЂР°Р·РІРёРІР°С‚СЊСЃСЏ
+Р·РЅР°РЅРёРµ excel
+Р·РЅР°РЅРёРµ web-С„СЂРµР№РјРІРѕСЂРєРѕРІ РІ python (Р»СЋР±С‹С…)
+СЌР»РµРєС‚СЂРѕРЅРёРєР°
+1СЃ-Р±РёС‚СЂРёРєСЃ
+application server django
+apollo
+apache nifi
+РїСЂРѕРіРЅРѕР·РёСЂРѕРІР°РЅРёРµ
+apache2
+angular 1-13
+СЃРµС‚РµРІР°СЏ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ
+jatoba (postgresql)
+web scraping
+Р°РІС‚РѕРїРёР»РѕС‚РёСЂРѕРІР°РЅРёРµ
+cloud
+Р·РЅР°РЅРёРµ РѕСЃРЅРѕРІРЅС‹С… РЅРµР№СЂРѕСЃРµС‚РµРІС‹С… Р°СЂС…РёС‚РµРєС‚СѓСЂ
+РєРѕРјРјСѓРЅРёРєР°Р±РµР»СЊРЅРѕСЃС‚СЊ, РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ
+mlflow
+РјРЅРѕРіРѕРїРѕС‚РѕС‡РЅС‹Рµ РїСЂРёР»РѕР¶РµРЅРёСЏ
+РјРѕРґРµР»СЊ osi
+godep
+ds
+spring boot
+СЂР°Р±РѕС‚Р° СЃ СЃРёСЃС‚РµРјР°РјРё Р°РЅР°Р»РёС‚РёРєРё
+django-admin
+rancher
+unit С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ
+unit-С‚РµСЃС‚С‹
+vendoring
+СЃРѕС†РёР°Р»СЊРЅС‹Рµ СЃРµС‚Рё
+ms paint
+pygame
+grpc/protobuf
+thread
+splash
+СЌРЅРµСЂРіРёС‡РЅРѕСЃС‚СЊ
+rq
+cpython
+ci/di
+В«django frameworkВ», В«sqlВ», В«vueВ»
+bigquery
+СЃРёСЃС‚РµРјС‹ РєРѕРЅС‚СЂРѕР»СЏ РІРµСЂСЃРёР№
+message brokers
+dnn
+smart contract
+nft
+electron.js
+maria db
+nat
+facebook api
+СЂРµС„Р°РєС‚РѕСЂРёРЅРі
+РёСЃРїРѕР»РЅРµРЅРёРµ Р»РёС‡РЅС‹С… РїРѕСЂСѓС‡РµРЅРёР№ СЂСѓРєРѕРІРѕРґРёС‚РµР»СЏ
+mapreduce
+postgree
+pymystem
+ts
+oracle bi
+Р·Р°РёРЅС‚РµСЂРµСЃРѕРІР°РЅРЅРѕСЃС‚СЊ
+gnu c++
+autodesk revit
+oracle db
+computervision
+apache superset
+traefik
+С‚РѕСЂРіРѕРІР°СЏ РїР»РѕС‰Р°РґРєР°
+СѓРјРµРЅРёРµ СЂР°Р±РѕС‚Р°С‚СЊ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ
+РєРѕСЂРїРѕСЂР°С‚РёРІРЅР°СЏ СЌС‚РёРєР°
+hbase
+kerberos
+imu
+web-СЂР°Р·СЂР°Р±РѕС‚РєР°
+РїСЂРѕРјС‹С€Р»РµРЅРЅС‹Рµ СЂРѕР±РѕС‚С‹
+СЃС‚СЂРµРјР»РµРЅРёРµ Рє РєР°СЂСЊРµСЂРЅРѕРјСѓ СЂРѕСЃС‚Сѓ
+spacy
+whatsapp
+streaming
+domain driven design
+РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР°
+redis (memcached)
+ibm spss
+СѓРїСЂР°РІР»РµРЅС‡РµСЃРєР°СЏ РѕС‚С‡РµС‚РЅРѕСЃС‚СЊ
+pyramyd
+С‚РµР»РµРјРµС‚СЂРёСЏ
+wxpython
+РѕСЃ windows
+bpml
+lxml
+s3
+pyside2
+front
+web services
+leadership development
+kinesis
+threading
+РёРґРµР№РЅРѕСЃС‚СЊ
+backend python
+modbus
+РїСЂРёРµРј РїРѕСЃРµС‚РёС‚РµР»РµР№
+nodejs
+РјСѓР·С‹РєР°
+РѕР±СѓС‡РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р»Р°
+РјРѕС‚РёРІР°С†РёСЏ
+python django
+РёРЅС‚РµРіСЂР°С†РёРѕРЅРЅРѕРµ С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ
+django git
+Р°РЅР°Р»РёР· СЂС‹РЅРєР°
+http proxy
+СѓРїСЂР°РІР»РµРЅРёРµ СЂРёСЃРєР°РјРё
+РѕС„РѕСЂРјР»РµРЅРёРµ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё
+xml/xslt
+РІС‹СЃРѕРєР°СЏ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ
+Р°РІС‚РѕРјР°С‚РёР·РёСЂРѕРІР°РЅРЅРѕРµ С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ
+selenide
+Р°РЅРіР»РёР№СЃРєРёР№ вЂ” b1 вЂ” СЃСЂРµРґРЅРёР№
+СЂРµР·СѓР»СЊС‚Р°С‚РёРІРЅРѕСЃС‚СЊ
+С„РѕСЂСЃР°Р№С‚
+intellij idea
+nestjs
+cython
+genism
+Р°РЅР°Р»РёР· С‚СЂРµР±РѕРІР°РЅРёР№
+information technology
+quant
+mobx
+problem solving
+mathematical modeling
+Р±РёС‚СЂРёРєСЃ 24
+chromium code base
+elastic
+lightgbm
+aurelia
+hardware
+vaex
+basic
+Р»РѕРіРёС‡РµСЃРєРѕРµ РјС‹С€Р»РµРЅРёРµ
+ffmeg
+РіРёР±РєРѕСЃС‚СЊ РјС‹С€Р»РµРЅРёСЏ
+СѓРјРµРЅРёРµ РЅР°С…РѕРґРёС‚СЊ РѕР±С‰РёР№ СЏР·С‹Рє
+alembic docker
+РёРјРїРѕСЂС‚РѕР·Р°РјРµС‰РµРЅРёРµ
+merge requests
+РІС‹СЃРѕРєРѕРЅР°РіСЂСѓР¶РµРЅРЅС‹Рµ СЃРµСЂРІРёСЃС‹
+fashion
+РёРЅС‚РµРіСЂР°С†РёСЏ СЃ РІРЅРµС€РЅРёРјРё СЃРµСЂРІРёСЃР°РјРё
+spa
+raw sql
+apache cassandra
+РІРµРЅРґРёРЅРі
+aiohhtp
+boto3
+docker + docker-compose
+dvc
+СѓС‡Р°СЃС‚РёРµ РІ РєРѕРЅС„РµСЂРµРЅС†РёСЏС… Рё РјР°СЃС‚РµСЂ-РєР»Р°СЃСЃР°С…
+assembler
+СЃР°РїСЂ
+java core
+telegram bot
+samba
+yii1
+arp
+architect
+СѓРІРµСЂРµРЅРЅРѕРµ Р·РЅР°РЅРёРµ РїРє
+СѓР»Р°Р¶РёРІР°РЅРёРµ РєРѕРЅС„Р»РёРєС‚РѕРІ
+microservices architecture
+ms integration services
+kamailio
+jupyterlab
+js css html
+nlu
+nsu
+object pascal/delphi
+objectscript
+onnx runtime
+ood patterns
+ooРї
+open cv
+opengl
+openwrt
+oracle crm
+oracle virtualbox
+РєРѕРјР°РЅРґРѕРѕР±СЂР°Р·РѕРІР°РЅРёРµ
+СѓРјРµРЅРёРµ Р°РЅР°Р»РёС‚РёС‡РµСЃРєРё РјС‹СЃР»РёС‚СЊ
+СѓРјРµРЅРёРµ РґРѕРіРѕРІР°СЂРёРІР°С‚СЊСЃСЏ
+РЅР°С†РµР»РµРЅ РЅР° СЂРµР·СѓР»СЊС‚Р°С‚
+СѓРјРµРЅРёРµ РѕР±С‰Р°С‚СЊСЃСЏ СЃ Р»СЋРґСЊРјРё
+СѓРјРµРЅРёРµ РѕР±СЉСЏСЃРЅСЏС‚СЊ
+codeception
+tox
+СЂР°Р·СЂР°Р±РѕС‚РєР° api
+yandex.datalens
+Р±СЂРѕРєРµСЂС‹ СЃРѕРѕР±С‰РµРЅРёР№
+С„СѓС‚Р±РѕР»
+owasp
+wfs
+whs
+wms
+djangodrf
+СЃСѓР±Рґ postgresql
+json rpc
+django 3/drf
+yolov5
+СЂР°Р·СЂР°Р±РѕС‚РєР° РїСЂРѕРµРєС‚РЅРѕР№ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё
+РЅР°СЃС‚СЂРѕР№РєР° РѕР±РѕСЂСѓРґРѕРІР°РЅРёСЏ
+chatgpt
+iam
+llm
+talend
+ugc СЃРµСЂРІРёСЃ
+vosk
+vosper
+vuetify+ts
+whisper
+РіРѕР»РѕСЃРѕРІРѕР№ РїРѕРјРѕС‰РЅРёРє
+С‡РµС‚РєР°СЏ РґРёРєС†РёСЏ
+rasa
+pytest,
+postgresq
+Р°Р»РіРѕСЂРёС‚РјРёС‡РµСЃРєРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ
+РІРµР±-Р°РЅР°Р»РёС‚РёРєР°
+РїСЂР°РІРёР»СЊРЅРѕ СЂР°СЃСЃС‚Р°РІР»СЏС‚СЊ РїСЂРёРѕСЂРёС‚РµС‚С‹
+cbv
+С†РµР»РµРїРѕР»Р°РіР°РЅРёРµ
+web-scraping
+mockito
+nextjs
+maple
+sso
+С‚РµС…РЅРёС‡РµСЃРєРёР№ Р°РЅРіР»РёР№СЃРєРёР№ СЏР·С‹Рє
+argparse
+gitlabcl
+unittest/doctest/pytes
+ms analysis server
+sql lite
+СѓСЃС‚РЅР°СЏ СЂРµС‡СЊ
+sensor fusion
+СЂР°Р·СЂР°Р±РѕС‚РєР° Р°Р»РіРѕСЂРёС‚РјРѕРІ
+less
+РјРЅРѕРіРѕРїРѕС‚РѕС‡РЅРѕСЃС‚СЊ
+customer orientation
+Р±РёР±Р»РёРѕС‚РµРєРё СЂР°СЃРїРѕР·РЅР°РІР°РЅРёСЏ СЂРµС‡Рё
+etc marine systems
+linux-embedded
+ml engineer
+С‡Р°С‚-Р±РѕС‚
+stylus/sass/less
+ms-sql, kafka, РѕРѕРї, docker
+РІРЅРµС€РЅСЏСЏ РѕРїС‚РёРјРёР·Р°С†РёСЏ СЃР°Р№С‚Р°
+back end
+СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С…
+СЂСѓРєРѕРІРѕРґРёС‚РµР»СЊ РіСЂСѓРїРїС‹
+engineering
+qlikview
+r programming
+ssis
+structure from motion
+СЂРµР°Р»РёР·Р°С†РёСЏ РїСЂРѕРµРєС‚РѕРІ
+corporate governance
+djangigo
+jupter hub\lab
+proxy
+ad
+presale
+orm sqlalchemy
+РёРё
+joomla
+git bash python linux docker ansible gitlab kubernetes devops prometheus gitlab ci cicd Р°РЅРіР»РёР№СЃРєРёР№
+СѓРјРµРЅРёРµ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ Р±РѕР»СЊС€РѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РёРЅС„РѕСЂРјР°С†РёРё
+apache flex
+jinja
+pony orm
+РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ РјРёРєСЂРѕРєРѕРЅС‚СЂРѕР»Р»РµСЂРѕРІ
+socket
+РѕСЃРЅРѕРІС‹ С‚РµРѕСЂРёРё РіСЂР°С„РѕРІ
+weka
+Р±РёС‚СЂРёСЃ24
+Р±С‹СЃС‚СЂРѕ СѓС‡СѓСЃСЊ
+РІРµСЂСЃС‚РєР° РІРµР±-СЃС‚СЂР°РЅРёС†, РІ С‚РѕРј С‡РёСЃР»Рµ Р°РґР°РїС‚РёРІРЅР°СЏ
+РІС‹СЃРѕРєРёР№ СѓСЂРѕРІРµРЅСЊ РґРёСЃС†РёРїР»РёРЅС‹
+РІС‹СЃРѕРєРѕРЅР°РіСЂСѓР¶РµРЅРЅС‹Р№ РєР»РёРµРЅС‚СЃРєРёР№ СЃРµСЂРІРёСЃ
+multitasking
+РіРµРѕС„РёР·РёРєР°
+РіСЂР°РјРѕС‚РЅР°СЏ СѓСЃС‚РЅР°СЏ Рё РїРёСЃСЊРјРµРЅРЅР°СЏ СЂРµС‡СЊ
+mq
+РґРѕР»Р¶РЅРѕСЃС‚РЅС‹Рµ РёРЅСЃС‚СЂСѓРєС†РёРё
+Р¶РµР»Р°РЅРёРµ СЂР°Р±РѕС‚Р°С‚СЊ Рё Р·Р°СЂР°Р±Р°С‚С‹РІР°С‚СЊ
+С‚РµС…РЅРёС‡РµСЃРєРѕРµ СЃРѕРїСЂРѕРІРѕР¶РґРµРЅРёРµ
+map tiles
+РёРЅС„СЂР°СЃС‚СЂСѓРєС‚СѓСЂР° РґР°РЅРЅС‹С…
+linuxcnc
+java-ml
+janus
+jaicp
+imageproxy
+graphana
+ar
+РЅР°РїРёСЃР°РЅРёРµ Р°Р»РіРѕСЂРёС‚РјРѕРІ
+РЅР°СЃС‚РѕР№С‡РёРІРѕСЃС‚СЊ
+google analytics
+gino
+appium
+РѕР±СЂР°Р±РѕС‚РєР° СЃРёРіРЅР°Р»РѕРІ
+apm
+api,
+geo
+РѕР±СѓС‡РµРЅРёРµ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ
+РѕР±СѓС‡РµРЅРёРё РјР°С€РёРЅРЅС‹С… РјРѕРґРµР»РµР№
+freelance
+РѕРїРёСЃР°РЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРіРѕ РѕРїС‹С‚Р°
+framework
+flyway
+flume
+flask api
+flake8
+СѓРјРЅС‹Р№ РґРѕРј
+СЌС„С„РµРєС‚РёРІРЅРѕРµ СЂРµС€РµРЅРёРµ РїСЂРѕР±Р»РµРј
+dbt
+СЂР°Р·РІРёС‚РёРµ РїСЂРѕРґР°Р¶
+csv
+css-РІРµСЂСЃС‚РєР°
+cron
+СЂР°Р·СЂР°Р±РѕС‚С‡РёРє python
+СЂР°СЃРїСЂРµРґРµР»С‘РЅРЅС‹Рµ СЃРµСЂРІРёСЃС‹
+СЂРµРјРѕРЅС‚ РїРє
+aiohtpp
+cmmi
+clickhouse,
+click house
+charles
+1-wire
+СЃffi
+chakraui
+celery + rabbitmq
+СЃР°РјРѕРѕР±СѓС‡РµРЅРёРµ
+celery + flower
+celary
+bullet
+streamlit
+substrate
+stock market
+stereo correspondence
+swagger,
+swig
+systemd
+system design
+tableau
+sqoop
+socketio
+soa
+sms gateway
+telegram api
+СЃРѕРіР»Р°СЃРѕРІР°РЅРёРµ РґРѕРіРѕРІРѕСЂРѕРІ
+smpp protocol
+СЃРѕР·РґР°РЅРёРµ РѕР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅС‹С… РїСЂРѕРіСЂР°РјРј
+bpm
+thrift
+senior python developer
+time-series db
+tls
+tomcat
+security
+sds
+tortoiseorm
+sdn
+screadsheets
+tsu
+san
+СЃРѕСЃСЂРµРґРѕС‚РѕС‡РµРЅРЅРѕСЃС‚СЊ
+rest/rpc
+ui/ux
+research and development
+request
+СЃРѕСЃС‚Р°РІР»РµРЅРёРµ С‚Р·
+redisfastap
+unreal engine
+rdbms databases
+СЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ РѕР±СѓС‡Р°С‚СЊ РґСЂСѓРіРёС…
+visiology
+rabbitqm
+СЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ СЂР°Р±РѕС‚Р°С‚СЊ РІ РєРѕРјР°РЅРґРµ
+queries
+vmware workstation
+vs code
+vue 3
+pyton
+python СЂР°Р·СЂР°Р±РѕС‚С‡РёРє
+python, postgresql
+vuetify
+python, django framework, git, sql, postgresql, backend, rest
+autodevops
+scraping
+Р°РІС‚РѕРјР°С‚РёР·Р°С†РёСЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+РёРіСЂР°СЋС‰РёР№ С‚СЂРµРЅРµСЂ
+deeplearning
+РЅР°РІС‹РєРё СЂР°Р·СЂРµС€РµРЅРёСЏ СЃРїРѕСЂРЅС‹С… СЃРёС‚СѓР°С†РёР№
+Р±РѕС‚С‹
+metabase
+html, css, javascript
+РёРіСЂС‹
+СЂР°Р·СЂР°Р±РѕС‚РєР° РєРѕРЅС†РµРїС†РёРё
+type script
+Р°РЅРіР»РёР№СЃРєРёР№ СЏР·С‹Рє (upper-intermediate)
+tpu
+zennoposter
+Р±Р°Р·С‹ orm
+РіРµР№РјРґРµРІ
+ico
+РєРёР±РµСЂСЃРїРѕСЂС‚
+acid
+graph ql
+РѕРїС‹С‚ СЂР°Р±РѕС‚С‹ РІ 1СЃ
+excel
+cms
+СЂР°Р·СЂР°Р±РѕС‚РєР° Р»РѕРіРёСЃС‚РёРєРё
+ssas
+supply chain optimisation
+sap
+research
+python backend developer
+webhooks
+amazon ws
+doctest
+bootstrap 4/5
+python django rest framework pytest rabbitmq celery redis clickhouse mongodb postgresql fas
+digital ocean
+РѕРїС‚РёРјРёР·Р°С†РёСЏ РїСЂРѕС†РµСЃСЃРѕРІ
+mypy
+web-framework
+Р°СѓРґРёС‚ СѓС‡РµР±РЅС‹С… РїСЂРѕРіСЂР°РјРј
+cad
+С…СЂР°РЅРµРЅРёРµ Рё РѕР±СЂР°Р±РѕС‚РєР° РґР°РЅРЅС‹С…
+protobuf
+Р°СЃРёРЅС…СЂРѕРЅРЅРѕРµ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ
+РїСЂРѕРіСЂР°РјРјРёСЃС‚
+Р°Р»РіРѕС‚СЂРµР№РґРёРЅРі
+Р±РёР·РЅРµСЃ-РїР»Р°РЅРёСЂРѕРІР°РЅРёРµ
+Р°СЃСѓ
+server sent events
+quality control
+continuous dilivery
+rebbitmq
+scrapper
