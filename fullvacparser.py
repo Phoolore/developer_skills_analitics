@@ -1,10 +1,13 @@
-
+# Импорт необходимых модулей
 import requests
 import pandas as pd
 import re
 from bs4 import BeautifulSoup
 import time
+
 start_time = time.time()
+
+
 # Секундомер | Stopwatch
 def watch():
     elapsed_time = time.time() - start_time
