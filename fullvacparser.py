@@ -5,17 +5,17 @@ import pandas as pd
 import re
 from bs4 import BeautifulSoup
 import time
-start_time = time.time()
+
 def watch():
     elapsed_time = time.time() - start_time
     mins, secs = divmod(elapsed_time, 60)
     timer = '{:02d}:{:02d}'.format(int(mins), int(secs))
     return timer
     
-
-
-
+    
 def parser(text, csvname, area):
+    start_time = time.time()
+    
     # Заголовки для запроса
     headers = {    
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
