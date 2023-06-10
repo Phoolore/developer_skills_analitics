@@ -5,7 +5,7 @@ import re
 from bs4 import BeautifulSoup
 import time
 start_time = time.time()
-#Секундомер | Stopwatch
+# Секундомер | Stopwatch
 def watch():
     elapsed_time = time.time() - start_time
     mins, secs = divmod(elapsed_time, 60)
@@ -50,7 +50,7 @@ def parser(text, csvname, area='1', pages=None):
         'employer': [], 
         'published_at': []
     })
-
+    vaccount = 0 # счетчик вакансий
     # Цикл по страницам | Page cycle
     for page in range(pages):
         params['page'] = str(page)
@@ -60,8 +60,8 @@ def parser(text, csvname, area='1', pages=None):
         # Цикл по результатам запроса | Cycle by every result in request
         for item in result:
 
-            print(f'Времени прошло: {watch()}, ID - {item["id"]}, Страница - {page}')
-
+            print(f'deltaTime: {watch()}, ID - {item["id"]}, Page - {page}')
+            vaccount += 1
             global max_salary
             global min_salary
             min_salary = None
@@ -87,12 +87,13 @@ def parser(text, csvname, area='1', pages=None):
                 for currency in apidict['currency']:
                     if currency['code'] == item['salary']['currency']:
                         currency_rate = 1/currency['rate']
-                min_salary = min_salary * currency_rate
+                min_salary = int(min_salary * currency_rate)
             elif type(max_salary) is int:
                 for currency in apidict['currency']:
                     if currency['code'] == item['salary']['currency']:
                         currency_rate = 1/currency['rate']
-                max_salary = max_salary * currency_rate
+                max_salary = int(max_salary * currency_rate)
+
 
             
             # Обработка должности | Vacancy title check
@@ -118,6 +119,7 @@ def parser(text, csvname, area='1', pages=None):
 
             #ПРОВЕРКА КАПЧИ, 20 СЕКУНД ЧТОБЫ ПЕРЕЙТИ ПО ССЫЛКЕ И РЕШИТЬ |  CAPTCHA, 20 SECONDS TO FOLLOW LINK AND SOLVE
             if 'errors' in vacancy:
+                print('PASS THE CAPTCHA NOW!!!')
                 print(vacancy['errors'][0]['captcha_url']+'&backurl=')
                 time.sleep(20)
             #обновление json вакансии, если капча пройдена | vacancy json update, if the captcha is passed 
@@ -127,6 +129,7 @@ def parser(text, csvname, area='1', pages=None):
             if 'key_skills' in vacancy:
                 job_req = [skill['name'] for skill in vacancy['key_skills']]
                 job_req = ','.join(str(x)for x in job_req)
+                job_req = job_req.lower()
             #Проверка описания | Description check
             job_desc = ''
             if 'description' in vacancy:
@@ -138,11 +141,12 @@ def parser(text, csvname, area='1', pages=None):
             url = 'https://hh.ru/vacancy/'+item['id']
             vacresponse = requests.get(url)
             soup = BeautifulSoup(vacresponse.content, 'html.parser')
-            rate_element = soup.find('div', {'data-qa':'employer-review-small-widget-total-rating'})  #скорее всего здесь проблемы, пока не понял в чем
-            if rate_element is not None:
-                employer_rating = rate_element.text.strip()
+            rating_element = soup.find('div', {'class': 'jeJUAln___bloko-text C0Co2l7___bloko-text_extra-large CcH5uSc___bloko-text_strong'})
+
+            if rating_element:
+                rating = rating_element.text
             else:
-                employer_rating = ''
+                rating = ''
 
 
             # Добавление результатов в dataframe | updating dataframe with results
@@ -154,12 +158,40 @@ def parser(text, csvname, area='1', pages=None):
                 'job_req': job_req,
                 'job_desc': job_desc,
                 'employer': employer,
-                'employer_rating': employer_rating,
+                'employer_rating': rating,
                 'published_at': published_at
             }, ignore_index=True)
 
     # Запись результатов в csv файл | dataframe to csv file
-    df.to_csv(str(csvname)+'.csv', index=False, sep=';', encoding='utf-8-sig') 
+    df.to_csv(str(csvname)+'.csv', index=False, sep=';', encoding='utf-8-sig')
+    print(f'{str(csvname)}.csv is done!')
+    # job_req_set = set() #Не знаю почему не работает, надо переписать заново потому что пишет что не находит ключ в словаре dfstat'а
+    # for job_req in df['job_req']:
+    #     skills = job_req.split(',')
+    #     job_req_set.update(skills)
+    # job_req_set = set(filter(None, job_req_set)) # remove empty strings
+    # dfstat = pd.DataFrame(columns={
+    #     'skill': [],
+    #     'amount': 0,
+    #     'averagesalary': 0,
+    #     'averagebetweenall': 0,
+    #     'salarysum': 0,
+    #     'averagepop': 0
+    #     })
+    # dfstat['skill'] = list(job_req_set)
+    # for skill in job_req_set:
+    #     for index, row in df.iterrows():
+    #         if skill in row['job_req']:
+    #             dfstat.loc[skill, 'amount'] += 1
+    #             dfstat.loc[skill, 'salarysum'] += (min_salary if isinstance(min_salary, int) else
+    #                                max_salary if isinstance(max_salary, int) else
+    #                                0)
+    # for i in range(len(dfstat)):
+    #     dfstat.loc[i, 'averagesalary'] = dfstat.loc[i,'salarysum'] // dfstat.loc[i,'amount']
+    #     dfstat.loc[i, 'averagebetweenall'] = dfstat.loc[i,'salarysum'] // vaccount
+    #     dfstat.loc[i, 'averagepop'] = dfstat.loc[i,'amount'] / vaccount
+    # dfstat.to_csv(str(csvname)+'stat.csv',index=False, sep=';', encoding='utf-8-sig')
+    # print(f'{str(csvname)}stat.csv is done!')
 
-    
-parser('python', 'pythonfullvac', '1', 6)
+    #Параметры: Поиск по имени, название файла, код города, кольво страниц
+parser('python', 'test6', '1', 1)
