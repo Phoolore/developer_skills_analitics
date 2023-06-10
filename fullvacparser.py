@@ -168,33 +168,33 @@ def parser(text, csvname, area='1', pages=None):
     # Запись результатов в csv файл | dataframe to csv file
     df.to_csv(str(csvname)+'.csv', index=False, sep=';', encoding='utf-8-sig')
     print(f'{str(csvname)}.csv is done!')
-    # job_req_set = set() #Не знаю почему не работает, надо переписать заново потому что пишет что не находит ключ в словаре dfstat'а
-    # for job_req in df['job_req']:
-    #     skills = job_req.split(',')
-    #     job_req_set.update(skills)
-    # job_req_set = set(filter(None, job_req_set)) # remove empty strings
-    # dfstat = pd.DataFrame(columns={
-    #     'skill': [],
-    #     'amount': 0,
-    #     'averagesalary': 0,
-    #     'averagebetweenall': 0,
-    #     'salarysum': 0,
-    #     'averagepop': 0
-    #     })
-    # dfstat['skill'] = list(job_req_set)
-    # for skill in job_req_set:
-    #     for index, row in df.iterrows():
-    #         if skill in row['job_req']:
-    #             dfstat.loc[skill, 'amount'] += 1
-    #             dfstat.loc[skill, 'salarysum'] += (min_salary if isinstance(min_salary, int) else
-    #                                max_salary if isinstance(max_salary, int) else
-    #                                0)
-    # for i in range(len(dfstat)):
-    #     dfstat.loc[i, 'averagesalary'] = dfstat.loc[i,'salarysum'] // dfstat.loc[i,'amount']
-    #     dfstat.loc[i, 'averagebetweenall'] = dfstat.loc[i,'salarysum'] // vaccount
-    #     dfstat.loc[i, 'averagepop'] = dfstat.loc[i,'amount'] / vaccount
-    # dfstat.to_csv(str(csvname)+'stat.csv',index=False, sep=';', encoding='utf-8-sig')
-    # print(f'{str(csvname)}stat.csv is done!')
+    job_req_set = set() #Не знаю почему не работает, надо переписать заново потому что пишет что не находит ключ в словаре dfstat'а
+    for job_req in df['job_req'].items():
+        skills = job_req[1].split(',')
+        job_req_set.update(skills)
+    job_req_set = set(filter(None, job_req_set)) # remove empty strings
+    dfstat = pd.DataFrame(columns={
+        'skill': [],
+        'amount': 0,
+        'averagesalary': 0,
+        'averagebetweenall': 0,
+        'salarysum': 0,
+        'averagepop': 0
+        })
+    dfstat['skill'] = sorted(list(job_req_set))
+    for skill in job_req_set:
+        for index, row in df.iterrows():
+            if skill in row['job_req']:
+                dfstat.loc[skill, 'amount'] += 1
+                dfstat.loc[skill, 'salarysum'] += (min_salary if isinstance(min_salary, int) else
+                                   max_salary if isinstance(max_salary, int) else
+                                   0)
+    for i in range(len(dfstat)):
+        dfstat.loc[i, 'averagesalary'] = dfstat.loc[i,'salarysum'] // dfstat.loc[i,'amount']
+        dfstat.loc[i, 'averagebetweenall'] = dfstat.loc[i,'salarysum'] // vaccount
+        dfstat.loc[i, 'averagepop'] = dfstat.loc[i,'amount'] / vaccount
+    dfstat.to_csv(str(csvname)+'stat.csv',index=False, sep=';', encoding='utf-8-sig')
+    print(f'{str(csvname)}stat.csv is done!')
 
-    #Параметры: Поиск по имени, название файла, код города, кольво страниц
+    # Параметры: Поиск по имени, название файла, код города, кольво страниц
 parser('python', 'test6', '1', 1)
