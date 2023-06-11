@@ -15,7 +15,7 @@ def watch():
     timer = '{:02d}:{:02d}'.format(int(mins), int(secs))
     return timer
 
-def parser(text, csvname, area='1', pages=None):
+def parser(text, csvname, area=None, pages=None):
     # Заголовки для запроса | Headers for request
     headers = {    
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
@@ -177,24 +177,21 @@ def parser(text, csvname, area='1', pages=None):
         'skill': [],
         'amount': 0,
         'averagesalary': 0,
-        'averagebetweenall': 0,
         'salarysum': 0,
         'averagepop': 0
         })
     dfstat['skill'] = sorted(list(job_req_set))
-    for skill in job_req_set:
-        for index, row in df.iterrows():
-            if skill in row['job_req']:
-                dfstat.loc[skill, 'amount'] += 1
-                dfstat.loc[skill, 'salarysum'] += (min_salary if isinstance(min_salary, int) else
-                                   max_salary if isinstance(max_salary, int) else
-                                   0)
+    dfstat = dfstat.fillna(0)
+    for index, row in df.iterrows():
+        for skill in row['job_req'].split(','):
+            dfstat.loc[dfstat.skill == skill, 'amount'] =dfstat.loc[dfstat.skill == skill].loc[:, 'amount'] + 1
+            dfstat.loc[dfstat.skill == skill, 'salarysum'] += (min_salary if isinstance(min_salary, int) else
+                               max_salary if isinstance(max_salary, int) else   0)
     for i in range(len(dfstat)):
         dfstat.loc[i, 'averagesalary'] = dfstat.loc[i,'salarysum'] // dfstat.loc[i,'amount']
-        dfstat.loc[i, 'averagebetweenall'] = dfstat.loc[i,'salarysum'] // vaccount
-        dfstat.loc[i, 'averagepop'] = dfstat.loc[i,'amount'] / vaccount
+        dfstat.loc[i, 'avg_pop'] = dfstat.loc[i,'amount'] / vaccount
     dfstat.to_csv(str(csvname)+'stat.csv',index=False, sep=';', encoding='utf-8-sig')
     print(f'{str(csvname)}stat.csv is done!')
 
     # Параметры: Поиск по имени, название файла, код города, кольво страниц
-parser('python', 'test6', '1', 1)
+parser('python', 'test6')
