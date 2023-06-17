@@ -7,15 +7,21 @@ import os
 
 @app.route('/')
 def index_page():
-    df = pd.read_csv("files/skills_relatives.csv").sort_values(by='Ценность ₽', ascending=True)
+    df = pd.read_csv("files/all_data.csv").sort_values(by='salary', ascending=False)
     sns.set(style="darkgrid")
     plt.figure(figsize=(9.5,4), edgecolor = '0', layout='constrained')
-    plot = sns.barplot(data=df, x="Название", y="Ценность ₽", color = '0', width = 0.9)
+    plot = sns.barplot(data=df.iloc[:10, :], x="skills", y="salary", color = '0', width = 0.9)
     fig = plot.get_figure()
     fig.savefig("app/static/table.jpg")
-    df = pd.read_csv("files/skills_relatives.csv").sort_values(by='Ценность ₽', ascending=False)
-    return render_template('index.html', names= df.iloc[:, 0].to_list(), costs = [round(i,2) for i in df.iloc[:, 1].to_list()], length=len(df))
+    df = pd.read_csv("files/all_data.csv").sort_values(by='salary', ascending=False)
+    return render_template('index.html', names= df.iloc[:, 0].to_list(), popularity = [round(i,2) for i in df.iloc[:, 1].to_list()], salary = [round(i,2) for i in df.iloc[:, 4].to_list()], length=len(df))
 
+
+@app.route('/testtest/')
+def test_page():
+    return render_template('test.html', fig = fig)
+    
+    
 
 @app.route('/skill/<string:name>')
 def skill_page(name):

@@ -1,98 +1,120 @@
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
+import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.graph_objects as go
-import math
+#from .fullvacparser import parser #for future update
 
 
-df = pd.read_csv('files/skills_relatives_copy.csv', encoding='utf8').sort_values(by='percent', ascending=False)
-desc = ['питoн или пaйтон,высокоуровневый язык программирования общего назначения с динамической строгой типизацией и автоматическим управлением памятью, ориентированный на повышение производительности разработчика, читаемости кода и его качества, а также на обеспечение переносимости написанных на нём программ.',
-        'pаспределенное программное обеспечение для управления версиями. Контроль версий - это способ сохранять изменения с течением времени, не перезаписывая предыдущие версии. Распространение означает, что каждый разработчик, работающий с репозиторием Git, имеет копию всего этого репозитория.',
-        'технология программирования, которая связывает базы данных с концепциями объектно-ориентированных языков программирования, создавая «виртуальную объектную базу данных».',
-        'бесплатный веб-фреймворк на основе Python с открытым исходным кодом, который следует за model–template–views. Основная цель Django - облегчить создание сложных веб-сайтов, управляемых базами данных.',
-        'семейство Unix-подобных операционных систем на базе ядра Linux, включающих тот или иной набор утилит и программ проекта GNU, и, возможно, другие компоненты. Как и ядро Linux, системы на его основе, как правило, создаются и распространяются в соответствии с моделью разработки свободного и открытого программного обеспечения.',
-        'важнейший международный язык. Является одним из наиболее распространённых языков в мире. Существует значительное разнообразие диалектов и говоров английского языка.',
-        'фреймворк для создания веб-приложений на языке программирования Python. Относится к категории так называемых микрофреймворков[en] — минималистичных каркасов веб-приложений, сознательно предоставляющих лишь самые базовые возможности.',
-        'программное обеспечение для автоматизации развёртывания и управления приложениями в средах с поддержкой контейнеризации, контейнеризатор приложений. Позволяет «упаковать» приложение со всем его окружением[en] и зависимостями в контейнер.',
-        'мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили.JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений.',
-        'методология программирования, основанная на представлении программы в виде совокупности взаимодействующих объектов, каждый из которых является экземпляром определённого класса, а классы образуют иерархию наследования.',
-        'архитектурный стиль взаимодействия компонентов распределённого приложения в сети. Другими словами, REST — это набор правил того, как программисту организовать написание кода серверного приложения, чтобы все системы легко обменивались данными и приложение можно было масштабировать.',
-        'усовершенствованная и модернизированная вариация командной оболочки Bourne shell. Одна из наиболее популярных современных разновидностей командной оболочки UNIX. Особенно популярна в среде Linux, где она часто используется в качестве предустановленной командной оболочки.', 
-        'коммерческая система отслеживания ошибок, предназначена для организации взаимодействия с пользователями, хотя в некоторых случаях используется и для управления проектами. Разработана компанией Atlassian, является одним из двух её основных продуктов. Имеет веб-интерфейс.',
-        'проект по разработке программного обеспечения с открытым исходным кодом, открытых стандартов и сервисов для интерактивных вычислений на нескольких языках программирования.']
+def levelpie(df):
+    columns = df['level'].unique()
+    df1 = df.groupby('level')['level'].count().rename('Counts').reset_index()
+    df1 = df1[df1['level'] != missing]
+    labels = df1['level']
+    values = df1['Counts']
+    fig = go.Figure(data = go.Pie(labels = labels, values = values, hoverinfo='label+percent', textinfo='label+percent', textfont_size=15))
+    fig.update_layout(width=300, height = 300)
+    return fig
 
 
-def parser(text, i):
-    s = []
-    while len(text)>i:
-        s += [text[:i]]
-        text = text[i:]
-    return '<br>'.join(s)
+def dateline(df):
+    columns = df['published_at'].unique()
+    df1 = df.groupby('published_at')['published_at'].count().rename('Counts').reset_index()
+    df1 = df1[df1['published_at'] != missing]
+    labels = df1['published_at']
+    values = df1['Counts']
+    fig = go.Figure(data = go.Scatter(x=labels, y=values, mode="lines+text"))
+    fig.update_layout(width=500, height = 300)
+    return fig
 
 
-desc = [parser(i, 22) for i in desc]
-df['description'] = desc
-hover_text, buble_size = [], []
+def salbox(df):
+    df1 = df[df['level'] != missing]
+    fig = go.Figure(data = go.Box(y =df1['level'],  x = (df1['min_salary'] + df1['max_salary']) / 2, orientation='h'))
+    fig.update_layout(width=500, height = 300)
+    return fig
 
+# fig.update_traces(visible=True, mode = 'markers', marker=dict(sizemode='area', sizeref=sizeref, line_width = 5))
+# fig.update_layout(width=1000, title = "Value expectancy",
+#                 xaxis=dict(
+#                     title='popularity',
+#                     gridcolor='white',
+#                     gridwidth=2
+#                     # showgrid=False, # thin lines in the background
+#                     # zeroline= False, # thick line at x=0
+#                     # visible= False
+#                 ),
+#                 yaxis=dict(
+#                     title='Value',
+#                     gridcolor='white',
+#                     gridwidth=2
+#                     # showgrid=False, # thin lines in the background
+#                     # zeroline= False, # thick line at y=0
+#                     # visible= False
+#     ),
+#     paper_bgcolor='rgb(243, 243, 243)',
+#     plot_bgcolor='rgb(243, 243, 243)',
+# ) #it mght help in future
 
-for index, row in df.iterrows():
-    hover_text.append('{name}<br>Частота встречаемости/процент спроса: {percent}<br>{desc}'.format(name = row['name'], percent = row['percent'], desc = row['description']))
-    buble_size.append(math.sqrt(row.percent))
-    
-    
-df['text'] = hover_text
-df['size'] = buble_size
-sizeref = 2 * (max(df['size']) / 10000) 
+df_keys = pd.read_csv("files/key_words.csv", encoding = 'utf8', delimiter = ';')#данные для запросов для таблицы
+table = [] #хранитель строк таблицы
+target = df_keys.loc[:, :] #Заготовка для будущих фильтров
+missing = 0 #замена для пустых клеток
+for i, row in target.iterrows():
+    df = pd.read_csv("files/pythonfullvac.csv", encoding = 'utf8', delimiter = ';').fillna(missing) #данные из запроса для аналитики, с заполнеными потерянными данными
+    avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
+    table += [html.Tr([
+            html.Th(["Профессия"], scope="col", style={"width":"11%;"}),
+            html.Th(["ИТ"], scope="col", style={"width":"11%;"}),
+            html.Th([row['name']], scope="col", style={"width":"11%;"}),
+            html.Th([row['key']], scope="col", style={"width":"11%;"}),
+            html.Th([len(df)], scope="col", style={"width":"11%;"}),
+            
+            html.Th([dcc.Graph(
+            id='dateline' + str(i),
+            figure=dateline(df)
+            )], scope="col", style={"width":"100%;"}),
+            
+            html.Th([dcc.Graph(
+            id='levelpie'+ str(i),
+            figure=levelpie(df)
+            )], scope="col", style={"width":"100%;"}),
+            
+            html.Th([avg_sal], scope="col", style={"width":"11%;"}),
+            
+            html.Th([dcc.Graph(
+            id='salbox'+ str(i),
+            figure=salbox(df)
+            )], scope="col", style={"width":"100%;"}),
+        ])
+    ]
 
-
-x = [i for i in range(len(df), 0, -1)]
-df['x'] = x
-df['y'] = x
-
-
-categories = ['Lunguages', 'Frameworks', 'Instruments', 'Theory']
-L = ['Python', 'JavaScript']
-F = ['Django','Flask']
-I = ['Git', 'ORM', 'Bash', 'Linux', 'English', 'Docker', 'Jira', 'Jupyter']
-T = ['OOP', 'Rest']
-categories_data = { categories[0] : df[(df['name']  == L[0]) | (df['name']  == L[1])],
-                   categories[1] : df[(df['name']  == F[0]) | (df['name']  == F[1])],
-                   categories[2] : df[(df['name']  == I[0]) |( df['name']  == I[1]) | (df['name']  == I[2]) | (df['name']  == I[3]) | (df['name']  == I[4]) | (df['name']  == I[5]) | (df['name']  == I[6]) |( df['name']  == I[7])],
-                  categories[3] : df[(df['name']  == T[0]) | (df['name']  == T[1])]}
-
-
-fig = go.Figure()
-for name, value in categories_data.items():
-    fig.add_trace(go.Scatter(
-    x = value['x'], y = value['y'],
-    name = name,text = value['text'],
-    marker_size=value['size']))
-    
-    
-fig.update_traces(visible=True, mode = 'markers', marker=dict(sizemode='area', sizeref=sizeref, line_width = 5))
-fig.update_layout(width=1000, title = "Value expectancy",
-                xaxis=dict(
-                    title='Value',
-                    gridcolor='rgb(243, 243, 243)',
-                    gridwidth=0,
-                    showgrid=False, # thin lines in the background
-                    zeroline= False, # thick line at x=0
-                    visible= False
-                ),
-                yaxis=dict(
-                    title='Value',
-                    gridcolor='white',
-                    gridwidth=0,
-                    showgrid=False, # thin lines in the background
-                    zeroline= False, # thick line at y=0
-                    visible= False
-    ),
-    paper_bgcolor='rgb(243, 243, 243)',
-    plot_bgcolor='rgb(243, 243, 243)',
-)
 
 from . import dash
 
 
-dash.layout = html.Div([
-    dcc.Graph(figure=fig)
-])
+dash.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col([
+            html.Table([
+                html.Thead([#название столбцов таблицы
+                    html.Tr([
+                        html.Th(["Тип"], scope="col", style={"width":"11%;"}),
+                        html.Th(["Сфера"], scope="col", style={"width":"11%;"}),
+                        html.Th(["Специализация"], scope="col", style={"width":"11%;"}),
+                        html.Th(["Ключевые слова"], scope="col", style={"width":"11%;"}),
+                        html.Th(["Кол.вакансий"], scope="col",style={"width":"11%;"}),
+                        html.Th(["Даты"], scope="col", style={"width":"11%;"}),
+                        html.Th(["Соотношение уровней"], scope="col", style={"width":"11%;"}),
+                        html.Th(["Ср.зарплата"], scope="col", style={"width":"11%;"}),
+                        html.Th(["Зарплата по уровням"], scope="col", style={"width":"11%;"})
+                    ])
+                    ],
+                    className = "thead-dark"),
+                html.Tbody(#строки таблицы
+                    table
+                    )
+                ], style = {"margin-bottom": 0, "margin-left": 0, "margin-right": "0%", "margin-top": 0}),
+          ], width=12)  
+    ])
+
+], fluid=True)
