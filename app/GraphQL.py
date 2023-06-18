@@ -1,18 +1,30 @@
 from graphene import ObjectType, String, Schema
+from graphene_sqlalchemy import SQLAlchemyObjectType
+from .models import SpecializationModel, VacancyModel
 
-class Query(ObjectType):
-    hello = String(first_name = String(default_value='stranger'))
-    goodbye = String()
+class Specialization(SQLAlchemyObjectType):
+    class Meta:
+        model = SpecializationModel
+        interfaces=(Node,)
+        
+        
+class Vacancy(SQLAlchemyObjectType):
+    class Meta:
+        model = VacancyModel
+        interfaces=(Node,)
+
+
+class Query(ObjectType):#схема запросов
+    specializations = graphene.List(Specialization)
+    vacancies = graphene.List(Vacancy)
     
-    def resolve_hello(root, info, first_name):
-        return f'Helllo {first_name}!'
+    def resolve_specializations(self, info):
+        query = Specialization.get_query(info)
+        return query.all()
     
-    def resolve_goodbye(root, info):
-        return f'See ya!'
+    def resolve_vacancies(root, info):
+        query = Vacancy.get_query(info)
+        return query.all()
     
 
 schema = Schema(query = Query)
-
-request = '{ goodbye }'
-result = schema.execute(request)
-print(result.data)
