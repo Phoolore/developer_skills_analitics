@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 #from .fullvacparser import parser #for future update
 
 
-def levelpie(df):
+def levelpie(df):#соотношение колличества вакансий по уровням
     columns = df['level'].unique()
     df1 = df.groupby('level')['level'].count().rename('Counts').reset_index()
     df1 = df1[df1['level'] != missing]
@@ -16,7 +16,7 @@ def levelpie(df):
     return fig
 
 
-def dateline(df):
+def dateline(df):#график колличества вакансий по датам загрузки
     columns = df['published_at'].unique()
     df1 = df.groupby('published_at')['published_at'].count().rename('Counts').reset_index()
     df1 = df1[df1['published_at'] != missing]
@@ -27,33 +27,12 @@ def dateline(df):
     return fig
 
 
-def salbox(df):
+def salbox(df):#зп по уровням
     df1 = df[df['level'] != missing]
     fig = go.Figure(data = go.Box(y =df1['level'],  x = (df1['min_salary'] + df1['max_salary']) / 2, orientation='h'))
     fig.update_layout(width=500, height = 300)
     return fig
 
-# fig.update_traces(visible=True, mode = 'markers', marker=dict(sizemode='area', sizeref=sizeref, line_width = 5))
-# fig.update_layout(width=1000, title = "Value expectancy",
-#                 xaxis=dict(
-#                     title='popularity',
-#                     gridcolor='white',
-#                     gridwidth=2
-#                     # showgrid=False, # thin lines in the background
-#                     # zeroline= False, # thick line at x=0
-#                     # visible= False
-#                 ),
-#                 yaxis=dict(
-#                     title='Value',
-#                     gridcolor='white',
-#                     gridwidth=2
-#                     # showgrid=False, # thin lines in the background
-#                     # zeroline= False, # thick line at y=0
-#                     # visible= False
-#     ),
-#     paper_bgcolor='rgb(243, 243, 243)',
-#     plot_bgcolor='rgb(243, 243, 243)',
-# ) #it mght help in future
 
 df_keys = pd.read_csv("files/key_words.csv", encoding = 'utf8', delimiter = ';')#данные для запросов для таблицы
 table = [] #хранитель строк таблицы
