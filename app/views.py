@@ -27,7 +27,16 @@ def index_page():
 @app.route('/testtest/')
 def test_page():
     return render_template('test.html', fig = fig)
-    
+
+
+@app.route('/shamil/<path:a>')
+def files(a):
+    print("app/files/" + a, os.getcwd())
+    try:
+        print("templates/" + a)
+        return render_template(a)
+    except Exception as e:
+        page_not_found(e)
     
 
 @app.route('/skill/<string:name>')
