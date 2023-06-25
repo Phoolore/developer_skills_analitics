@@ -1,23 +1,22 @@
 from flask import Flask, render_template, redirect, url_for
 import pandas as pd
 import seaborn as sns
-from . import app, plt
+from . import app
 import os
-from flask_graphql import GraphQLView
-from .GraphQL import schema
+# from flask_graphql import GraphQLView
+# from .GraphQL import schema
 
 
-app.add_url_rule('/graphql', view_func=GraphQLView.as_view(
-    'graphql',
-    schema = schema,
-    graphiql = True
-))
+# app.add_url_rule('/graphql', view_func=GraphQLView.as_view(
+#     'graphql',
+#     schema = schema,
+#     graphiql = True
+# ))
 
 @app.route('/')
 def index_page():
     df = pd.read_csv("files/all_data.csv").sort_values(by='salary', ascending=False)
     sns.set(style="darkgrid")
-    plt.figure(figsize=(9.5,4), edgecolor = '0', layout='constrained')
     plot = sns.barplot(data=df.iloc[:10, :], x="skills", y="salary", color = '0', width = 0.9)
     fig = plot.get_figure()
     fig.savefig("app/static/table.jpg")

@@ -23,7 +23,7 @@ git clone https://github.com/Phoolore/Flask.git
 
 '''comandline
 
-python -m venv vertualenv
+
 
 '''
 
@@ -39,7 +39,9 @@ pip install -r requirements.txt
 
 '''.env
 
-SECRET_KEY = YOUR_SECRET_KEY 
+DATABASE_URI = sqlite:///db.sqlite3
+
+SECRET_KEY = YOUR_SECRET_KEY
 
 '''
 
