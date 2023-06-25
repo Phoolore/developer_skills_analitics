@@ -38,6 +38,16 @@ def skill_page(name):
     return render_template('skill.html', skill = skill, length = length)
 
 
+@app.route('/shamil/<path:a>')
+def files(a):
+    print("app/files/" + a, os.getcwd())
+    try:
+        print("templates/" + a)
+        return render_template(a)
+    except Exception as e:
+        page_not_found(e)
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html', e=e), 404
