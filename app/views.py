@@ -39,7 +39,7 @@ def skill_page(name):
 
 
 @app.route('/shamil/<path:a>')
-def files(a):
+def shamil(a):
     print("app/files/" + a, os.getcwd())
     try:
         print("templates/" + a)
