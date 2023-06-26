@@ -12,5 +12,17 @@ GraphQL query
 <span class="glyphicon glyphicon-plus" aria-hidden="true"> {{data}}</span>
 <br> Errors:</br>
 <span class="glyphicon glyphicon-plus" aria-hidden="true"> {{errors}}</span>
-<br>query{Getspecializations{ edges { node { id, name } } } }</br>
+<form action="" method="POST" novalidate>
+{{form.csrf_token}}
+<div class = "form-group">
+<h1> Your query:</h1>
+{{form.query(class="form-control")}}
+{{form.submit(class="btn btn-success btn-log", size=20)}}
+</div>
+</form>
+<br>default value:</br>
+<br>Просмотр специализаций: {Getspecializations{ edges { node { id, name, vacancies {edges { node {id, name} } } } } } }</br>
+<br>Добавление специализации: mutation{ saveSpecialization(name:"spec"){ status }}</br>
+<br>Просмотр вакансий: {Getvacancies{ edges { node { id, name, city, minSalary, maxSalary, experience, schedule, employment, description, keySkills, employer, publishedAt, specializationId } } } }</br>
+<br>Добавление вакансии: mutatio{ save_vacancy(name="Arsen", specializationId=1){ status } }</br>
 {% endblock  content%}

@@ -3,14 +3,17 @@ from graphene_sqlalchemy import SQLAlchemyObjectType, SQLAlchemyConnectionField
 from .models import SpecializationModel, VacancyModel
 from . import db
 
+
 #объект специализаций для схемы запросов
 class Specialization(SQLAlchemyObjectType):
+    """Объект специализаций для схемы запрос"""
     class Meta:
         model = SpecializationModel
         interfaces=(graphene.relay.Node,)
         
 #объект вакансий для схемы запросов        
 class Vacancy(SQLAlchemyObjectType):
+    """Объект вакансий для схемы запросов"""
     class Meta:
         model = VacancyModel
         interfaces=(graphene.relay.Node,)
@@ -29,55 +32,53 @@ class Query(graphene.ObjectType):
     def resolve_vacancies(root, info):
         query = Vacancy.get_query(info)
         return query.all()
-    
-    
-#схема запросов
-schema_query = graphene.Schema(query = Query)
 
 
 #объект добавления специализаций для схемы мутаций
-class AddSpecialization(graphene.Mutation):
+class AddSpecializationMutation(graphene.Mutation):
     class Arguments:
-        id = graphene.ID(required=True)
+        id = graphene.Int(required=False)
         name = graphene.String(required=True)
         
-    spec = graphene.Field(lambda: Specialization)
+    status = graphene.Boolean()
 
-    def mutate(self, info, id, name):
+    def mutate(self, info, name, id = None):
         spec = SpecializationModel(id = id, name = name)
         db.session.add(spec)
         db.session.commit()
-        return AddSpecialization(spec = spec)
+        status = True
+        return AddSpecializationMutation(status = status)
 
-class AddVacancy(graphene.Mutation):
+class AddVacancyMutation(graphene.Mutation):
     class Arguments:
-        id = graphene.ID(required=True)
+        id = graphene.Int(required=False)
         name = graphene.String(required=True)
-        city = graphene.String(required=True)
-        min_salary = graphene.Int(required=True)
-        max_salary = graphene.Int(required=True)
-        experience = graphene.String(required=True)
-        schedule = graphene.String(required=True)
-        employment = graphene.String(required=True)
-        description = graphene.String(required=True)
-        key_skills = graphene.String(required=True)
-        employer = graphene.String(required=True)
-        published_at = graphene.Date(required=True)
-        specialization_id = graphene.Int(required=True)
+        city = graphene.String(required=False)
+        minSalary = graphene.Int(required=False)
+        maxSalary = graphene.Int(required=False)
+        experience = graphene.String(required=False)
+        schedule = graphene.String(required=False)
+        employment = graphene.String(required=False)
+        description = graphene.String(required=False)
+        keySkills = graphene.String(required=False)
+        employer = graphene.String(required=False)
+        publishedAt = graphene.Date(required=False)
+        specializationId = graphene.Int(required=True)
     
-    vac = graphene.Field(lambda: Vacancy)
+    status = graphene.Boolean()
     
-    def mutate(self, info, id, name, city, min_salary, max_salary, experience, schedule, employment, description, key_skills, employer, published_at, specialization_id):
-        vac = VacancyModel(id = id, name = name, city = city, min_salary = min_salary, max_salary = max_salary, experience = experience, schedule = schedule, employment = employment, description = description, key_skills = key_skills, employer = employer, published_at = published_at, specialization_id = specialization_id)
+    def mutate(self, info, name, specializationId, id = None, city = None, minSalary = None, maxSalary = None, experience = None, schedule = None, employment = None, description = None, keySkills = None, employer = None, publishedAt = None):
+        vac = VacancyModel(id = id, name = name, city = city, minSalary = minSalary, maxSalary = maxSalary, experience = experience, schedule = schedule, employment = employment, description = description, keySkills = keySkills, employer = employer, publishedAt = publishedAt, specializationId = specializationId)
         db.session.add(vac)
         db.session.commit()
-        return AddVacancy(vac = vac)
+        status = True
+        return AddVacancyMutation(status = status)
 
 
 #схема мутаций
 class Mutation(graphene.ObjectType):
-    save_specialization = AddSpecialization.Field()
-    save_vacancy = AddVacancy.Field()
+    saveSpecialization = AddSpecializationMutation.Field()
+    saveVacancy = AddVacancyMutation.Field()
     
-#схема мутаций    
-schema_mutation = graphene.Schema(query = Query, mutation = Mutation)
+#конечная схема     
+schema = graphene.Schema(query = Query, mutation = Mutation)

@@ -1,8 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request
 import pandas as pd
 import seaborn as sns
 from . import app
-from .GraphQL import schema_query, schema_mutation
+from .GraphQL import schema
+from .forms import QueryForm
 
 #главная страница с аналитикой
 @app.route('/')
@@ -28,11 +29,15 @@ def skill_page(name):
 #страница запросов GraphQL
 @app.route('/graphql/', methods=['GET', 'POST'])
 def graphql_query_page():
-    query = request.args.get('query')
-    result = schema_query.execute(query)
+    if request.method == 'POST':
+        query = request.form['query']
+    else:
+        query = ''
+    form = QueryForm()
+    result = schema.execute(query)
     data = result.data
     errors = result.errors
-    return render_template('graphql.html', data = data, query = query, errors = errors)
+    return render_template('graphql.html', data = data, query = query, errors = errors, form = form)
     
 
 #кастомная страница ошибки 404
