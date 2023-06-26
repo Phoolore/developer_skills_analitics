@@ -1,17 +1,7 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import  render_template, redirect, url_for
 import pandas as pd
 import seaborn as sns
 from . import app
-import os
-# from flask_graphql import GraphQLView
-# from .GraphQL import schema
-
-
-# app.add_url_rule('/graphql', view_func=GraphQLView.as_view(
-#     'graphql',
-#     schema = schema,
-#     graphiql = True
-# ))
 
 @app.route('/')
 def index_page():
