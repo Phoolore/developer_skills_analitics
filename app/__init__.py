@@ -13,11 +13,10 @@ db = SQLAlchemy()
 db.init_app(app)
 
 
-
 from . import models
 with app.app_context():
     db.create_all()
-from . import views, dashboards #GraphQL,
+from . import GraphQL, views, dashboards
 
 
 if __name__ == '__main__':

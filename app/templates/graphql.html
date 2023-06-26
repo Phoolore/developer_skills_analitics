@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+GraphQL query
+{% endblock  title%}
+{% block header%} 
+    <h1>Query:
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"> {{query}}</span>
+    </h1>
+{% endblock header%}
+{% block content %}
+<br> Response:</br>
+<span class="glyphicon glyphicon-plus" aria-hidden="true"> {{data}}</span>
+<br> Errors:</br>
+<span class="glyphicon glyphicon-plus" aria-hidden="true"> {{errors}}</span>
+<br>query{Getspecializations{ edges { node { id, name } } } }</br>
+{% endblock  content%}
