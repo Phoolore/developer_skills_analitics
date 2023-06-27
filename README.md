@@ -23,11 +23,19 @@ git clone https://github.com/Phoolore/Flask.git
 
 '''comandline
 
-
+python -m venv vertualenv
 
 '''
 
-3. Устанавливаем зависимости(фреймворки, пакеты)
+3. Создаем виртуальное окружение
+
+'''comandline
+
+vertualenv\scripts\activate
+
+'''
+
+4. Устанавливаем зависимости(фреймворки, пакеты)
 
 '''comandline
 
@@ -35,7 +43,7 @@ pip install -r requirements.txt
 
 '''
 
-4. Создаем файл .env и укажите настройки подключения к БД(sqlite и т.п.) и т.п.
+5. Создаем файл .env и укажите настройки подключения к БД(sqlite и т.п.) и т.п.
 
 '''.env
 
@@ -45,7 +53,7 @@ SECRET_KEY = YOUR_SECRET_KEY
 
 '''
 
-5. Запустите flask приложение
+6. Запустите flask приложение
 
 '''comandline
 

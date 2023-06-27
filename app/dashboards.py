@@ -2,11 +2,13 @@ from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.graph_objects as go
+import locale
 #from .fullvacparser import parser #for future update
+
+locale.setlocale('ru_RU', 'ru_RU.UTF-8')
 
 
 def levelpie(df):#соотношение колличества вакансий по уровням
-    columns = df['level'].unique()
     df1 = df.groupby('level')['level'].count().rename('Counts').reset_index()
     df1 = df1[df1['level'] != missing]
     labels = df1['level']
@@ -17,7 +19,6 @@ def levelpie(df):#соотношение колличества вакансий
 
 
 def dateline(df):#график колличества вакансий по датам загрузки
-    columns = df['published_at'].unique()
     df1 = df.groupby('published_at')['published_at'].count().rename('Counts').reset_index()
     df1 = df1[df1['published_at'] != missing]
     labels = df1['published_at']
@@ -29,7 +30,12 @@ def dateline(df):#график колличества вакансий по да
 
 def salbox(df):#зп по уровням
     df1 = df[df['level'] != missing]
-    fig = go.Figure(data = go.Box(y =df1['level'],  x = (df1['min_salary'] + df1['max_salary']) / 2, orientation='h'))
+    fig = go.Figure()
+    for i in df1['level'].unique():
+        df2 = df1.loc[df1['level'] == i]
+        df2['salary'] = (df2['min_salary'] + df2['max_salary']) / 2
+        fig.add_trace(go.Box(y = df2['level'], x = df2['salary'],
+                             orientation='h', name=i))
     fig.update_layout(width=500, height = 300)
     return fig
 
