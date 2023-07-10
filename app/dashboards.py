@@ -13,7 +13,7 @@ def levelpie(df):#соотношение колличества вакансий
     labels = df1['level']
     values = df1['Counts']
     fig = go.Figure(data = go.Pie(labels = labels, values = values, hoverinfo='label+percent', textinfo='label+percent', textfont_size=15))
-    #fig.update_layout(width=300, height = 300)
+    fig.update_layout(width=300, height = 300)
     return fig
 
 
@@ -23,7 +23,7 @@ def dateline(df):#график колличества вакансий по да
     labels = df1['published_at']
     values = df1['Counts']
     fig = go.Figure(data = go.Scatter(x=labels, y=values, mode="lines+text"))
-    #fig.update_layout(width=500, height = 300)
+    fig.update_layout(width=500, height = 300)
     return fig
 
 
