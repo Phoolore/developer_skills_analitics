@@ -2,9 +2,8 @@ from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.graph_objects as go
-from plotly import tools
-import locale
 #from .fullvacparser import parser #for future update
+
 
 def levelpie(df):#соотношение колличества вакансий по уровням
     df1 = df.groupby('level')['level'].count().rename('Counts').reset_index()
@@ -17,6 +16,7 @@ def levelpie(df):#соотношение колличества вакансий
 
 
 def dateline(df):#график колличества вакансий по датам загрузки
+    columns = df['published_at'].unique()
     df1 = df.groupby('published_at')['published_at'].count().rename('Counts').reset_index()
     df1 = df1[df1['published_at'] != missing]
     labels = df1['published_at']
@@ -26,32 +26,23 @@ def dateline(df):#график колличества вакансий по да
     return fig
 
 
-#def skills_dateline(df):#график колличества вакансий для каждого навыка
-
-
-def salbox(df):#salary for different levels, graph which I want to translate
+def salbox(df):#зп по уровням
     df1 = df[df['level'] != missing]
     fig = []
-    
     for i in df1['level'].unique():
         df2 = df1.loc[df1['level'] == i]
         df2['salary'] = (df2['min_salary'] + df2['max_salary']) / 2
-        fig += [go.Box(y = df2['level'],
-                       x = df2['salary'],
-                        orientation='h',
-                        name=i)]
+        fig += [go.Box(y = df2['level'], x = df2['salary'],
+                             orientation='h', name=i)]
     return fig
 
 
 df_keys = pd.read_csv("files/key_words.csv", encoding = 'utf8', delimiter = ';')#данные для запросов для таблицы
-table_spec = [] #хранитель строк таблицы специализаций
-table_skill = [] #хранитель строк таблицы навыков
+table = [] #хранитель строк таблицы
 target = df_keys.loc[:, :] #Заготовка для будущих фильтров
 missing = 0 #замена для пустых клеток
-
 for i, row in target.iterrows():
     df = pd.read_csv("files/pythonfullvac.csv", encoding = 'utf8', delimiter = ';').fillna(missing) #данные из запроса для аналитики, с заполнеными потерянными данными
-    print(salbox(df))
     avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
     table_spec += [html.Tr([
             html.Th(["Профессия"], scope="col", style={"width":"11%;"}),
@@ -73,12 +64,13 @@ for i, row in target.iterrows():
             html.Th([avg_sal], scope="col", style={"width":"11%;"}),
             
             html.Th([dcc.Graph(
-            id='salbox'+ str(i + 1),
+            id='salbox'+ str(i),
             figure={'data' : salbox(df),
                     'layout' : {
                         'width' : 500,
                         'height' : 300
-                    }}
+                        }
+                    }
             )], scope="col", style={"width":"100%;"}),
         ])
     ]
@@ -92,7 +84,7 @@ dash.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
             html.Table([
-                html.Thead([#название столбцов таблицы
+                html.Thead([#names of columns of table 
                     html.Tr([
                         html.Th(["Тип"], scope="col", style={"width":"11%;"}),
                         html.Th(["Сфера"], scope="col", style={"width":"11%;"}),
@@ -107,28 +99,7 @@ dash.layout = dbc.Container([
                     ],
                     className = "thead-dark"),
                 html.Tbody(#строки таблицы
-                    table_spec
-                    )
-                ], style = {"margin-bottom": 0, "margin-left": 0, "margin-right": "0%", "margin-top": 0}),
-          ], width=12),
-          dbc.Col([
-            html.Table([
-                html.Thead([#название столбцов таблицы
-                    html.Tr([
-                        html.Th(["Тип"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Сфера"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Специализация"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Ключевые слова"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Кол.вакансий"], scope="col",style={"width":"11%;"}),
-                        html.Th(["Даты"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Соотношение уровней"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Ср.зарплата"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Зарплата по уровням"], scope="col", style={"width":"11%;"})
-                    ])
-                    ],
-                    className = "thead-dark"),
-                html.Tbody(#строки таблицы
-                    #table_spec
+                    table
                     )
                 ], style = {"margin-bottom": 0, "margin-left": 0, "margin-right": "0%", "margin-top": 0}),
           ], width=12)
