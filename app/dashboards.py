@@ -6,12 +6,15 @@ from plotly.subplots import make_subplots
 import numpy as np
 #from .fullvacparser import parser #for future update
 
-size = 10
+size = 10 #размер текста на графиках
 
 
 def levelpie(df):#соотношение колличества вакансий по уровням
+     #подготовка данных
     df1 = df.groupby('level')['level'].count().rename('Counts').reset_index()
     df1 = df1[df1['level'] != missing]
+    
+     #создание графика
     labels = df1['level']
     values = df1['Counts']
     fig = go.Figure(
@@ -23,6 +26,8 @@ def levelpie(df):#соотношение колличества вакансий
             textfont_size = size
             )
                     )
+    
+    #настройка отображения графика
     fig.update_layout(
         # width=300, 
         # height = 300,
@@ -34,11 +39,16 @@ def levelpie(df):#соотношение колличества вакансий
 
 
 def dateline(df):#график колличества вакансий по датам загрузки
+    #подготовка данных
     df1 = df.groupby('published_at')['published_at'].count().rename('Counts').reset_index()
     df1 = df1[df1['published_at'] != missing]
+    
+    #создание графика
     labels = df1['published_at']
     values = df1['Counts']
     fig = go.Figure(data = go.Scatter(x=labels, y=values, mode="lines+text"))
+    
+    #настройка отображения графика
     fig.update_layout(
         # width=500, 
         # height = 300,
@@ -50,27 +60,32 @@ def dateline(df):#график колличества вакансий по да
 
 
 def salbox(df):#зп по уровням
+    # подготовка данных
+    df.loc[:, 'salary'] = (df['min_salary'] + df['max_salary']) / 2
     df_full = df[df['level'] != missing]
     
-    specs = [[{"type" : "xy"}]] * len(df_full['level'].unique())
+    # создание специальной фигуры с отсеками для графиков
+    specs = [[{"type" : "box"}]] * len(df_full['level'].unique())
     fig = make_subplots(
-        print_grid = True, 
+        print_grid = False, 
         rows = len(df_full['level'].unique()), 
         cols = 1, 
         shared_xaxes=True, 
         shared_yaxes=False, 
         specs = specs, 
         vertical_spacing = 0)
+    
+    # перебор каждой группы уровней для создания и настройки её графика
     for i, level in enumerate(df_full['level'].unique()):
         df_l = df_full.loc[df_full['level'] ==  level]
-        df_l['salary'] = (df_l['min_salary'] + df_l['max_salary']) / 2
         
+        #preparation for figure in subplots
         fig_prep = go.Box(
             y = df_l['level'], 
             x = df_l['salary'],
             orientation='h',
             name= level
-            ) #preparation for figure in subplots
+            ) 
         
         fig.add_trace(fig_prep, row=i+1, col=1)
         
@@ -90,6 +105,8 @@ def salbox(df):#зп по уровням
         fig.update_yaxes(
             showgrid = True
         )
+        
+        #перевод точек путем добавление их русских копий и визуальные фиксы, так как текст точек отображается на оси
         fig.update_xaxes(
             showgrid = True,
             showticklabels = False,
@@ -118,6 +135,7 @@ def salbox(df):#зп по уровням
             row=i+1, 
             col=1)
         
+    #настройка отображения графика
     fig.update_layout(
         # width=500,
         # height = 300,
