@@ -8,7 +8,8 @@ import asyncio
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
-dash = Dash(__name__, server=app, url_base_pathname='/dash/')
+dash_table_spec = Dash(__name__, server=app, url_base_pathname='/table_spec/', update_title='Загрузка...', assets_folder = 'app/static')
+dash_table_skill = Dash(__name__, server=app, url_base_pathname='/table_skill/', update_title='Загрузка...', assets_folder = 'app/static')
 db = SQLAlchemy()
 db.init_app(app)
 
@@ -17,7 +18,7 @@ from . import models
 with app.app_context():
     db.drop_all()
     db.create_all()
-from . import GraphQL, views, dashboards
+from . import GraphQL, views, dash
 
 
 if __name__ == '__main__':

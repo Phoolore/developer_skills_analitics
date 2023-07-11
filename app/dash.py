@@ -4,7 +4,6 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
-#from .fullvacparser import parser #for future update
 
 size = 10 #размер текста на графиках
 
@@ -155,7 +154,7 @@ for i, row in target.iterrows():
     df = pd.read_csv("app/static/files/pythonfullvac.csv", encoding = 'utf8', delimiter = ';').fillna(missing) #данные из запроса для аналитики, с заполнеными потерянными данными
     avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
     table_spec += [html.Tr([
-            html.Th(["Профессия"], scope="col"),
+            html.Th(["Специализация"], scope="col"),
             html.Th(["ИТ"], scope="col"),
             html.Th([row['name']], scope="col"),
             html.Th([row['key']], scope="col"),
@@ -185,52 +184,87 @@ for i, row in target.iterrows():
 
 
 
-from . import dash
+from . import dash_table_spec
 
 
-dash.layout = dbc.Container([
+dash_table_spec.layout = dbc.Container([
     dbc.Row([
-        dbc.Col([
-            html.Table([
-                html.Thead([#names of columns of table 
-                    html.Tr([
-                        html.Th(["Тип"], scope="col"),
-                        html.Th(["Сфера"], scope="col"),
-                        html.Th(["Специализация"], scope="col"),
-                        html.Th(["Ключевые слова"], scope="col"),
-                        html.Th(["Кол.вакансий"], scope="col"),
-                        html.Th(["Даты"], scope="col"),
-                        html.Th(["Соотношение уровней"], scope="col"),
-                        html.Th(["Ср.зарплата"], scope="col"),
-                        html.Th(["Зарплата по уровням"], scope="col")
-                    ])
-                    ],
-                    className = "thead-dark"),
-                html.Tbody(#строки таблицы
-                    table_spec
-                    )
-                ], style = {"margin-bottom": 0, "margin-left": 0, "margin-right": "0%", "margin-top": 0}),
-          ], width=12),
-        dbc.Col([
-            html.Table([
-                html.Thead([#names of columns of table 
-                    html.Tr([
-                        html.Th(["Тип"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Сфера"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Навык"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Кол.вакансий"], scope="col",style={"width":"11%;"}),
-                        html.Th(["Даты"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Соотношение уровней"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Ср.зарплата"], scope="col", style={"width":"11%;"}),
-                        html.Th(["Зарплата по уровням"], scope="col", style={"width":"11%;"})
-                    ])
-                    ],
-                    className = "thead-dark"),
-                html.Tbody(#строки таблицы
-                    table_skill
-                    )
-                ], style = {"margin-bottom": 0, "margin-left": 0, "margin-right": "0%", "margin-top": 0}),
-          ], width=12)
+        dbc.Col(
+            [
+                html.Table(
+                    [
+                        html.Thead(
+                            [
+                                #names of columns of table 
+                                html.Tr([
+                                    html.Th(["Тип"], scope="col"),
+                                    html.Th(["Сфера"], scope="col"),
+                                    html.Th(["Специализация"], scope="col"),
+                                    html.Th(["Ключевые слова"], scope="col"),
+                                    html.Th(["Кол.вакансий"], scope="col"),
+                                    html.Th(["Даты"], scope="col"),
+                                    html.Th(["Соотношение уровней"], scope="col"),
+                                    html.Th(["Ср.зарплата"], scope="col"),
+                                    html.Th(["Зарплата по уровням"], scope="col")
+                                    ]
+                                )
+                            ],
+                            className = "thead-dark"
+                            ),
+                        html.Tbody(#строки таблицы
+                            table_spec
+                        )
+                    ], 
+                    style = {
+                        "margin-bottom": 0,
+                        "margin-left": 0,
+                        "margin-right": "0%",
+                        "margin-top": 0
+                        }
+                    ),
+        ], 
+        width=12
+        )
+    ])
+
+], fluid=True)
+
+
+from . import dash_table_skill
+
+dash_table_skill.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col(
+            [
+                html.Table(
+                    [
+                        html.Thead(#names of columns of table 
+                            [
+                                html.Tr([
+                                    html.Th(["Тип"], scope="col", style={"width":"11%;"}),
+                                    html.Th(["Сфера"], scope="col", style={"width":"11%;"}),
+                                    html.Th(["Навык"], scope="col", style={"width":"11%;"}),
+                                    html.Th(["Кол.вакансий"], scope="col",style={"width":"11%;"}),
+                                    html.Th(["Даты"], scope="col", style={"width":"11%;"}),
+                                    html.Th(["Соотношение уровней"], scope="col", style={"width":"11%;"}),
+                                    html.Th(["Ср.зарплата"], scope="col", style={"width":"11%;"}),
+                                    html.Th(["Зарплата по уровням"], scope="col", style={"width":"11%;"})
+                                    ])
+                                    ],
+                                    className = "thead-dark"),
+                        html.Tbody(#строки таблицы
+                                   table_skill
+                                   )
+                        ], 
+                    style = {
+                        "margin-bottom": 0, 
+                        "margin-left": 0, 
+                        "margin-right": "0%", 
+                        "margin-top": 0
+                        }
+                    ),
+                ], 
+            width=12)
     ])
 
 ], fluid=True)
