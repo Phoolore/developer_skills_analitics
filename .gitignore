@@ -3,4 +3,3 @@ env
 vertualenv
 .env
 instance
-db.sqlite3
