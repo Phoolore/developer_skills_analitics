@@ -1,5 +1,6 @@
+aiodataloader==0.4.0
 alembic==1.11.1
-aniso8601==7.0.0
+aniso8601==9.0.1
 beautifulsoup4==4.12.2
 blinker==1.6.2
 bs4==0.0.1
@@ -17,11 +18,12 @@ dash-table==5.0.0
 Flask==2.2.5
 Flask-Migrate==4.0.4
 Flask-SQLAlchemy==3.0.3
+Flask-WTF==1.1.1
 fonttools==4.39.4
-graphene==2.1.9
-graphene-sqlalchemy==2.3.0
-graphql-core==2.3.2
-graphql-relay==2.0.1
+graphene==3.2.2
+graphene-sqlalchemy==3.0.0b3
+graphql-core==3.2.3
+graphql-relay==3.2.0
 graphql-server-core==1.2.0
 greenlet==2.0.2
 idna==3.4
@@ -53,3 +55,4 @@ typing_extensions==4.6.3
 tzdata==2023.3
 urllib3==2.0.2
 Werkzeug==2.2.3
+WTForms==3.0.1
