@@ -7,27 +7,5 @@
  {% endblock header%}
 {% block content %}
        <center> <h3>Навыки Python програмиста</h3> </center>
-       <img src="{{ url_for('static', filename='table.jpg') }}" alt = 'текст' width="1100" height="500">
        <p align="right"><iframe src="/dash/" width="1100" height="500"> </iframe></p>
-       <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Popularity</th>
-            <th scope="col">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for i in range(length) %}
-          <tr>
-            <th scope="row">{{i + 1}}</th>
-            <td>{{names[i]}}</td>
-            <td>{{popularity[i]}}</td>
-            <td>{{salary[i]}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      
 {% endblock  content%}

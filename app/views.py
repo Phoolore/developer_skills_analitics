@@ -9,13 +9,7 @@ from .forms import QueryForm
 @app.route('/')
 def index_page():
     #будущая фича при наведении на навык открывается фрейм на страницу скилл
-    df = pd.read_csv("files/all_data.csv").sort_values(by='salary', ascending=False)
-    sns.set(style="darkgrid")
-    plot = sns.barplot(data=df.iloc[:10, :], x="skills", y="salary", color = '0', width = 0.9)
-    fig = plot.get_figure()
-    fig.savefig("app/static/table.jpg")
-    df = pd.read_csv("files/all_data.csv").sort_values(by='salary', ascending=False)
-    return render_template('index.html', names= df.iloc[:, 0].to_list(), popularity = [round(i,2) for i in df.iloc[:, 1].to_list()], salary = [round(i,2) for i in df.iloc[:, 4].to_list()], length=len(df))
+    return render_template('index.html')
 
 
 #страница подробностей о навыке
