@@ -5,11 +5,11 @@ web site with analitics for back-developer skills value in Russia in rubles
 
 
 ## Сайт с аналитикой
-![Главная страница](files/index.jpg "Главная страница")
+![Главная страница](developer_skills_analitics\app\static\files\index.jpg "Главная страница")
 
 <hr></hr>
 
-![Страница навыка](files/Skill.jpg "Страница навыка")
+![Страница навыка](developer_skills_analitics\app\static\files\Skill.jpg "Страница навыка")
 ## Как запустить
 1. Клонируем репозиторий
 
