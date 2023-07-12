@@ -20,9 +20,9 @@ GraphQL query
 {{form.submit(class="btn btn-success btn-log", size=20)}}
 </div>
 </form>
-<br>default value:</br>
-<br>Просмотр специализаций: {Getspecializations{ edges { node { id, name, vacancies {edges { node {id, name} } } } } } }</br>
+<br>Подсказки:</br>
+<br>Просмотр специализаций: {getSpecializations{ edges { node { id, name, vacancies {edges { node {id, name} } } } } } }</br>
 <br>Добавление специализации: mutation{ saveSpecialization(name:"spec"){ status }}</br>
-<br>Просмотр вакансий: {Getvacancies{ edges { node { id, name, city, minSalary, maxSalary, experience, schedule, employment, description, keySkills, employer, publishedAt, specializationId } } } }</br>
-<br>Добавление вакансии: mutatio{ save_vacancy(name="Arsen", specializationId=1){ status } }</br>
+<br>Просмотр вакансий: {getVacancies{ edges { node { id, name, city, minSalary, maxSalary, experience, schedule, employment, description, keySkills, employer, publishedAt, specializationId } } } }</br>
+<br>Добавление вакансии: mutation{ saveVacancy(name="Arsen", specializationId=1){ status } }</br>
 {% endblock  content%}
