@@ -1,6 +1,9 @@
 from dash import Dash
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import pandas as pd
+
+pd.options.mode.chained_assignment = None #Warnings when work in functions with copy from arguments
 
 # создание главного сервера (app) и страниц с графиками(dash_...)
 app = Flask(__name__)
@@ -20,7 +23,7 @@ db.init_app(app)
 from . import models
 
 with app.app_context():
-    db.drop_all()
+    # db.drop_all()
     db.create_all()
 from . import GraphQL, dash, views
 

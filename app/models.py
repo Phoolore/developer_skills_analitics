@@ -17,7 +17,7 @@ class SpecializationModel(db.Model):#модель для бд таблица с 
 class VacancyModel(db.Model):#модель для бд таблица с вакансиями
     __tablename__ = 'vacancies'
     id = db.Column(db.Integer, primary_key = True, autoincrement = True, nullable = True)
-    name = db.Column(db.String(255), unique = True, nullable = False)
+    name = db.Column(db.String(255),nullable = False)
     city = db.Column(db.String(255), nullable = True)
     minSalary = db.Column(db.Integer, nullable = True)
     maxSalary = db.Column(db.Integer, nullable = True)

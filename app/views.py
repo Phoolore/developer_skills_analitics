@@ -23,6 +23,10 @@ def skill_page(name):
 #страница запросов GraphQL
 @app.route('/graphql/', methods=['GET', 'POST'])
 def graphql_query_page():
+    query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, publishedAt} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
+    result = schema.execute(query)
+    with open("data.txt", "w+") as f:
+        f.write(str(result))
     if request.method == 'POST':
         query = request.form['query']
     else:

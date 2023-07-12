@@ -4,17 +4,21 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
+import json
+
+from . import app
+from .GraphQL import schema
 
 size = 10 #размер текста на графиках
 
 
 def levelpie(df):#соотношение колличества вакансий по уровням
      #подготовка данных
-    df1 = df.groupby('level')['level'].count().rename('Counts').reset_index()
-    df1 = df1[df1['level'] != missing]
+    df1 = df.groupby('experience')['experience'].count().rename('Counts').reset_index()
+    df1 = df1[df1['experience'] != missing]
     
      #создание графика
-    labels = df1['level']
+    labels = df1['experience']
     values = df1['Counts']
     fig = go.Figure(
         data = go.Pie(
@@ -28,8 +32,8 @@ def levelpie(df):#соотношение колличества вакансий
     
     #настройка отображения графика
     fig.update_layout(
-        # width=300, 
-        # height = 300,
+        width=300, 
+        height = 300,
         font = dict(
             size = size
             )
@@ -49,8 +53,8 @@ def dateline(df):#график колличества вакансий по да
     
     #настройка отображения графика
     fig.update_layout(
-        # width=500, 
-        # height = 300,
+        width=500, 
+        height = 300,
         font = dict(
             size = size
             )
@@ -61,13 +65,13 @@ def dateline(df):#график колличества вакансий по да
 def salbox(df):#зп по уровням
     # подготовка данных
     df.loc[:, 'salary'] = (df['min_salary'] + df['max_salary']) / 2
-    df_full = df[df['level'] != missing]
+    df_full = df[df['experience'] != missing]
     
     # создание специальной фигуры с отсеками для графиков
-    specs = [[{"type" : "box"}]] * len(df_full['level'].unique())
+    specs = [[{"type" : "box"}]] * len(df_full['experience'].unique())
     fig = make_subplots(
         print_grid = False, 
-        rows = len(df_full['level'].unique()), 
+        rows = len(df_full['experience'].unique()), 
         cols = 1, 
         shared_xaxes=True, 
         shared_yaxes=False, 
@@ -75,15 +79,15 @@ def salbox(df):#зп по уровням
         vertical_spacing = 0)
     
     # перебор каждой группы уровней для создания и настройки её графика
-    for i, level in enumerate(df_full['level'].unique()):
-        df_l = df_full.loc[df_full['level'] ==  level]
+    for i, experience in enumerate(df_full['experience'].unique()):
+        df_l = df_full.loc[df_full['experience'] ==  experience]
         
         #preparation for figure in subplots
         fig_prep = go.Box(
-            y = df_l['level'], 
+            y = df_l['experience'], 
             x = df_l['salary'],
             orientation='h',
-            name= level
+            name= experience
             ) 
         
         fig.add_trace(fig_prep, row=i+1, col=1)
@@ -136,28 +140,49 @@ def salbox(df):#зп по уровням
         
     #настройка отображения графика
     fig.update_layout(
-        # width=500,
-        # height = 300,
+        width=500,
+        height = 300,
         font = dict(
             size = size
         )
         )
     return fig
 
+with app.app_context():
+    query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, publishedAt} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
+    result = schema.execute(query).data
+with open("data.txt", "w+") as f:
+    f.write(str(result))
+result = result['getSpecializations']['edges'] #открытие и переход к массиву с специализациями
 
-df_keys = pd.read_csv("app/static/files/key_words.csv", encoding = 'utf8', delimiter = ';')#данные для запросов для таблицы
+#передача данных из GraphQL в df
+missing = 0 #замена для пустых клеток
+rows = [] #хранитель строк будущего df с вакансиями
+for spec in result: #перебор специализаций
+    for vac in spec['node']['vacancies']['edges']:#перебор вакансий
+        rows += [{
+            'specialization' : spec['node']['name'],
+            'job_title' : vac['node']['name'],
+            'min_salary' : vac['node']['minSalary'], 
+            'max_salary' : vac['node']['maxSalary'],
+            'experience' : vac['node']['experience'].replace('between', 'От ').replace('And', ' до '),
+            'published_at' : vac['node']['publishedAt']
+            }]
+df_full = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
+
+df_spec = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
+
 table_spec = [] #хранитель строк таблицы специализаций
 table_skill = [] #хранитель строк таблицы навыков
-target = df_keys.loc[:, :] #Заготовка для будущих фильтров
-missing = 0 #замена для пустых клеток
-for i, row in target.iterrows():
-    df = pd.read_csv("app/static/files/pythonfullvac.csv", encoding = 'utf8', delimiter = ';').fillna(missing) #данные из запроса для аналитики, с заполнеными потерянными данными
+
+
+for i, spec in enumerate(df_spec['specialization'].unique()):#перебор специализаций
+    df = df_spec[df_spec['specialization'] == spec]
     avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
     table_spec += [html.Tr([
             html.Th(["Специализация"], scope="col"),
             html.Th(["ИТ"], scope="col"),
-            html.Th([row['name']], scope="col"),
-            html.Th([row['key']], scope="col"),
+            html.Th([spec], scope="col"),
             html.Th([len(df)], scope="col"),
             
             html.Th([dcc.Graph(
@@ -200,7 +225,6 @@ dash_table_spec.layout = dbc.Container([
                                     html.Th(["Тип"], scope="col"),
                                     html.Th(["Сфера"], scope="col"),
                                     html.Th(["Специализация"], scope="col"),
-                                    html.Th(["Ключевые слова"], scope="col"),
                                     html.Th(["Кол.вакансий"], scope="col"),
                                     html.Th(["Даты"], scope="col"),
                                     html.Th(["Соотношение уровней"], scope="col"),
