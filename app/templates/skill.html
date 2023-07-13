@@ -1,37 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}
-{{ skill[0]}}
+{{name}}
 {% endblock  title%}
 {% block header%} 
-    <h1> Статистика по навыку "{{skill[0]}}"</h1>
+    <h1> Статистика по навыку "{{name}}"</h1>
 {% endblock header%}
 {% block content %}
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Property</th>
-        <th scope="col">Value</th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for i in range(1, length) %}
-      <tr>
-        <th scope="row">{{i + 1}}</th>
-        <td>{{skill.index[i]}}</td>
-        <td>{{skill[i]}}%</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-</table>
-<div class="row">
-<div class="col-7" style="margin-left: 5%;">
-{{skill[2]}}
-</div>
-<div class="col-4">
-  <img src = "{{url_for('static', filename=skill[0] + '.jpg')}}" style="width: 100%;height: 100%;">
-
-</div>
-</div>
-<iframe src="{{skill[3]}}" width="1100" height="500"> </iframe>
+<div style="position: left; width: 100%; height: 90%;"><iframe src={{url}} style="position: left; width: 100%; height: 100%;"></iframe></div>
 {% endblock  content%}

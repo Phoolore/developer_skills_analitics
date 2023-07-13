@@ -8,17 +8,18 @@
     </head>
     <body>
         <div id="wrapper">
-        {% include "navigation.html" %}
-        <div class="container my-3"> 
-            {% block header %} {% endblock header %}
-            <hr>
-       
-        {% block content %} {% endblock content %}
-        
-        
-        
-    </div>
-    {% include "footer.html" %}
-    </div>
+            {% include "navigation.html" %}
+            <div class="row">
+                <div class="col-9">
+                        {% block header %} {% endblock header %}
+                        <hr>
+                        {% block content %} {% endblock content %}
+                </div>
+                <div class="col-3">
+                    {% include "side_navigation.html" %}
+                </div>
+            </div>
+        {% include "footer.html" %}
+        </div>
     </body>
 </html>
