@@ -41,16 +41,16 @@ def page_not_found(e):
 #страница подробностей о навыке
 @app.route('/skill/<string:name>')
 def skill_page(name):
-    response = requests.get(f"https://www.google.com/search?q={name}+site:ru.wikipedia.org&hl=ru")
-    k = 1
+    response = requests.get(f"https://www.google.com/search?q={name}+site:ru.wikipedia.org&hl=ru")#запрос к сайту источнику информации о существовании страницы для данного навыка
+    k = 1#флажок о присутствии страницы навыка
     for i in response.text.split('"'):
-        if "https://ru.wikipedia.org/" in i:
-            url = i[7:].split("&")[0]
+        if "https://ru.wikipedia.org/" in i:  #если есть страница то на нее будет ссылка начинающиеся на https://ru.wikipedia.org/
+            url = i[7:].split("&")[0]  #достаем ссылку без параметров
             break
-        if i == 'Missing ID':
-            k = 0
+        if i == 'Missing ID':#в конце каждой страницы пишут о Missing ID, это индикатор что мы дошли до конца страницы
+            k = 0  #раз это конец страницы то ссылки нет
             break
-    if k == 1:
+    if k == 1: #проверка наличии ссылки
         return render_template('skill.html', url = url, name = name)
     else:
         return page_not_found(f'Страницы навыка "{name}" не найдено, приносим свои извинения, просим написать о данной ошибке на почту agencyUpShot@mail.ru')

@@ -149,10 +149,8 @@ def salbox(df):#зп по уровням
     return fig
 
 with app.app_context():
-    query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, publishedAt} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
+    query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
     result = schema.execute(query).data
-with open("data.txt", "w+") as f:
-    f.write(str(result))
 result = result['getSpecializations']['edges'] #открытие и переход к массиву с специализациями
 
 #передача данных из GraphQL в df
@@ -166,20 +164,25 @@ for spec in result: #перебор специализаций
             'min_salary' : vac['node']['minSalary'], 
             'max_salary' : vac['node']['maxSalary'],
             'experience' : vac['node']['experience'].replace('between', 'От ').replace('And', ' до '),
+            'key_skills' : vac['node']['keySkills'],
             'published_at' : vac['node']['publishedAt']
             }]
 df_full = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
 
+with open("data.txt", "w+") as f:
+    f.write(df_full.to_json())
 df_spec = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
+df_skill = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
 
 table_spec = [] #хранитель строк таблицы специализаций
 table_skill = [] #хранитель строк таблицы навыков
 
 
 for i, spec in enumerate(df_spec['specialization'].unique()):#перебор специализаций
-    df = df_spec[df_spec['specialization'] == spec]
+    df = df_spec[df_spec['specialization'] == spec] #выборка по специализации
     avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
-    table_spec += [html.Tr([
+    table_spec += [
+        html.Tr([
             html.Th(["Специализация"], scope="col"),
             html.Th(["ИТ"], scope="col"),
             html.Th([spec], scope="col"),
@@ -188,13 +191,11 @@ for i, spec in enumerate(df_spec['specialization'].unique()):#перебор с�
             html.Th([dcc.Graph(
             id='dateline' + str(i + 1),
             figure=dateline(df),
-            animate = False
             )], scope="col"),
             
             html.Th([dcc.Graph(
             id='levelpie'+ str(i + 1),
             figure=levelpie(df),
-            animate = False
             )], scope="col"),
             
             html.Th([avg_sal], scope="col"),
@@ -202,93 +203,106 @@ for i, spec in enumerate(df_spec['specialization'].unique()):#перебор с�
             html.Th([dcc.Graph(
             id='salbox'+ str(i),
             figure = salbox(df),
-            animate = False
-            )], scope="col"),
+
+            )], scope="col")
         ])
     ]
 
-
+for skills_packs in df_skill['key_skills'].unique(): #получение наборов навыков из вакансий без повторений
+    for i, skill in enumerate(skills_packs.replace("[", "").replace("]", "").split(','))  :#перебор навыков
+        df = df_skill[df_skill['key_skills'].str.contains(skill)] #выборка вакансий с навыком
+        # with open("data.txt", "w+") as f:
+        #     f.write(df.to_json())
+        avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
+        table_skill += [
+            html.Tr([
+                html.Th(["Навык"], scope="col"),
+                html.Th(["ИТ"], scope="col"),
+                html.Th([skill], scope="col"),
+                html.Th([len(df)], scope="col"),
+                html.Th([dcc.Graph(
+                    id='dateline' + str(i + 1),
+                    figure=dateline(df)
+                    )], scope="col"),
+                    
+                    html.Th([dcc.Graph(
+                    id='levelpie'+ str(i + 1),
+                    figure=levelpie(df)
+                    )], scope="col"),
+                    
+                    html.Th([avg_sal], scope="col"),
+                    
+                    html.Th([dcc.Graph(
+                    id='salbox'+ str(i),
+                    figure = salbox(df)
+                    )], scope="col")
+            ])
+        ]
 
 from . import dash_table_spec
 
 
-dash_table_spec.layout = dbc.Container([
-    dbc.Row([
-        dbc.Col(
+dash_table_spec.layout = html.Table(
+    [
+        html.Thead(
             [
-                html.Table(
-                    [
-                        html.Thead(
-                            [
-                                #names of columns of table 
-                                html.Tr([
-                                    html.Th(["Тип"], scope="col"),
-                                    html.Th(["Сфера"], scope="col"),
-                                    html.Th(["Специализация"], scope="col"),
-                                    html.Th(["Кол.вакансий"], scope="col"),
-                                    html.Th(["Даты"], scope="col"),
-                                    html.Th(["Соотношение уровней"], scope="col"),
-                                    html.Th(["Ср.зарплата"], scope="col"),
-                                    html.Th(["Зарплата по уровням"], scope="col")
-                                    ]
-                                )
-                            ],
-                            className = "thead-dark"
-                            ),
-                        html.Tbody(#строки таблицы
-                            table_spec
-                        )
-                    ], 
-                    style = {
-                        "margin-bottom": 0,
-                        "margin-left": 0,
-                        "margin-right": "0%",
-                        "margin-top": 0
-                        }
-                    ),
-        ], 
-        width=12
-        )
-    ])
-
-], fluid=True)
+                #names of columns of table 
+                html.Tr([
+                    html.Th(["Тип"], scope="col"),
+                    html.Th(["Сфера"], scope="col"),
+                    html.Th(["Специализация"], scope="col"),
+                    html.Th(["Кол.вакансий"], scope="col"),
+                    html.Th(["Даты"], scope="col"),
+                    html.Th(["Соотношение уровней"], scope="col"),
+                    html.Th(["Ср.зарплата"], scope="col"),
+                    html.Th(["Зарплата по опыту работы"], scope="col")
+                ])
+            ],
+            className = "thead-dark"
+            ),
+        html.Tbody(#строки таблицы
+                   table_spec
+                   )
+    ],
+                style = {
+                    'font-size': size + 1,
+                    "margin-bottom": 0,
+                    "margin-left": 0,
+                    "margin-right": "0%",
+                    "margin-top": 0
+                    }
+)
 
 
 from . import dash_table_skill
 
-dash_table_skill.layout = dbc.Container([
-    dbc.Row([
-        dbc.Col(
+dash_table_skill.layout = html.Table(
+    [
+        html.Thead(
             [
-                html.Table(
-                    [
-                        html.Thead(#names of columns of table 
-                            [
-                                html.Tr([
-                                    html.Th(["Тип"], scope="col", style={"width":"11%;"}),
-                                    html.Th(["Сфера"], scope="col", style={"width":"11%;"}),
-                                    html.Th(["Навык"], scope="col", style={"width":"11%;"}),
-                                    html.Th(["Кол.вакансий"], scope="col",style={"width":"11%;"}),
-                                    html.Th(["Даты"], scope="col", style={"width":"11%;"}),
-                                    html.Th(["Соотношение уровней"], scope="col", style={"width":"11%;"}),
-                                    html.Th(["Ср.зарплата"], scope="col", style={"width":"11%;"}),
-                                    html.Th(["Зарплата по уровням"], scope="col", style={"width":"11%;"})
-                                    ])
-                                    ],
-                                    className = "thead-dark"),
-                        html.Tbody(#строки таблицы
-                                   table_skill
-                                   )
-                        ], 
-                    style = {
-                        "margin-bottom": 0, 
-                        "margin-left": 0, 
-                        "margin-right": "0%", 
-                        "margin-top": 0
-                        }
-                    ),
-                ], 
-            width=12)
-    ])
-
-], fluid=True)
+                #names of columns of table 
+                html.Tr([
+                    html.Th(["Тип"], scope="col", style={"width":"11%;"}),
+                    html.Th(["Сфера"], scope="col", style={"width":"11%;"}),
+                    html.Th(["Навык"], scope="col", style={"width":"11%;"}),
+                    html.Th(["Кол.вакансий"], scope="col",style={"width":"11%;"}),
+                    html.Th(["Даты"], scope="col", style={"width":"11%;"}),
+                    html.Th(["Соотношение уровней"], scope="col", style={"width":"11%;"}),
+                    html.Th(["Ср.зарплата"], scope="col", style={"width":"11%;"}),
+                    html.Th(["Зарплата по опыту работы"], scope="col")
+                ])
+            ],
+            className = "thead-dark"
+            ),
+        html.Tbody(#строки таблицы
+                   table_skill
+                )
+    ],
+                style = {
+                    'font-size': size  + 1, #becouse it have different standarts, but we need same result
+                    "margin-bottom": 0,
+                    "margin-left": 0,
+                    "margin-right": "0%",
+                    "margin-top": 0
+                    }
+)
