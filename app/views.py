@@ -39,8 +39,8 @@ def page_not_found(e):
 
 
 #страница подробностей о навыке
-@app.route('/skill/<string:name>')
-def skill_page(name):
+@app.route('/description/<string:name>')
+def description_page(name):
     response = requests.get(f"https://www.google.com/search?q={name}+site:ru.wikipedia.org&hl=ru")#запрос к сайту источнику информации о существовании страницы для данного навыка
     k = 1#флажок о присутствии страницы навыка
     for i in response.text.split('"'):
@@ -51,6 +51,6 @@ def skill_page(name):
             k = 0  #раз это конец страницы то ссылки нет
             break
     if k == 1: #проверка наличии ссылки
-        return render_template('skill.html', url = url, name = name)
+        return render_template('description.html', url = url, name = name)
     else:
         return page_not_found(f'Страницы навыка "{name}" не найдено, приносим свои извинения, просим написать о данной ошибке на почту agencyUpShot@mail.ru')

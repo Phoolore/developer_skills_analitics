@@ -41,7 +41,7 @@ def levelpie(df):#соотношение колличества вакансий
     return fig
 
 
-def dateline(df):#график колличества вакансий по датам загрузки
+def dateline(df, name):#график колличества вакансий по датам загрузки
     #подготовка данных
     df1 = df.groupby('published_at')['published_at'].count().rename('Counts').reset_index()
     df1 = df1[df1['published_at'] != missing]
@@ -49,7 +49,20 @@ def dateline(df):#график колличества вакансий по да
     #создание графика
     labels = df1['published_at']
     values = df1['Counts']
-    fig = go.Figure(data = go.Scatter(x=labels, y=values, mode="lines+text"))
+    fig = go.Figure(
+        data = go.Scatter(
+            x=labels, 
+            y=values, 
+            mode="lines+text",
+            hovertemplate = "%{x};кол.вакансий: %{y} ",
+            name = name
+            )
+        )
+    
+    # настройка языка и добавление слайдера выбора дат
+    fig.update_xaxes(
+        rangeslider_visible = True #создание слайдера
+    )
     
     #настройка отображения графика
     fig.update_layout(
@@ -64,79 +77,28 @@ def dateline(df):#график колличества вакансий по да
 
 def salbox(df):#зп по уровням
     # подготовка данных
-    df.loc[:, 'salary'] = (df['min_salary'] + df['max_salary']) / 2
-    df_full = df[df['experience'] != missing]
+    df['salary'] = (df['min_salary'] + df['max_salary']) / 2
+    df_full = df.loc[df['experience'] != missing]
     
     # создание специальной фигуры с отсеками для графиков
-    specs = [[{"type" : "box"}]] * len(df_full['experience'].unique())
-    fig = make_subplots(
-        print_grid = False, 
-        rows = len(df_full['experience'].unique()), 
-        cols = 1, 
-        shared_xaxes=True, 
-        shared_yaxes=False, 
-        specs = specs, 
-        vertical_spacing = 0)
+    fig = go.Figure()
     
     # перебор каждой группы уровней для создания и настройки её графика
-    for i, experience in enumerate(df_full['experience'].unique()):
-        df_l = df_full.loc[df_full['experience'] ==  experience]
-        
-        #preparation for figure in subplots
-        fig_prep = go.Box(
-            y = df_l['experience'], 
-            x = df_l['salary'],
-            orientation='h',
-            name= experience
-            ) 
-        
-        fig.add_trace(fig_prep, row=i+1, col=1)
-        
-        # Вычисляем значения q1, q3, iqr и медианы
-        q1 = np.percentile(df_l['salary'], 25)
-        q3 = np.percentile(df_l['salary'], 75)
-        iqr = q3 - q1
-        median = np.median(df_l['salary'])
-        
-        # Вычисляем минимум и максимум
-        maximum = df_l['salary'].max()
-        minimum = df_l['salary'].min()
-        
-        #Вычисляем границы(усы)
-        lower_fence = q1 - iqr * 1.5
-        upper_fence = q3 + iqr * 1.5
-        fig.update_yaxes(
-            showgrid = True
-        )
-        
-        #перевод точек путем добавление их русских копий и визуальные фиксы, так как текст точек отображается на оси
-        fig.update_xaxes(
-            showgrid = True,
-            showticklabels = False,
-            minor = {
-                'gridcolor': '#fff',
-                'dtick' : 100000
-            },
-            ticktext=[
-                'Минимум:' + str(round(minimum/1000)) + "k",
-                'Нижняя граница:' + str(round(lower_fence/1000)) + "k",
-                'Q1:' + str(round(q1/1000)) + "k",
-                'Медиана:' + str(round(median/1000)) + "k",
-                'Q3:' + str(round(q3/1000)) + "k",
-                'Верхняя граница:' + str(round(upper_fence/1000)) + "k",
-                'Максимум:' + str(round(maximum/1000)) + "k"
-                ],
-            tickvals=[
-                minimum, 
-                lower_fence, 
-                q1,
-                median, 
-                q3, 
-                upper_fence,  
-                maximum
-                ], 
-            row=i+1, 
-            col=1)
+    for i in df_full['experience'].unique():
+        df_level = df_full.loc[df_full['experience'] == i]
+        fig.add_trace(
+            go.Box(
+                hoverlabel = dict(
+                    font = dict(
+                        size = size
+                    )
+                ),
+                y = df_level['experience'], 
+                x = df_level['salary'],
+                orientation='h',
+                name=i
+                )
+            )
         
     #настройка отображения графика
     fig.update_layout(
@@ -164,84 +126,90 @@ for spec in result: #перебор специализаций
             'min_salary' : vac['node']['minSalary'], 
             'max_salary' : vac['node']['maxSalary'],
             'experience' : vac['node']['experience'].replace('between', 'От ').replace('And', ' до '),
-            'key_skills' : vac['node']['keySkills'],
+            'key_skills' : vac['node']['keySkills'].replace("'", ""),
             'published_at' : vac['node']['publishedAt']
             }]
 df_full = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
 
-with open("data.txt", "w+") as f:
-    f.write(df_full.to_json())
+# with open("data.txt", "w+") as f:
+#     f.write(df_full.to_json())
 df_spec = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
 df_skill = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
 
 table_spec = [] #хранитель строк таблицы специализаций
 table_skill = [] #хранитель строк таблицы навыков
 
-
-for i, spec in enumerate(df_spec['specialization'].unique()):#перебор специализаций
-    df = df_spec[df_spec['specialization'] == spec] #выборка по специализации
-    avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
-    table_spec += [
-        html.Tr([
-            html.Th(["Специализация"], scope="col"),
-            html.Th(["ИТ"], scope="col"),
-            html.Th([spec], scope="col"),
-            html.Th([len(df)], scope="col"),
-            
-            html.Th([dcc.Graph(
-            id='dateline' + str(i + 1),
-            figure=dateline(df),
-            )], scope="col"),
-            
-            html.Th([dcc.Graph(
-            id='levelpie'+ str(i + 1),
-            figure=levelpie(df),
-            )], scope="col"),
-            
-            html.Th([avg_sal], scope="col"),
-            
-            html.Th([dcc.Graph(
-            id='salbox'+ str(i),
-            figure = salbox(df),
-
-            )], scope="col")
-        ])
-    ]
-
-for skills_packs in df_skill['key_skills'].unique(): #получение наборов навыков из вакансий без повторений
-    for i, skill in enumerate(skills_packs.replace("[", "").replace("]", "").split(','))  :#перебор навыков
-        df = df_skill[df_skill['key_skills'].str.contains(skill)] #выборка вакансий с навыком
-        # with open("data.txt", "w+") as f:
-        #     f.write(df.to_json())
+if len(df_full) > 0:
+    for i, spec in enumerate(df_spec['specialization'].unique()):#перебор специализаций
+        df = df_spec[df_spec['specialization'] == spec] #выборка по специализации
         avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
-        table_skill += [
+        table_spec += [
             html.Tr([
-                html.Th(["Навык"], scope="col"),
+                html.Th(["Специализация"], scope="col"),
                 html.Th(["ИТ"], scope="col"),
-                html.Th([skill], scope="col"),
+                html.Th([spec], scope="col"),
                 html.Th([len(df)], scope="col"),
+                
                 html.Th([dcc.Graph(
-                    id='dateline' + str(i + 1),
-                    figure=dateline(df)
-                    )], scope="col"),
-                    
-                    html.Th([dcc.Graph(
-                    id='levelpie'+ str(i + 1),
-                    figure=levelpie(df)
-                    )], scope="col"),
-                    
-                    html.Th([avg_sal], scope="col"),
-                    
-                    html.Th([dcc.Graph(
-                    id='salbox'+ str(i),
-                    figure = salbox(df)
-                    )], scope="col")
+                id='dateline' + str(i + 1),
+                config={"locale": 'ru'},
+                figure=dateline(df, spec),
+                )], scope="col"),
+                
+                html.Th([dcc.Graph(
+                id='levelpie'+ str(i + 1),
+                config={"locale": 'ru'},
+                figure=levelpie(df),
+                )], scope="col"),
+                
+                html.Th([avg_sal], scope="col"),
+                
+                html.Th([dcc.Graph(
+                id='salbox'+ str(i),
+                config={"locale": 'ru'},
+                figure = salbox(df),
+
+                )], scope="col")
             ])
         ]
 
+    for skills_packs in df_skill['key_skills'].unique(): #получение наборов навыков из вакансий без повторений
+        for i, skill in enumerate(skills_packs.replace("[", "").replace("]", "").split(','))  :#перебор навыков
+            df = df_skill[df_skill['key_skills'].str.contains(skill)] #выборка вакансий с навыком
+            # with open("data.txt", "w+") as f:
+            #     f.write(df.to_json())
+            avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
+            table_skill += [
+                html.Tr([
+                    html.Th(["Навык"], scope="col"),
+                    html.Th(["ИТ"], scope="col"),
+                    html.Th([skill], scope="col"),
+                    html.Th([len(df)], scope="col"),
+                    html.Th([dcc.Graph(
+                        id='dateline' + str(i + 1),
+                        config={"locale": 'ru'},
+                        figure=dateline(df, skill)
+                        )], scope="col"),
+                        
+                        html.Th([dcc.Graph(
+                        id='levelpie'+ str(i + 1),
+                        config={"locale": 'ru'},
+                        figure=levelpie(df)
+                        )], scope="col"),
+                        
+                        html.Th([avg_sal], scope="col"),
+                        
+                        html.Th([dcc.Graph(
+                        id='salbox'+ str(i),
+                        config={"locale": 'ru'},
+                        figure = salbox(df)
+                        )], scope="col")
+                ])
+            ]
+
 from . import dash_table_spec
 
-
+dash_table_spec.scripts.append_script({"external_url": "https://cdn.plot.ly/plotly-locale-ru-latest.js"})
 dash_table_spec.layout = html.Table(
     [
         html.Thead(

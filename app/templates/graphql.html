@@ -24,5 +24,5 @@ GraphQL query
 <br>Просмотр специализаций: {getSpecializations{ edges { node { id, name, vacancies {edges { node {id, name} } } } } } }</br>
 <br>Добавление специализации: mutation{ saveSpecialization(name:"spec"){ status }}</br>
 <br>Просмотр вакансий: {getVacancies{ edges { node { id, name, city, minSalary, maxSalary, experience, schedule, employment, description, keySkills, employer, publishedAt, specializationId } } } }</br>
-<br>Добавление вакансии: mutation{ saveVacancy(name:"TestVacancy", specializationId:' + str(i) + ',minSalary :' + minS + ', maxSalary :' + maxS + ', experience : "between1And3"){ status } }</br>
-{% endblock  content%}
+<br>Добавление вакансии: mutation{ saveVacancy(name:"TestVacancy", specializationId: 1,minSalary: 100000, maxSalary:200000, keySkills: "['Python', 'Git']" , experience : "between1And3", publishedAt : "2023-07-17"){ status } }<br>
+{% endblock content %}
