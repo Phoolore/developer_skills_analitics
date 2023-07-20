@@ -7,8 +7,13 @@ from plotly.subplots import make_subplots
 
 from . import app
 from .GraphQL import schema
+from . import dash_table_spec
+from . import dash_table_skill
 
 size = 10 #размер текста на графиках
+missing = 0 #замена для пустых клеток
+dash_table_spec.layout = html.H1("None") #Временная заставка, иначе None, и ошибка,что None быть не может
+dash_table_skill.layout = html.H1("None") #Временная заставка, иначе None, и ошибка,что None быть не может
 
 
 def levelpie(df):#соотношение колличества вакансий по уровням
@@ -110,142 +115,140 @@ def salbox(df):#зп по уровням
     return fig
 
 
-missing = 0 #замена для пустых клеток
-rows = [] #хранитель строк будущего df с вакансиями
+# ссоздание таблиц по запросу
+def dashboards(spec = None, skill = None):
+    rows = [] #хранитель строк будущего df с вакансиями
+    with app.app_context():
+        query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
+        data = schema.execute(query).data
+    
+    result = data['getSpecializations']['edges'] #открытие и переход к массиву с специализациями
 
-with app.app_context():
-    query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
-    result = schema.execute(query).data
-if result['getSpecializations'] != None:
-    result = result['getSpecializations']['edges'] #открытие и переход к массиву с специализациями
+    if result != None:
+        #передача данных из ответа от GraphQL в df
+        for spec in result: #перебор специализаций
+            for vac in spec['node']['vacancies']['edges']:#перебор вакансий
+                rows += [{
+                    'specialization' : spec['node']['name'],
+                    'job_title' : vac['node']['name'],
+                    'min_salary' : vac['node']['minSalary'], 
+                    'max_salary' : vac['node']['maxSalary'],
+                    'experience' : vac['node']['experience'].replace('between', 'От ').replace('And', ' до '),
+                    'key_skills' : vac['node']['keySkills'].replace("'", ""),
+                    'published_at' : vac['node']['publishedAt']
+                    }]
 
-    #передача данных из GraphQL в df
-    for spec in result: #перебор специализаций
-        for vac in spec['node']['vacancies']['edges']:#перебор вакансий
-            rows += [{
-                'specialization' : spec['node']['name'],
-                'job_title' : vac['node']['name'],
-                'min_salary' : vac['node']['minSalary'], 
-                'max_salary' : vac['node']['maxSalary'],
-                'experience' : vac['node']['experience'].replace('between', 'От ').replace('And', ' до '),
-                'key_skills' : vac['node']['keySkills'].replace("'", ""),
-                'published_at' : vac['node']['publishedAt']
-                }]
+    df_full = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
 
-df_full = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
+    df_spec = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
+    df_skill = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
 
-df_spec = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
-df_skill = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
+    table_spec = [] #хранитель строк таблицы специализаций
+    table_skill = [] #хранитель строк таблицы навыков
 
-table_spec = [] #хранитель строк таблицы специализаций
-table_skill = [] #хранитель строк таблицы навыков
-
-if len(df_full) > 0:
-    for i, spec in enumerate(df_spec['specialization'].unique()):#перебор специализаций
-        df = df_spec[df_spec['specialization'] == spec] #выборка по специализации
-        avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
-        table_spec += [
-            html.Tr([
-                html.Th(["Специализация"], scope="col"),
-                html.Th(["ИТ"], scope="col"),
-                html.Th([spec], scope="col"),
-                html.Th([len(df)], scope="col"),
-                
-                html.Th([dcc.Graph(
-                id='dateline' + str(i + 1),
-                config={"locale": 'ru'},
-                figure=dateline(df, spec),
-                )], scope="col"),
-                
-                html.Th([dcc.Graph(
-                id='levelpie'+ str(i + 1),
-                config={"locale": 'ru'},
-                figure=levelpie(df),
-                )], scope="col"),
-                
-                html.Th([avg_sal], scope="col"),
-                
-                html.Th([dcc.Graph(
-                id='salbox'+ str(i),
-                config={"locale": 'ru'},
-                figure = salbox(df),
-
-                )], scope="col")
-            ])
-        ]
-
-    for skills_packs in df_skill['key_skills'].unique(): #получение наборов навыков из вакансий без повторений
-        for i, skill in enumerate(skills_packs.replace("[", "").replace("]", "").split(','))  :#перебор навыков
-            df = df_skill[df_skill['key_skills'].str.contains(skill)] #выборка вакансий с навыком
-            # with open("data.txt", "w+") as f:
-            #     f.write(df.to_json())
+    if len(df_full) > 0:
+        for i, spec in enumerate(df_spec['specialization'].unique()):#перебор специализаций
+            df = df_spec[df_spec['specialization'] == spec] #выборка по специализации
             avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
-            table_skill += [
+            table_spec += [
                 html.Tr([
-                    html.Th(["Навык"], scope="col"),
+                    html.Th(["Специализация"], scope="col"),
                     html.Th(["ИТ"], scope="col"),
-                    html.Th([skill], scope="col"),
+                    html.Th([spec], scope="col"),
                     html.Th([len(df)], scope="col"),
+                    
                     html.Th([dcc.Graph(
-                        id='dateline' + str(i + 1),
-                        config={"locale": 'ru'},
-                        figure=dateline(df, skill)
-                        )], scope="col"),
-                        
-                        html.Th([dcc.Graph(
-                        id='levelpie'+ str(i + 1),
-                        config={"locale": 'ru'},
-                        figure=levelpie(df)
-                        )], scope="col"),
-                        
-                        html.Th([avg_sal], scope="col"),
-                        
-                        html.Th([dcc.Graph(
-                        id='salbox'+ str(i),
-                        config={"locale": 'ru'},
-                        figure = salbox(df)
-                        )], scope="col")
+                    id='dateline' + str(i + 1),
+                    config={"locale": 'ru'},
+                    figure=dateline(df, spec),
+                    )], scope="col"),
+                    
+                    html.Th([dcc.Graph(
+                    id='levelpie'+ str(i + 1),
+                    config={"locale": 'ru'},
+                    figure=levelpie(df),
+                    )], scope="col"),
+                    
+                    html.Th([avg_sal], scope="col"),
+                    
+                    html.Th([dcc.Graph(
+                    id='salbox'+ str(i),
+                    config={"locale": 'ru'},
+                    figure = salbox(df),
+
+                    )], scope="col")
                 ])
             ]
 
-from . import dash_table_spec
+        for skills_packs in df_skill['key_skills'].unique(): #получение наборов навыков из вакансий без повторений
+            for i, skill in enumerate(skills_packs.replace("[", "").replace("]", "").split(','))  :#перебор навыков
+                df = df_skill[df_skill['key_skills'].str.contains(skill)] #выборка вакансий с навыком
+                
+                avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean()) #средняя зарплата
+                
+                table_skill += [
+                    html.Tr([
+                        html.Th(["Навык"], scope="col"),
+                        html.Th(["ИТ"], scope="col"),
+                        html.Th([skill], scope="col"),
+                        html.Th([len(df)], scope="col"),
+                        html.Th([dcc.Graph(
+                            id='dateline' + str(i + 1),
+                            config={"locale": 'ru'},
+                            figure=dateline(df, skill)
+                            )], scope="col"),
+                            
+                            html.Th([dcc.Graph(
+                            id='levelpie'+ str(i + 1),
+                            config={"locale": 'ru'},
+                            figure=levelpie(df)
+                            )], scope="col"),
+                            
+                            html.Th([avg_sal], scope="col"),
+                            
+                            html.Th([dcc.Graph(
+                            id='salbox'+ str(i),
+                            config={"locale": 'ru'},
+                            figure = salbox(df)
+                            )], scope="col")
+                    ])
+                ]
 
-dash_table_spec.scripts.append_script({"external_url": "https://cdn.plot.ly/plotly-locale-ru-latest.js"})
-dash_table_spec.layout = html.Table(
-    [
-        html.Thead(
+    # localization
+    dash_table_spec.scripts.append_script({"external_url": "https://cdn.plot.ly/plotly-locale-ru-latest.js"})
+
+    dash_table_spec.layout = html.Table(
             [
-                #names of columns of table 
-                html.Tr([
-                    html.Th(["Тип"], scope="col"),
-                    html.Th(["Сфера"], scope="col"),
-                    html.Th(["Специализация"], scope="col"),
-                    html.Th(["Кол.вакансий"], scope="col"),
-                    html.Th(["Даты"], scope="col"),
-                    html.Th(["Соотношение уровней"], scope="col"),
-                    html.Th(["Ср.зарплата"], scope="col"),
-                    html.Th(["Зарплата по опыту работы"], scope="col")
-                ])
+                html.Thead(
+                    [
+                        #names of columns of table 
+                        html.Tr([
+                            html.Th(["Тип"], scope="col"),
+                            html.Th(["Сфера"], scope="col"),
+                            html.Th(["Специализация"], scope="col"),
+                            html.Th(["Кол.вакансий"], scope="col"),
+                            html.Th(["Даты"], scope="col"),
+                            html.Th(["Соотношение уровней"], scope="col"),
+                            html.Th(["Ср.зарплата"], scope="col"),
+                            html.Th(["Зарплата по опыту работы"], scope="col")
+                        ])
+                    ],
+                    className = "thead-dark"
+                    ),
+                html.Tbody(#строки таблицы
+                        table_spec
+                        )
             ],
-            className = "thead-dark"
-            ),
-        html.Tbody(#строки таблицы
-                   table_spec
-                   )
-    ],
-                style = {
-                    'font-size': size + 1,
-                    "margin-bottom": 0,
-                    "margin-left": 0,
-                    "margin-right": "0%",
-                    "margin-top": 0
-                    }
-)
+                        style = {
+                            'font-size': size + 1,
+                            "margin-bottom": 0,
+                            "margin-left": 0,
+                            "margin-right": "0%",
+                            "margin-top": 0
+                            }
+        )
 
-
-from . import dash_table_skill
-
-dash_table_skill.layout = html.Table(
+    dash_table_skill.layout = html.Table(
     [
         html.Thead(
             [
