@@ -9,7 +9,7 @@ web site with analitics for back-developer skills value in Russia in rubles
 ## Сайт с аналитикой
 ![Главная страница](app/static/files/index.jpg "Главная страница")
 
-<hr></hr>
+---
 
 ![Страница навыка](app/static/files/Skill.jpg "Страница навыка")
 ## Как запустить
