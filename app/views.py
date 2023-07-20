@@ -7,6 +7,12 @@ from . import app
 from .GraphQL import schema
 from .forms import QueryForm
 
+#кастомная страница ошибки 404
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html', e=e), 404
+
+
 #главная страница с аналитикой
 @app.route('/')
 def index_page():
@@ -32,25 +38,40 @@ def graphql_query_page():
     return render_template('graphql.html', data = data, query = query, errors = errors, form = form)
 
 
-#кастомная страница ошибки 404
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html', e=e), 404
-
-
 #страница подробностей о навыке
 @app.route('/description/<string:name>')
 def description_page(name):
-    response = requests.get(f"https://www.google.com/search?q={name}+site:ru.wikipedia.org&hl=ru")#запрос к сайту источнику информации о существовании страницы для данного навыка
-    k = 1#флажок о присутствии страницы навыка
-    for i in response.text.split('"'):
-        if "https://ru.wikipedia.org/" in i:  #если есть страница то на нее будет ссылка начинающиеся на https://ru.wikipedia.org/
-            url = i[7:].split("&")[0]  #достаем ссылку без параметров
-            break
-        if i == 'Missing ID':#в конце каждой страницы пишут о Missing ID, это индикатор что мы дошли до конца страницы
-            k = 0  #раз это конец страницы то ссылки нет
-            break
-    if k == 1: #проверка наличии ссылки
-        return render_template('description.html', url = url, name = name)
+    #instruction https://developers.google.com/custom-search/v1/overview
+    # Define the search query
+    query = f"{name}:ru.wikipedia.org"
+
+    # Set your API key
+    api_key = "AIzaSyCytzRpiy-6d7iva71ALBtLwm9KqnCaYEE"
+
+    # Set the search engine ID
+    search_engine_id = "b228bbca724aa45d3"
+
+    # Prepare the URL for the Google Search API request
+    url = f"https://www.googleapis.com/customsearch/v1?key={api_key}&cx={search_engine_id}&q={query}"
+
+    # Send a GET request to the Google Search API
+    response = requests.get(url)
+
+    # Get the JSON response
+    json_response = response.json()
+
+    # Initialize an empty list to store the URLs of relevant sites
+    relevant_sites = []
+
+    # Check if the response contains search results
+    if "items" in json_response:
+        # Iterate over the search results
+        for item in json_response["items"][:2]:
+            # Get the URL of each search result
+            link = item["link"]
+            # Append the URL to the list of relevant sites
+            relevant_sites.append(link)
+    if len(relevant_sites) >= 1 : #проверка наличии ссылки
+        return render_template('description.html', url = relevant_sites[0], name = name)
     else:
         return page_not_found(f'Страницы навыка "{name}" не найдено, приносим свои извинения, просим написать о данной ошибке на почту agencyUpShot@mail.ru')
