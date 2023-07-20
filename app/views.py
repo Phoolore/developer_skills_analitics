@@ -6,6 +6,7 @@ import requests
 from . import app
 from .GraphQL import schema
 from .forms import QueryForm
+from config import GOOGLE_API_KEY , GOOGLE_ENGINE_ID
 
 #кастомная страница ошибки 404
 @app.errorhandler(404)
@@ -46,10 +47,10 @@ def description_page(name):
     query = f"{name}:ru.wikipedia.org"
 
     # Set your API key
-    api_key = "AIzaSyCytzRpiy-6d7iva71ALBtLwm9KqnCaYEE"
+    api_key = GOOGLE_API_KEY
 
     # Set the search engine ID
-    search_engine_id = "b228bbca724aa45d3"
+    search_engine_id = GOOGLE_ENGINE_ID
 
     # Prepare the URL for the Google Search API request
     url = f"https://www.googleapis.com/customsearch/v1?key={api_key}&cx={search_engine_id}&q={query}"
