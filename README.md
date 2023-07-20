@@ -13,7 +13,7 @@ web site with analitics for back-developer skills value in Russia in rubles
 
 ![Страница навыка](app/static/files/Skill.jpg "Страница навыка")
 ## Как запустить
-1. Клонируем репозиторий
+1. Клонируем репозиторий, через терминал
 
 ```comandline
 
@@ -21,7 +21,7 @@ git clone https://github.com/Phoolore/Flask.git
 
 ```
 
-2. Создаем виртуальное окружение
+2. Создаем виртуальное окружение, через терминал
 
 ```comandline
 
@@ -29,7 +29,7 @@ python -m venv vertualenv
 
 ```
 
-3. Создаем виртуальное окружение
+3. Активируем виртуальное окружение, через терминал
 
 ```comandline
 
@@ -37,7 +37,7 @@ vertualenv\scripts\activate
 
 ```
 
-4. Устанавливаем зависимости(фреймворки, пакеты)
+4. Устанавливаем зависимости(фреймворки, пакеты), через терминал
 
 ```comandline
 
@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 ```
 
-5. Создаем файл .env и укажите настройки подключения к БД(sqlite и т.п.) и т.п.
+5. Создаем файл .env и указываем настройки подключения к БД(sqlite и т.п.) и т.п. в нём
 
 ```text
 
@@ -72,7 +72,7 @@ GOOGLE_ENGINE_ID = YOUR_GOOGLE_ENGINE_ID
 7. Шаг 7: В появившемся окошке после загрузки нажимаем синюю кнопку "SHOW KEY", это API_KEY, записываем в .env вместо YOUR_GOOGLE_API_KEY. 
  
 </details>
-6. Запустите flask приложение
+6. Запустите flask приложение, через терминал
 
 ```comandline
 
