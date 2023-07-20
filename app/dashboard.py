@@ -1,10 +1,9 @@
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
-import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import numpy as np
-import json
+
+
 
 from . import app
 from .GraphQL import schema

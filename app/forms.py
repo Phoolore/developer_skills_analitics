@@ -6,7 +6,7 @@ def_val = """{
     getSpecializations{ 
         edges { 
             node { 
-                id, name, vacancies {
+                sId, name, vacancies {
                     edges { 
                         node {
                             id, name

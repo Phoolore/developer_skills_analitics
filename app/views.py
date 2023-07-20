@@ -1,6 +1,5 @@
 from flask import render_template, redirect, url_for, request
 import pandas as pd
-import seaborn as sns
 import requests
 
 from . import app
