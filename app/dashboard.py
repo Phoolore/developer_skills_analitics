@@ -110,29 +110,31 @@ def salbox(df):#зп по уровням
         )
     return fig
 
+
+missing = 0 #замена для пустых клеток
+rows = [] #хранитель строк будущего df с вакансиями
+
 with app.app_context():
     query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
     result = schema.execute(query).data
-result = result['getSpecializations']['edges'] #открытие и переход к массиву с специализациями
+if result['getSpecializations'] != None:
+    result = result['getSpecializations']['edges'] #открытие и переход к массиву с специализациями
 
-#передача данных из GraphQL в df
-missing = 0 #замена для пустых клеток
-rows = [] #хранитель строк будущего df с вакансиями
-for spec in result: #перебор специализаций
-    for vac in spec['node']['vacancies']['edges']:#перебор вакансий
-        rows += [{
-            'specialization' : spec['node']['name'],
-            'job_title' : vac['node']['name'],
-            'min_salary' : vac['node']['minSalary'], 
-            'max_salary' : vac['node']['maxSalary'],
-            'experience' : vac['node']['experience'].replace('between', 'От ').replace('And', ' до '),
-            'key_skills' : vac['node']['keySkills'].replace("'", ""),
-            'published_at' : vac['node']['publishedAt']
-            }]
+    #передача данных из GraphQL в df
+    for spec in result: #перебор специализаций
+        for vac in spec['node']['vacancies']['edges']:#перебор вакансий
+            rows += [{
+                'specialization' : spec['node']['name'],
+                'job_title' : vac['node']['name'],
+                'min_salary' : vac['node']['minSalary'], 
+                'max_salary' : vac['node']['maxSalary'],
+                'experience' : vac['node']['experience'].replace('between', 'От ').replace('And', ' до '),
+                'key_skills' : vac['node']['keySkills'].replace("'", ""),
+                'published_at' : vac['node']['publishedAt']
+                }]
+
 df_full = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
 
-# with open("data.txt", "w+") as f:
-#     f.write(df_full.to_json())
 df_spec = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
 df_skill = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
 
