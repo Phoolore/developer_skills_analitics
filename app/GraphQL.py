@@ -43,7 +43,6 @@ class AddSpecializationMutation(graphene.Mutation):
     def mutate(self, info, name): 
         spec = SpecializationModel( 
                                    sId=None,
-                                   i=None,
                                    name=name
                                    ) 
         db.session.add(spec) 
@@ -84,20 +83,20 @@ class AddVacancyMutation(graphene.Mutation):
                employer=None,
                publishedAt=None): 
         vac = VacancyModel(
-                           vId=None, 
-                           i=None,
-                           name=name, 
-                           city=city, 
-                           minSalary=minSalary, 
-                           maxSalary=maxSalary, 
-                           experience=experience, 
-                           schedule=schedule, 
-                           employment=employment, 
-                           description=description, 
-                           keySkills=keySkills, 
-                           employer=employer, 
-                           publishedAt=publishedAt, 
-                           specializationId=specializationId) 
+                           vId=None,
+                           name=name,
+                           city=city,
+                           minSalary=minSalary,
+                           maxSalary=maxSalary,
+                           experience=experience,
+                           schedule=schedule,
+                           employment=employment,
+                           description=description,
+                           keySkills=keySkills,
+                           employer=employer,
+                           publishedAt=publishedAt,
+                           specializationId=specializationId
+                           )
         db.session.add(vac) 
         db.session.commit() 
         status = True 
