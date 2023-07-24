@@ -34,7 +34,7 @@ def create_csv(filename, data):
     file, and each element in the inner list represents a cell in that row
     """
     with open(filename, 'w', newline='', encoding='utf-8-sig') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, delimiter=";")
         writer.writerows(data)
         
 data = [['vId', 'name', 'city', 'minSalary', 'maxSalary',
@@ -88,8 +88,10 @@ async def parse(id):
                 keySkills = ''
             employer = vacdata['employer']['id']            
             publishedAt = vacdata['published_at'].split('T')[0]
-            specializationId = vacdata['professional_roles']['0']['id']
-            vac = [id, name, minSalary, maxSalary, city, experience, schedule, employment, description, keySkills, employer, publishedAt, specializationId]
+            specializationId = vacdata['professional_roles'][0]['id']
+            vac = [id, name, city, minSalary, maxSalary, experience,
+                   schedule, employment, description, keySkills,
+                   employer, publishedAt, specializationId]
             data.append(vac)
 
     
@@ -127,8 +129,84 @@ async def main(per_page, required_pages=None, area='113', searchtext=''):
             id = item['id']
             await parse(id)
             
-asyncio.run(main(10, 100, 113, 'python'))
+asyncio.run(main(10, 10, 113, 'python'))
 
-csvname = 'test01.csv'
+csvname = 'test02.csv'
 create_csv(csvname, data)
 print(f'deltaTime: {watch()}, CSV - {csvname}')
+
+# 0	
+# id	"156"
+# name	"BI-аналитик, аналитик данных"
+# 1	
+# id	"160"
+# name	"DevOps-инженер"
+# 2	
+# id	"10"
+# name	"Аналитик"
+# 3	
+# id	"12"
+# name	"Арт-директор, креативный директор"
+# 4	
+# id	"150"
+# name	"Бизнес-аналитик"
+# 5	
+# id	"25"
+# name	"Гейм-дизайнер"
+# 6	
+# id	"165"
+# name	"Дата-сайентист"
+# 7	
+# id	"34"
+# name	"Дизайнер, художник"
+# 8	
+# id	"36"
+# name	"Директор по информационным технологиям (CIO)"
+# 9	
+# id	"73"
+# name	"Менеджер продукта"
+# 10	
+# id	"155"
+# name	"Методолог"
+# 11	
+# id	"96"
+# name	"Программист, разработчик"
+# 12	
+# id	"164"
+# name	"Продуктовый аналитик"
+# 13	
+# id	"104"
+# name	"Руководитель группы разработки"
+# 14	
+# id	"157"
+# name	"Руководитель отдела аналитики"
+# 15	
+# id	"107"
+# name	"Руководитель проектов"
+# 16	
+# id	"112"
+# name	"Сетевой инженер"
+# 17	
+# id	"113"
+# name	"Системный администратор"
+# 18	
+# id	"148"
+# name	"Системный аналитик"
+# 19	
+# id	"114"
+# name	"Системный инженер"
+# 20	
+# id	"116"
+# name	"Специалист по информационной безопасности"
+# 21	
+# id	"121"
+# name	"Специалист технической поддержки"
+# 22	
+# id	"124"
+# name	"Тестировщик"
+# 23	
+# id	"125"
+# name	"Технический директор (CTO)"
+# 24	
+# id	"126"
+# name	"Технический писатель"
