@@ -121,11 +121,26 @@ class DeactivateVacancy(graphene.Mutation):
         return DeactivateVacancy(status=status) 
 
 
+class DeleteVacancy(graphene.Mutation):
+    class Arguments: 
+        vId = graphene.String(required=True)
+         
+    status = graphene.Boolean() 
+ 
+    def mutate(self, info, vId): 
+        vac = db.session.execute(db.select(VacancyModel).filter_by(vId = vId)).scalar_one()
+        db.session.delete(vac)
+        db.session.commit() 
+        status = True 
+        return DeactivateVacancy(status=status) 
+
+
 #схема мутаций
 class Mutation(graphene.ObjectType): 
     saveSpecialization = AddSpecializationMutation.Field() 
     saveVacancy = AddVacancyMutation.Field() 
     deactivateVacancy = DeactivateVacancy.Field()
+    deleteVacancy = DeleteVacancy.Field()
      
  
 schema = graphene.Schema(query=Query, mutation=Mutation)
