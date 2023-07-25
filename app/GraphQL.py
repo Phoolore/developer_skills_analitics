@@ -37,12 +37,13 @@ class Query(graphene.ObjectType):
 class AddSpecializationMutation(graphene.Mutation): 
     class Arguments: 
         name = graphene.String(required=True) 
+        sId = graphene.String(required=False)
          
     status = graphene.Boolean() 
  
-    def mutate(self, info, name): 
+    def mutate(self, info, name, sId=None): 
         spec = SpecializationModel( 
-                                   sId=None,
+                                   sId=sId,
                                    name=name
                                    ) 
         db.session.add(spec) 
@@ -54,6 +55,7 @@ class AddSpecializationMutation(graphene.Mutation):
 class AddVacancyMutation(graphene.Mutation): 
     class Arguments: 
         name = graphene.String(required=True) 
+        vId = graphene.String(required=False)
         city = graphene.String(required=False) 
         minSalary = graphene.Int(required=False) 
         maxSalary = graphene.Int(required=False) 
@@ -72,6 +74,7 @@ class AddVacancyMutation(graphene.Mutation):
                info,
                name,
                specializationId,
+               vId = None,
                city=None,
                minSalary=None,
                maxSalary=None,
@@ -83,7 +86,7 @@ class AddVacancyMutation(graphene.Mutation):
                employer=None,
                publishedAt=None): 
         vac = VacancyModel(
-                           vId=None,
+                           vId=vId,
                            name=name,
                            city=city,
                            minSalary=minSalary,
