@@ -18,6 +18,7 @@ class VacancyModel(db.Model):#модель для бд таблица с вак�
     __tablename__ = 'vacancies'
     vId = db.Column(db.Integer, primary_key = True, autoincrement = True, nullable = True)
     name = db.Column(db.String(255),nullable = False)
+    status = db.Column(db.Boolean, nullable = False)
     city = db.Column(db.String(255), nullable = True)
     minSalary = db.Column(db.Integer, nullable = True)
     maxSalary = db.Column(db.Integer, nullable = True)

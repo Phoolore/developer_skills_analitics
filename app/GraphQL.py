@@ -88,6 +88,7 @@ class AddVacancyMutation(graphene.Mutation):
         vac = VacancyModel(
                            vId=vId,
                            name=name,
+                           status = True,
                            city=city,
                            minSalary=minSalary,
                            maxSalary=maxSalary,
@@ -106,10 +107,25 @@ class AddVacancyMutation(graphene.Mutation):
         return AddVacancyMutation(status=status) 
 
 
+class DeactivateVacancy(graphene.Mutation):
+    class Arguments: 
+        vId = graphene.String(required=True)
+         
+    status = graphene.Boolean() 
+ 
+    def mutate(self, info, vId): 
+        vac = db.session.execute(db.select(VacancyModel).filter_by(vId = vId)).scalar_one()
+        vac.status = False
+        db.session.commit() 
+        status = True 
+        return DeactivateVacancy(status=status) 
+
+
 #схема мутаций
 class Mutation(graphene.ObjectType): 
     saveSpecialization = AddSpecializationMutation.Field() 
     saveVacancy = AddVacancyMutation.Field() 
+    deactivateVacancy = DeactivateVacancy.Field()
      
  
 schema = graphene.Schema(query=Query, mutation=Mutation)
