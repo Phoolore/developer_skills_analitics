@@ -119,7 +119,7 @@ def salbox(df):#зп по уровням
 def dashboards(spec = None, skill = None):
     rows = [] #хранитель строк будущего df с вакансиями
     with app.app_context():
-        query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
+        query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt, status} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
         data = schema.execute(query).data
     
     result = data['getSpecializations']['edges'] #открытие и переход к массиву с специализациями
@@ -135,13 +135,14 @@ def dashboards(spec = None, skill = None):
                     'max_salary' : vac['node']['maxSalary'],
                     'experience' : vac['node']['experience'].replace('between', 'От ').replace('And', ' до '),
                     'key_skills' : vac['node']['keySkills'].replace("'", ""),
-                    'published_at' : vac['node']['publishedAt']
+                    'published_at' : vac['node']['publishedAt'], 
+                    'status' : vac['node']['status']
                     }]
 
     df_full = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
 
-    df_spec = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
-    df_skill = df_full.loc[:, :] #Заготовка для будущих фильтров специализаций
+    df_spec = df_full.loc[df_full['status']] #Заготовка для будущих фильтров специализаций
+    df_skill = df_full.loc[df_full['status']] #Заготовка для будущих фильтров специализаций
 
     table_spec = [] #хранитель строк таблицы специализаций
     table_skill = [] #хранитель строк таблицы навыков
