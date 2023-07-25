@@ -1,14 +1,4 @@
-<div class="col">
-    <right> <h5>Категории</h5> </right>
-    <ul class="list-group">
-        <li class="list-group-item"><a href="{{ url_for('index_page')}} ">Главная</a></li>
-        <li class="list-group-item"><a href="{{ url_for('graphql_query_page')}} ">GraphQL</a></li>
-        <li class="list-group-item"><a href="{{ url_for('description_page', name='Python')}} ">Python</a></li>
-        <li class="list-group-item"><a href="{{ url_for('description_page', name='ORM')}} ">ORM</a></li>
-        <li class="list-group-item"><a href="{{ url_for('description_page', name='Linux')}} ">Linux</a></li>
-
-        
-        
-
-    </ul>
+<div class="sidebar">
+    <a href="{{ url_for('index_page')}}">Главная</a>
+    <a href="{{ url_for('graphql_query_page')}}">GraphQL</a>
 </div>

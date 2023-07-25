@@ -12,6 +12,7 @@ from . import dash_table_skill
 
 size = 10 #размер текста на графиках
 missing = 0 #замена для пустых клеток
+colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
 dash_table_spec.layout = html.H1("None") #Временная заставка, иначе None, и ошибка,что None быть не может
 dash_table_skill.layout = html.H1("None") #Временная заставка, иначе None, и ошибка,что None быть не может
 
@@ -29,10 +30,15 @@ def levelpie(df):#соотношение колличества вакансий
             labels = labels, 
             values = values, 
             hoverinfo='label+percent', 
-            textinfo='label+percent', 
-            textfont_size = size
+            textinfo='percent', 
+            textfont_size = size,
+            hole=0.6, 
+            marker=dict(line=dict(color='black', width=5))
             )
                     )
+    
+    # Настройка цветов
+    fig.update_traces(marker=dict(colors=colors))
     
     #настройка отображения графика
     fig.update_layout(
@@ -51,28 +57,46 @@ def dateline(df, name):#график колличества вакансий п�
     df1 = df1[df1['published_at'] != missing]
     
     #создание графика
+    color = 'rgb(250, 200, 50)'
     labels = df1['published_at']
     values = df1['Counts']
     fig = go.Figure(
         data = go.Scatter(
             x=labels, 
             y=values, 
-            mode="lines+text",
-            hovertemplate = "%{x};кол.вакансий: %{y} ",
+            mode="lines+text+markers",
+            line=dict(color=color, width=6),
+            marker=dict(
+                color='rgb(0, 0, 0)', 
+                size=15, 
+                line=dict(width=5, color=color)
+                ),
+            hovertemplate = "%{x};Кол.вакансий:%{y} ",
             name = name
             )
         )
     
     # настройка языка и добавление слайдера выбора дат
     fig.update_xaxes(
-        rangeslider_visible = True #создание слайдера
+        rangeslider =  {'visible': True, 'bgcolor' : 'rgba(0, 0, 0, 0)', 'bordercolor' : 'rgba(0, 0, 0, 256)', 'borderwidth' : 1} #создание слайдера
     )
     
     #настройка отображения графика
     fig.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        xaxis={'gridcolor': 'rgba(0, 0, 0, 256)'},  # Изменение цвета разметки на черный
+        yaxis={'title': 'Кол.вакансий', 'gridcolor': 'rgba(0, 0, 0, 256)'},  # Изменение цвета разметки на черный
         width=500, 
         height = 300,
+        margin = dict(
+            b = 0,
+            l = 0,
+            r = 0,
+            t = 0
+            ),
+        autosize=True,
         font = dict(
+            color='rgb(0, 0, 0)',
             size = size
             )
         )
@@ -88,8 +112,8 @@ def salbox(df):#зп по уровням
     fig = go.Figure()
     
     # перебор каждой группы уровней для создания и настройки её графика
-    for i in df_full['experience'].unique():
-        df_level = df_full.loc[df_full['experience'] == i]
+    for i, level in enumerate(df_full['experience'].unique()):
+        df_level = df_full.loc[df_full['experience'] == level]
         fig.add_trace(
             go.Box(
                 hoverlabel = dict(
@@ -100,12 +124,28 @@ def salbox(df):#зп по уровням
                 y = df_level['experience'], 
                 x = df_level['salary'],
                 orientation='h',
-                name=i
+                marker=dict(color=colors[i]),
+                name=level
                 )
             )
         
     #настройка отображения графика
     fig.update_layout(
+        plot_bgcolor='rgba(255, 255, 255, 0)',  # Цвет фона
+        paper_bgcolor='rgba(255, 255, 255, 0)',  # Цвет фона графика
+        xaxis=dict(
+            showgrid=True,# Включение сетки по оси X
+            gridcolor='black',# Цвет сетки
+            zeroline=False  # Отключение линии в нуле по оси X
+        ),
+        yaxis=dict(
+            showgrid=False,  # Включение сетки по оси Y
+            gridcolor='black',  # Цвет сетки
+            zeroline=False  # Отключение линии в нуле по оси Y
+        ),
+        legend=dict(
+            bgcolor='rgba(255, 255, 255,  0)'
+            ),
         width=500,
         height = 300,
         font = dict(
@@ -153,31 +193,31 @@ def dashboards(spec = None, skill = None):
             avg_sal = int(((df['min_salary'] + df['min_salary'])/2).mean())
             table_spec += [
                 html.Tr([
-                    html.Th(["Специализация"], scope="col"),
-                    html.Th(["ИТ"], scope="col"),
-                    html.Th([spec], scope="col"),
-                    html.Th([len(df)], scope="col"),
+                    html.Td(["Специализация"]),
+                    html.Td(["ИТ"]),
+                    html.Td([spec]),
+                    html.Td([len(df)]),
                     
-                    html.Th([dcc.Graph(
+                    html.Td([dcc.Graph(
                     id='dateline' + str(i + 1),
                     config={"locale": 'ru'},
                     figure=dateline(df, spec),
-                    )], scope="col"),
+                    )]),
                     
-                    html.Th([dcc.Graph(
+                    html.Td([dcc.Graph(
                     id='levelpie'+ str(i + 1),
                     config={"locale": 'ru'},
                     figure=levelpie(df),
-                    )], scope="col"),
+                    )]),
                     
-                    html.Th([avg_sal], scope="col"),
+                    html.Td([avg_sal]),
                     
-                    html.Th([dcc.Graph(
+                    html.Td([dcc.Graph(
                     id='salbox'+ str(i),
                     config={"locale": 'ru'},
                     figure = salbox(df),
 
-                    )], scope="col")
+                    )])
                 ])
             ]
 
@@ -189,29 +229,29 @@ def dashboards(spec = None, skill = None):
                 
                 table_skill += [
                     html.Tr([
-                        html.Th(["Навык"], scope="col"),
-                        html.Th(["ИТ"], scope="col"),
-                        html.Th([skill], scope="col"),
-                        html.Th([len(df)], scope="col"),
-                        html.Th([dcc.Graph(
+                        html.Td(["Навык"]),
+                        html.Td(["ИТ"]),
+                        html.Td([skill]),
+                        html.Td([len(df)]),
+                        html.Td([dcc.Graph(
                             id='dateline' + str(i + 1),
                             config={"locale": 'ru'},
                             figure=dateline(df, skill)
-                            )], scope="col"),
+                            )]),
                             
-                            html.Th([dcc.Graph(
+                            html.Td([dcc.Graph(
                             id='levelpie'+ str(i + 1),
                             config={"locale": 'ru'},
                             figure=levelpie(df)
-                            )], scope="col"),
+                            )]),
                             
-                            html.Th([avg_sal], scope="col"),
+                            html.Td([avg_sal]),
                             
-                            html.Th([dcc.Graph(
+                            html.Td([dcc.Graph(
                             id='salbox'+ str(i),
                             config={"locale": 'ru'},
                             figure = salbox(df)
-                            )], scope="col")
+                            )])
                     ])
                 ]
 
@@ -219,28 +259,29 @@ def dashboards(spec = None, skill = None):
     dash_table_spec.scripts.append_script({"external_url": "https://cdn.plot.ly/plotly-locale-ru-latest.js"})
 
     dash_table_spec.layout = html.Table(
-            [
-                html.Thead(
-                    [
-                        #names of columns of table 
-                        html.Tr([
-                            html.Th(["Тип"], scope="col"),
-                            html.Th(["Сфера"], scope="col"),
-                            html.Th(["Специализация"], scope="col"),
-                            html.Th(["Кол.вакансий"], scope="col"),
-                            html.Th(["Даты"], scope="col"),
-                            html.Th(["Соотношение уровней"], scope="col"),
-                            html.Th(["Ср.зарплата"], scope="col"),
-                            html.Th(["Зарплата по опыту работы"], scope="col")
+        [
+            html.Thead(
+                [
+                    #names of columns of table 
+                    html.Tr([
+                        html.Th(["Тип"]),
+                        html.Th(["Сфера"]),
+                        html.Th(["Специализация"]),
+                        html.Th(["Кол.вакансий"]),
+                        html.Th(["Даты"]),
+                        html.Th(["Соотношение уровней"]),
+                        html.Th(["Ср.зарплата"]),
+                        html.Th(["Зарплата по опыту работы"])
                         ])
                     ],
-                    className = "thead-dark"
-                    ),
-                html.Tbody(#строки таблицы
-                        table_spec
-                        )
+                className = "thead-dark"
+                ),
+            html.Tbody(#строки таблицы
+                       table_spec
+                       )
             ],
                         style = {
+                            'border': 1,
                             'font-size': size + 1,
                             "margin-bottom": 0,
                             "margin-left": 0,
@@ -255,14 +296,14 @@ def dashboards(spec = None, skill = None):
             [
                 #names of columns of table 
                 html.Tr([
-                    html.Th(["Тип"], scope="col", style={"width":"11%;"}),
-                    html.Th(["Сфера"], scope="col", style={"width":"11%;"}),
-                    html.Th(["Навык"], scope="col", style={"width":"11%;"}),
-                    html.Th(["Кол.вакансий"], scope="col",style={"width":"11%;"}),
-                    html.Th(["Даты"], scope="col", style={"width":"11%;"}),
-                    html.Th(["Соотношение уровней"], scope="col", style={"width":"11%;"}),
-                    html.Th(["Ср.зарплата"], scope="col", style={"width":"11%;"}),
-                    html.Th(["Зарплата по опыту работы"], scope="col")
+                    html.Td(["Тип"], style={"width":"11%;"}),
+                    html.Td(["Сфера"], style={"width":"11%;"}),
+                    html.Td(["Навык"], style={"width":"11%;"}),
+                    html.Td(["Кол.вакансий"], style={"width":"11%;"}),
+                    html.Td(["Даты"], style={"width":"11%;"}),
+                    html.Td(["Соотношение уровней"], style={"width":"11%;"}),
+                    html.Td(["Ср.зарплата"], style={"width":"11%;"}),
+                    html.Td(["Зарплата по опыту работы"], )
                 ])
             ],
             className = "thead-dark"
@@ -272,6 +313,7 @@ def dashboards(spec = None, skill = None):
                 )
     ],
                 style = {
+                    'border': 1,
                     'font-size': size  + 1, #becouse it have different standarts, but we need same result
                     "margin-bottom": 0,
                     "margin-left": 0,
