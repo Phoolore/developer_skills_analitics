@@ -3,12 +3,8 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-
-
-from . import app
 from .GraphQL import schema
-from . import dash_table_spec
-from . import dash_table_skill
+from . import app, dash_table_spec, dash_table_skill
 
 size = 10 #размер текста на графиках
 missing = 0 #замена для пустых клеток

@@ -15,7 +15,7 @@ def page_not_found(e):
 
 
 #главная страница с аналитикой
-@app.route('/')
+@app.route('/old/')
 def index_page():
     #будущая фича при наведении на навык открывается фрейм на страницу скилл
     dashboards()
