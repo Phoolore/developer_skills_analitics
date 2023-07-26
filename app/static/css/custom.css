@@ -47,3 +47,7 @@
   padding: 20px;
   text-align: center;
 }
+/* Растягивающиеся таблицы */
+table {
+  width: 100%;
+}
