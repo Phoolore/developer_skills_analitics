@@ -48,6 +48,46 @@
   text-align: center;
 }
 /* Растягивающиеся таблицы */
-table {
-  width: 100%;
+table td, table th {
+  border: 1px solid black;
+  padding: 8px;
+  width : 5%;
+}
+#settings-div {
+  display: none; /* Скрываем div по умолчанию */
+}
+.scroll-table-body {
+  height: 300px;
+  overflow-x:auto;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+.scroll-table table {
+  width:100%;
+  table-layout: fixed;
+  border: none;
+}
+
+.scroll-table tbody td {
+  text-align: center;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 10px 15px;
+  font-size: 14px;
+  vertical-align: center;
+}
+.scroll-table tbody tr:nth-child(even){
+  background: #00000000;
+}
+
+/* Стили для скролла */
+::-webkit-scrollbar {
+  width: 6px;
+} 
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
 }
