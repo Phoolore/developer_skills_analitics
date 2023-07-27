@@ -482,9 +482,9 @@ def layout():
         html.Div([
             html.Div(dashboards(), className = "col-10"),
             html.Div(side_navbar(), className = "col-2")
-        ], className = "row", style = { "background-image": 'url("static/files/background.png")'}),
+        ], className = "row"),
         footer()
-    ])
+    ], style = { "background-image": 'url("static/files/background.png")'})
     return layout
 
 
