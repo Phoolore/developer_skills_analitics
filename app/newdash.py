@@ -1,4 +1,5 @@
-from dash import html, dcc
+from dash import html, dcc, callback
+from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -10,19 +11,25 @@ missing = 0 #замена для пустых клеток
 colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
 
 
-def counts_table(name, df):
+def avg_sal(df, df_bool = False):
+    if df_bool == True: #Режим возврата массива
+        return (df['min_salary'] + df['max_salary'])/2
+    avg = int(((df['min_salary'] + df['max_salary'])/2).mean())
+    return avg
+
+
+def counts_table(name, df_full, avg_sal_bool = False):
     counts_table = []
+    df = df_full.loc[df_full[name] != missing]
     for i, row in df.groupby(name)[name].count().rename("counts").reset_index().iterrows():
-        counts_table += [html.Tr([
+        result = [
             html.Th(row[name]),
             html.Th( row['counts'])
-        ])] 
+        ] 
+        if avg_sal_bool == True:
+            result += [html.Th(avg_sal(df.loc[df[name] == row[name]]))]
+        counts_table += [html.Tr(result)]
     return counts_table
-
-
-def avg_sal(df):
-    avg = int(((df['min_salary'] + df['min_salary'])/2).mean())
-    return avg
 
 
 def navbar():
@@ -183,12 +190,11 @@ def salbox(df):#зп по уровням
     return fig
 
 
-
 def dashboards(spec = None, skill = None):
     mode = ["Специализации","Навыки"][0]
     rows = [] #хранитель строк будущего df с вакансиями
     with app.app_context():
-        query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt, status, city} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
+        query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt, status, city, schedule} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
         data = schema.execute(query).data
     
     result = data['getSpecializations']['edges'] #открытие и переход к массиву с специализациями
@@ -206,16 +212,17 @@ def dashboards(spec = None, skill = None):
                     'key_skills' : vac['node']['keySkills'].replace("'", ""),
                     'published_at' : vac['node']['publishedAt'], 
                     'status' : vac['node']['status'],
-                    'city' : vac['node']['city']
+                    'city' : vac['node']['city'],
+                    'schedule' : vac['node']['schedule']
                     }]
 
     df_full = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
-    with open("data.txt", "w+") as f:
-        f.write(df_full.to_json())
+    # with open("data.txt", "w+") as f:
+    #     f.write(df_full.to_json())
     df_spec = df_full.loc[df_full['status']] #Заготовка для будущих фильтров специализаций
     df_skill = df_full.loc[df_full['status']] #Заготовка для будущих фильтров специализаций
-    
-    cities_list = df_full['city'].unique().tolist().remove(missing)
+
+    cities_list = df_full.loc[df_full.loc[:, 'city'] != missing].loc[:, 'city'].unique().tolist()
     filter_list = [] #хранитель вариантов для фильтров
     table_spec = [] #хранитель строк таблицы специализаций
     table_skill = [] #хранитель строк таблицы навыков
@@ -362,8 +369,8 @@ def dashboards(spec = None, skill = None):
         html.Div([
         html.H3("Средняя зарплата"), html.Br(), 
         html.H3((avg_sal(df_full), " Руб.")), html.Br(), 
-        html.Div(html.H4(["Минимум:", ((df_full.loc[df_full['min_salary'] != missing])['min_salary']+(df_full.loc[df_full['max_salary'] != missing])['max_salary']).min(), " Руб."])), html.Br(), 
-        html.Div(html.H4(["Максимум:", ((df_full.loc[df_full['min_salary'] != missing])['min_salary']+(df_full.loc[df_full['max_salary'] != missing])['max_salary']).max(), " Руб."]))
+        html.Div(html.H4(["Минимум:", avg_sal(df_full, df_bool = True).min(), " Руб."])), html.Br(), 
+        html.Div(html.H4(["Максимум:", avg_sal(df_full, df_bool = True).max(), " Руб."]))
         ], className = "col-7"),
         html.Div([
         dcc.Graph(id='salbox_full', config={"locale": 'ru'}, figure=salbox(df_full))
@@ -388,7 +395,7 @@ def dashboards(spec = None, skill = None):
         ], className = "col-7")
         ], className = "row", id = "Levels_graph")
     timetable = html.Div([
-        html.H3("Text"),
+        html.H3("По типу занятости"),
         html.Table(
         [
             
@@ -399,7 +406,7 @@ def dashboards(spec = None, skill = None):
                         html.Th(["Кол.вакансий"]),
                         html.Th(["Ср.зарплата"]),
                         ])
-                    ], className = "thead-dark")
+                    ] + counts_table("schedule", df_full, avg_sal_bool = True), className = "thead-dark")
                 
                        
             ],
@@ -412,7 +419,8 @@ def dashboards(spec = None, skill = None):
 
         ], id = "Timetable_graph")
     cities = html.Div([
-        html.H3("Graph"),
+        html.H3("По городам"),
+        # map_vacancy(df_full),
         html.Table(
         [
             
@@ -423,7 +431,7 @@ def dashboards(spec = None, skill = None):
                         html.Th(["Кол.вакансий"]),
                         html.Th(["Ср.зарплата"]),
                         ])
-                    ], className = "thead-dark")
+                    ] + counts_table("city", df_full, avg_sal_bool = True), className = "thead-dark")
                 
                        
             ],
@@ -448,7 +456,7 @@ def dashboards(spec = None, skill = None):
             html.Div([html.Div("Фильтр слов в названии вакансии", className = "col-4"),html.Div(dcc.Input(placeholder='Напишите слово-фильтр...', type='text', value='', debounce=True, min=2, step=1), className = "col-8")], className = "row", style={"width": "100%"}),
             html.Div([html.Div("Тёмная/Светлая тема", className = "col-4"),html.Div(html.Button("Кнопка"), className = "col-8")], className = "row", style={"width": "100%"}),
             html.Div([html.Div("Города", className = "col-4"),html.Div(dcc.Dropdown(cities_list, cities_list, multi=True, placeholder="Выберете города",  id = "Cities"), className = "col-8")], className = "row", style={"width": "100%"}),
-            html.Div([html.Div("Показывать вакансии из архива", className = "col-4"),html.Div(html.Button("Кнопка"), className = "col-8")], className = "row", style={"width": "100%"}),
+            html.Div([html.Div("Показывать вакансии из архива", className = "col-4"),html.Div(dcc.RadioItems(options = ["Показывать", "Не показывать"], value = "Не показывать", id="ArchiveVacancies", inline = True), className = "col-8")], className = "row", style={"width": "100%"}),
             
             ], id  = "settings-div"),
         html.Div([
@@ -474,7 +482,7 @@ def layout():
         html.Div([
             html.Div(dashboards(), className = "col-10"),
             html.Div(side_navbar(), className = "col-2")
-        ], className = "row"),
+        ], className = "row", style = { "background-image": 'url("static/files/background.png")'}),
         footer()
     ])
     return layout

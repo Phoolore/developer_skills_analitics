@@ -57,7 +57,7 @@ table td, table th {
   display: none; /* Скрываем div по умолчанию */
 }
 .scroll-table-body {
-  height: 300px;
+  height: 50%;
   overflow-x:auto;
   margin-top: 0px;
   margin-bottom: 20px;

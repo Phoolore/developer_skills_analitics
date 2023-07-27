@@ -43,7 +43,6 @@ def graphql_query_page():
 #страница подробностей о навыке
 @app.route('/description/<string:name>')
 def description_page(name):
-    #instruction https://developers.google.com/custom-search/v1/overview
     # Define the search query
     query = f"{name}:ru.wikipedia.org"
 
