@@ -13,6 +13,7 @@ colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
 
 
 def avg_sal(df, df_bool = False):
+    """Вспомогательная функция получения ср.зп"""
     if df_bool == True: #Режим возврата массива
         return (df['min_salary'] + df['max_salary'])/2
     avg = int(((df['min_salary'] + df['max_salary'])/2).mean())
@@ -20,6 +21,7 @@ def avg_sal(df, df_bool = False):
 
 
 def counts_table(name, df_full, avg_sal_bool = False):
+    """Вспомогательная функция построения таблиц на dash"""
     counts_table = []
     df = df_full.loc[df_full[name] != missing]
     for i, row in df.groupby(name)[name].count().rename("counts").reset_index().iterrows():
@@ -34,15 +36,18 @@ def counts_table(name, df_full, avg_sal_bool = False):
 
 
 def get_html(path):
+    """Вспомогательная функция получения html кода из файлов"""
     with open("app/templates/" + path + ".html", "r", encoding = "utf8") as f:
         return html.Div(html.Iframe(id='side nav', style={'border-width': '5', 'width': '100%', 'height': '100%', 'border': 'none', 'overflow': 'auto'},srcDoc = f.read()))
 
 
 def to_html(graph):
+    """Вспомогательная функиця построения графика по html"""
     return html.Div(html.Iframe(id='side nav', style={'border-width': '5', 'width': '100%', 'height': '100%', 'border': 'none', 'overflow': 'auto'},srcDoc = graph))
 
 
 def layout():
+    """Упаковка функция для расположения всех элементов главной страницы на сайте"""
     layout = dbc.Container([
         get_html("navigation"),
         dbc.Row([
