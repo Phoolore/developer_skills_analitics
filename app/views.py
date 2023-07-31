@@ -5,21 +5,11 @@ import requests
 from . import app
 from .GraphQL import schema
 from .forms import QueryForm
-from .dashboard import dashboards
-from config import GOOGLE_API_KEY , GOOGLE_ENGINE_ID
 
 #кастомная страница ошибки 404
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html', e=e), 404
-
-
-#главная страница с аналитикой
-@app.route('/old/')
-def index_page():
-    #будущая фича при наведении на навык открывается фрейм на страницу скилл
-    dashboards()
-    return render_template('index.html')
 
 
 #страница запросов GraphQL
