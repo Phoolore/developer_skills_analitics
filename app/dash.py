@@ -3,7 +3,6 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
-import os
 
 from . import app, superpage
 from .GraphQL import schema
