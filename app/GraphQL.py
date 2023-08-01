@@ -37,12 +37,13 @@ class Query(graphene.ObjectType):
 class AddSpecializationMutation(graphene.Mutation): 
     class Arguments: 
         name = graphene.String(required=True) 
+        sId = graphene.String(required=False)
          
     status = graphene.Boolean() 
  
-    def mutate(self, info, name): 
+    def mutate(self, info, name, sId=None): 
         spec = SpecializationModel( 
-                                   sId=None,
+                                   sId=sId,
                                    name=name
                                    ) 
         db.session.add(spec) 
@@ -54,6 +55,7 @@ class AddSpecializationMutation(graphene.Mutation):
 class AddVacancyMutation(graphene.Mutation): 
     class Arguments: 
         name = graphene.String(required=True) 
+        vId = graphene.String(required=False)
         city = graphene.String(required=False) 
         minSalary = graphene.Int(required=False) 
         maxSalary = graphene.Int(required=False) 
@@ -72,6 +74,7 @@ class AddVacancyMutation(graphene.Mutation):
                info,
                name,
                specializationId,
+               vId = None,
                city=None,
                minSalary=None,
                maxSalary=None,
@@ -83,8 +86,9 @@ class AddVacancyMutation(graphene.Mutation):
                employer=None,
                publishedAt=None): 
         vac = VacancyModel(
-                           vId=None,
+                           vId=vId,
                            name=name,
+                           status = True,
                            city=city,
                            minSalary=minSalary,
                            maxSalary=maxSalary,
@@ -103,10 +107,40 @@ class AddVacancyMutation(graphene.Mutation):
         return AddVacancyMutation(status=status) 
 
 
+class DeactivateVacancy(graphene.Mutation):
+    class Arguments: 
+        vId = graphene.String(required=True)
+         
+    status = graphene.Boolean() 
+ 
+    def mutate(self, info, vId): 
+        vac = db.session.execute(db.select(VacancyModel).filter_by(vId = vId)).scalar_one()
+        vac.status = False
+        db.session.commit() 
+        status = True 
+        return DeactivateVacancy(status=status) 
+
+
+class DeleteVacancy(graphene.Mutation):
+    class Arguments: 
+        vId = graphene.String(required=True)
+         
+    status = graphene.Boolean() 
+ 
+    def mutate(self, info, vId): 
+        vac = db.session.execute(db.select(VacancyModel).filter_by(vId = vId)).scalar_one()
+        db.session.delete(vac)
+        db.session.commit() 
+        status = True 
+        return DeactivateVacancy(status=status) 
+
+
 #схема мутаций
 class Mutation(graphene.ObjectType): 
     saveSpecialization = AddSpecializationMutation.Field() 
     saveVacancy = AddVacancyMutation.Field() 
+    deactivateVacancy = DeactivateVacancy.Field()
+    deleteVacancy = DeleteVacancy.Field()
      
  
 schema = graphene.Schema(query=Query, mutation=Mutation)

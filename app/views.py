@@ -5,21 +5,11 @@ import requests
 from . import app
 from .GraphQL import schema
 from .forms import QueryForm
-from .dashboard import dashboards
-from config import GOOGLE_API_KEY , GOOGLE_ENGINE_ID
 
 #кастомная страница ошибки 404
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html', e=e), 404
-
-
-#главная страница с аналитикой
-@app.route('/')
-def index_page():
-    #будущая фича при наведении на навык открывается фрейм на страницу скилл
-    dashboards()
-    return render_template('index.html')
 
 
 #страница запросов GraphQL
@@ -43,37 +33,8 @@ def graphql_query_page():
 #страница подробностей о навыке
 @app.route('/description/<string:name>')
 def description_page(name):
-    #instruction https://developers.google.com/custom-search/v1/overview
-    # Define the search query
-    query = f"{name}:ru.wikipedia.org"
-
-    # Set your API key
-    api_key = GOOGLE_API_KEY
-
-    # Set the search engine ID
-    search_engine_id = GOOGLE_ENGINE_ID
-
-    # Prepare the URL for the Google Search API request
-    url = f"https://www.googleapis.com/customsearch/v1?key={api_key}&cx={search_engine_id}&q={query}"
-
-    # Send a GET request to the Google Search API
-    response = requests.get(url)
-
-    # Get the JSON response
-    json_response = response.json()
-
-    # Initialize an empty list to store the URLs of relevant sites
-    relevant_sites = []
-
-    # Check if the response contains search results
-    if "items" in json_response:
-        # Iterate over the search results
-        for item in json_response["items"][:2]:
-            # Get the URL of each search result
-            link = item["link"]
-            # Append the URL to the list of relevant sites
-            relevant_sites.append(link)
-    if len(relevant_sites) >= 1 : #проверка наличии ссылки
-        return render_template('description.html', url = relevant_sites[0], name = name)
+    url = f'https://ru.wikipedia.org/w/index.php?search={name}'#ссылка на ресурс
+    if "Результаты поиска" not in requests.get(url).content: #Проверка что сайт найден
+        return render_template('description.html', url = url, name = name)
     else:
         return page_not_found(f'Страницы навыка "{name}" не найдено, приносим свои извинения, просим написать о данной ошибке на почту agencyUpShot@mail.ru')

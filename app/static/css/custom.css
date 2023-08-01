@@ -1,0 +1,93 @@
+/* Стилизация навигационной панели */
+.navbar {
+  overflow: hidden;
+  background-color: #FF8C00;
+}
+
+.navbar a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: #FF8C00;
+}
+.sidebar {
+  padding: 8px 8px 8px 16px;
+  width: 100%;
+  z-index: 1;
+  top: 5%;
+  right: 0;
+  background-color: #FFAD4D;
+  overflow-x: hidden;
+
+}
+.sidebar a {
+  padding: 8px 8px 8px 16px;
+  text-decoration: none;
+  font-size: 100%;
+  color: black;
+  display: block;
+}
+.sidebar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+/* Стилизация подвала */
+.footer {
+  margin: 25px 0px 0px 0px;
+  padding: 25px;
+  background-color: #FFCA96;
+  color: black;
+  padding: 20px;
+  text-align: center;
+}
+/* Растягивающиеся таблицы */
+table td, table th {
+  border: 1px solid black;
+  padding: 8px;
+  width : 5%;
+}
+#settings-div {
+  display: none; /* Скрываем div по умолчанию */
+}
+.scroll-table-body {
+  height: 50%;
+  overflow-x:auto;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+.scroll-table table {
+  width:100%;
+  table-layout: fixed;
+  border: none;
+}
+
+.scroll-table tbody td {
+  text-align: center;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 10px 15px;
+  font-size: 14px;
+  vertical-align: center;
+}
+.scroll-table tbody tr:nth-child(even){
+  background: #00000000;
+}
+
+/* Стили для скролла */
+::-webkit-scrollbar {
+  width: 6px;
+} 
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
