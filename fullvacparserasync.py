@@ -5,6 +5,10 @@ from bs4 import BeautifulSoup
 import time
 import requests
 import csv
+# from . import app
+# from .GraphQL import schema
+
+
 start_time = time.time()
 url = 'https://api.hh.ru/vacancies/'
 def watch():
@@ -37,7 +41,7 @@ def create_csv(filename, data):
         writer = csv.writer(file, delimiter=";")
         writer.writerows(data)
         
-data = [['vId', 'name', 'city', 'minSalary', 'maxSalary',
+csvdata = [['vId', 'name', 'city', 'minSalary', 'maxSalary',
         'experience', 'schedule', 'employment', 'description',
         'keySkills', 'employer', 'publishedAt', 'specializationId']]
 
@@ -58,8 +62,8 @@ async def parse(id):
     async with aiohttp.ClientSession() as session:
         async with session.get(vacurl, headers=headers) as response:
             vacdata = await response.json()
+
             name = vacdata['name']
-            
             for cur in apidict['currency']:
                 if cur['code'] == vacdata['salary']['currency']:
                     currency_rate = 1/cur['rate']
@@ -86,13 +90,26 @@ async def parse(id):
                 keySkills = keySkills.lower()
             else:
                 keySkills = ''
-            employer = vacdata['employer']['id']            
+            
+            employer = vacdata['employer'].get('id')
+            if employer is None:
+                employer = ''
             publishedAt = vacdata['published_at'].split('T')[0]
             specializationId = vacdata['professional_roles'][0]['id']
             vac = [id, name, city, minSalary, maxSalary, experience,
                    schedule, employment, description, keySkills,
                    employer, publishedAt, specializationId]
-            data.append(vac)
+            csvdata.append(vac)
+            
+            # with app.app_context():
+            #     query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
+            #     query = query.replace("name", name)
+            #     query = query.replace("minSalary", minSalary)
+            #     query = query.replace("maxSalary", maxSalary)
+            #     query = query.replace("experience", experience)
+            #     query = query.replace("keySkills", keySkills)
+            #     query = query.replace("publishedAt", publishedAt)
+            #     data = schema.execute(query).data
 
     
 async def main(per_page, required_pages=None, area='113', searchtext=''):
@@ -123,16 +140,18 @@ async def main(per_page, required_pages=None, area='113', searchtext=''):
         required_pages = pages_count
         
     for page in range(required_pages):
+        params['page'] = str(page)
+        response = requests.get(url, params=params, headers=headers)
         result = response.json()['items']
         
         for item in result:
             id = item['id']
             await parse(id)
             
-asyncio.run(main(10, 10, 113, 'python'))
+asyncio.run(main(100, 19, 113, 'python'))
 
-csvname = 'test02.csv'
-create_csv(csvname, data)
+csvname = 'test05.csv'
+create_csv(csvname, csvdata)
 print(f'deltaTime: {watch()}, CSV - {csvname}')
 
 # 0	
