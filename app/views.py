@@ -111,7 +111,12 @@ def DateLine(df_full):
     fig.yaxis.axis_label = y_label
     fig.toolbar.autohide = True
     fig.background_fill_alpha = 0
-    
+    fig.border_fill_alpha = 0
+    fig.grid.grid_line_color = "black"  # Цвет сетки - черный
+    fig.grid.grid_line_alpha = 0.8  # Прозрачность сетки - яркая
+    fig.outline_line_alpha = 1
+    fig.outline_line_color = "black"
+
     #Создание ползунка
     select = figure(height=130, width=800, y_range=fig.y_range,
                     x_axis_type="datetime", y_axis_type=None,
@@ -119,7 +124,7 @@ def DateLine(df_full):
 
     range_tool = RangeTool(x_range=fig.x_range)
     range_tool.overlay.fill_color = "green"
-    range_tool.overlay.fill_alpha = 0.2
+    range_tool.overlay.fill_alpha = 0.3
     
     #Настрока элементов ползунка и визуализации
     select.scatter('date', 'y', source=source, 
@@ -128,7 +133,12 @@ def DateLine(df_full):
                 line_color = color, line_width = 5)#визуальные настройки
     select.add_tools(range_tool)
     select.background_fill_alpha = 0
-
+    select.border_fill_alpha = 0
+    select.grid.grid_line_color = "black"  # Цвет сетки - черный
+    select.grid.grid_line_alpha = 0.8  # Прозрачность сетки - яркая
+    select.outline_line_alpha = 1
+    select.outline_line_color = "black"
+    
     html = file_html(column(fig, select), CDN, "my plot")
     
     return html
