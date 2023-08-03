@@ -1,10 +1,13 @@
 from flask import render_template, redirect, url_for, request
 import pandas as pd
-from bokeh.plotting import figure
+import numpy as np
+import requests
+
 from bokeh.resources import CDN
 from bokeh.embed import file_html
-from bokeh.models import ColumnDataSource
-import requests
+from bokeh.plotting import figure
+from bokeh.layouts import column
+from bokeh.models import ColumnDataSource, RangeTool, HoverTool, DatetimeTickFormatter, WheelZoomTool, WheelPanTool, UndoTool, RedoTool, ResetTool, SaveTool
 
 from . import app
 from .GraphQL import schema
@@ -21,6 +24,14 @@ def avg_sal(df, df_bool = False):
         return (df['min_salary'] + df['max_salary'])/2
     avg = int(((df['min_salary'] + df['max_salary'])/2).mean())
     return avg
+
+
+def counts(df_full, name):
+    """Вспомогательная функция упорядочивания df по колл. вакансий в зависимости от столбца для группировки"""
+    df = df_full.loc[df_full[name] != missing]
+    df = df.groupby(name)[name].count().rename("counts").reset_index()
+    
+    return df
 
 
 #кастомная страница ошибки 404
@@ -58,22 +69,67 @@ def description_page(name):
 
 
 def DateLine(df_full):
+    """График DateLine типа scatter для дат по кол. вакансий за день"""
     color = "orange"
-    df = df_full.loc[df_full["published_at"] != missing]
-    df = df.groupby("published_at")["published_at"].count().rename("counts").reset_index()
+    background_color = "#efefef"
+    y_label = "Вакансий опубликованно за день"
 
     # Создание источника данных
-    source = ColumnDataSource({
-                               "x" : pd.to_datetime(df["published_at"]),
-                               "y" : df["counts"]
-                               })
-
-    # Создание графика
-    fig = figure(x_axis_type='datetime')
-    fig.scatter('x', 'y', source=source, size=20, color='black', line_color = color, line_width = 7, alpha=1, level = "overlay")
-    fig.line('x', 'y', source=source, line_color = color, line_width = 10)
+    df = counts(df_full, "published_at")
+    dates = np.array(pd.to_datetime(df["published_at"]), dtype=np.datetime64)
+    source = ColumnDataSource(data=dict(date=dates, y = df["counts"]))
     
-    html = file_html(fig, CDN, "my plot")
+    # Создание графика
+    fig = figure(height=300, width=800, background_fill_color=background_color, #визуальные настройки
+                 tools = [], toolbar_location="right",x_axis_type="datetime", x_axis_location="below",x_range=(dates.min(), dates.max())) #настройки
+    
+    # Панель инструментов
+    zoom = WheelZoomTool(dimensions="width", name = "Увеличение", description = "Увеличить по оси x")
+    fig.add_tools(zoom)
+    fig.add_tools(WheelPanTool(dimension = "width", name = "Передвижение", description = "Передвижение по оси x"))
+    fig.add_tools(UndoTool(name = "Назад", description = "Отменить действие"))
+    fig.add_tools(RedoTool(name = "Вперёд", description = "Вернуть действие"))
+    fig.add_tools(ResetTool(name = "Сброс", description = "Сброс до начального положения"))
+    fig.add_tools(SaveTool(name = "Сохранить", description = "Сохранить текущий график как картинку"))
+    
+    # Активные инструменты
+    fig.toolbar.active_drag = None
+    fig.toolbar.active_scroll = zoom
+    
+    #Hover
+    hover = HoverTool(tooltips=[("Дата", "$x{%d/%m/%Y}"), ("Вакансий опубликованно за день", "$y{0}")], formatters={"$x": "datetime"}, name = "Описание", description = "Показывать описание точек")
+    fig.add_tools(hover)
+    
+    #Форматирование дат оси x
+    fig.xaxis.formatter = DatetimeTickFormatter(hours="%H:%M", days="%d/%m", months="%m/%y", years="%Y")
+    
+    #Элементы и визуализация графика
+    fig.scatter('date', 'y', source=source, 
+                size=10, color='black', line_color = color, line_width = 3, alpha=1, level = "overlay") #визуальные настройки
+    fig.line('date', 'y', source=source,
+            line_color = color, line_width = 5)#визуальные настройки
+    fig.yaxis.axis_label = y_label
+    fig.toolbar.autohide = True
+    fig.background_fill_alpha = 0
+    
+    #Создание ползунка
+    select = figure(height=130, width=800, y_range=fig.y_range,
+                    x_axis_type="datetime", y_axis_type=None,
+                    tools="", toolbar_location=None, background_fill_color=background_color)
+
+    range_tool = RangeTool(x_range=fig.x_range)
+    range_tool.overlay.fill_color = "green"
+    range_tool.overlay.fill_alpha = 0.2
+    
+    #Настрока элементов ползунка и визуализации
+    select.scatter('date', 'y', source=source, 
+                size=10, color='black', line_color = color, line_width = 3, alpha=1, level = "overlay") #визуальные настройки
+    select.line('date', 'y', source=source,
+                line_color = color, line_width = 5)#визуальные настройки
+    select.add_tools(range_tool)
+    select.background_fill_alpha = 0
+
+    html = file_html(column(fig, select), CDN, "my plot")
     
     return html
 
