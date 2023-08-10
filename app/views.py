@@ -4,7 +4,7 @@ import pandas as pd
 from . import app
 from .GraphQL import schema
 from .forms import QueryForm
-from .graph import DateLine, LevelPie,  missing
+from .graph import DateLine, LevelPie, SalaryBox,  missing
 
 
 #кастомная страница ошибки 404
@@ -73,5 +73,6 @@ def index_page():
 
     return render_template("index.html", 
                            GeneralDateLine = DateLine(df_full),
-                           GeneralLevelPie = LevelPie(df_full)
+                           GeneralLevelPie = LevelPie(df_full),
+                           GeneralSalaryBox = SalaryBox(df_full),
                            )

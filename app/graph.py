@@ -2,12 +2,13 @@ import pandas as pd
 import numpy as np
 from math import pi
 
+from bokeh import events
 from bokeh.resources import CDN
 from bokeh.embed import file_html
 from bokeh.plotting import figure
-from bokeh.transform import cumsum
+from bokeh.transform import cumsum, factor_cmap
 from bokeh.layouts import column
-from bokeh.models import ColumnDataSource, Legend, LegendItem, LabelSet, RangeTool, HoverTool, DatetimeTickFormatter, WheelZoomTool, WheelPanTool, UndoTool, RedoTool, ResetTool, SaveTool
+from bokeh.models import PrintfTickFormatter, ColumnDataSource, Legend, LegendItem, LabelSet, RangeTool, HoverTool, DatetimeTickFormatter, WheelZoomTool, WheelPanTool, UndoTool, RedoTool, ResetTool, SaveTool, Whisker, NumeralTickFormatter, PanTool
 
 
 size = 10 #размер текста на графиках
@@ -18,7 +19,7 @@ colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
 def avg_sal(df, df_bool = False):
     """Вспомогательная функция получения ср.зп"""
     if df_bool == True: #Режим возврата массива
-        return (df['min_salary'] + df['max_salary'])/2
+        return ((df['min_salary'] + df['max_salary'])/2).rename("ср.зарплата")
     avg = int(((df['min_salary'] + df['max_salary'])/2).mean())
     return avg
 
@@ -174,6 +175,81 @@ def LevelPie(df_full):
     #Настраиваем интерактивную легенду
     fig.legend.click_policy="hide"
 
+    
+    html = file_html(fig, CDN, "my plot")
+    
+    return html
+
+
+def SalaryBox(df_full):
+    """График SalaryBox типа vbox для отображения зарплат по пыту работы"""
+    df = pd.concat([df_full.loc[:, "experience"], avg_sal(df_full.loc[:, ["min_salary", "max_salary"]], df_bool = True) ], axis=1)
+
+    kinds = df["experience"].unique()
+
+    # вычисляем квантили
+    qs = df.groupby("experience")["ср.зарплата"].quantile([0.25, 0.5, 0.75])
+    qs = qs.unstack().reset_index()
+    qs.columns = ["experience", "q1", "q2", "q3"]
+    df = pd.merge(df, qs, on="experience", how="left")
+
+    # вычисляем границы выбросов по IQR
+    iqr = df.q3 - df.q1
+    df["upper"] = df.q3 + 1.5*iqr
+    df["lower"] = df.q1 - 1.5*iqr
+
+    source = ColumnDataSource(df)
+
+    fig = figure(x_range=kinds, tools="", toolbar_location="right",
+               background_fill_color="#eaefef", y_axis_label="Расход топлива (MPG)")
+
+    # границы выбросов
+    whisker = Whisker(base="experience", upper="upper", lower="lower", source=source)
+    whisker.upper_head.size = whisker.lower_head.size = 20
+    fig.add_layout(whisker)
+
+    # ящики с квантилями
+    cmap = factor_cmap("experience", "TolRainbow7", kinds)
+    fig.vbar("experience", 0.7, "q2", "q3", source=source, color=cmap, line_color="black")
+    fig.vbar("experience", 0.7, "q1", "q2", source=source, color=cmap, line_color="black")
+
+    # Визуальная часть
+    fig.xgrid.grid_line_color = None
+    fig.axis.major_label_text_font_size="14px"
+    fig.axis.axis_label_text_font_size="12px"
+    fig.yaxis[0].formatter = NumeralTickFormatter(format="0")
+    fig.outline_line_color = None
+    fig.background_fill_alpha = 0
+    fig.border_fill_alpha = 0
+    
+    #Hover
+    hover = HoverTool(tooltips=[
+        ("Группа", "@experience"),
+        ("Минимальное значение", "@lower{0.0}"),
+        ("Медиана", "@q2{0.0}"),
+        ("Максимальное значение", "@upper{0.0}")
+    ], mode='vline', line_policy="interp", toggleable = True)
+    
+    # hover.formatters = {"@experience": "printf", "@lower": "printf", "@q2": "printf", "@upper": "printf"}
+    # hover.formatters["@experience"] = "{'printf': function(x) { return x.substring(0, 4); }}"
+    # hover.formatters["@lower"] = "{'printf': function(x) { return x.toFixed(1); }}"
+    # hover.formatters["@q2"] = "{'printf': function(x) { return x.toFixed(1); }}"
+    # hover.formatters["@upper"] = "{'printf': function(x) { return x.toFixed(1); }}"
+    
+    fig.yaxis[0].formatter = PrintfTickFormatter(format="0")
+    fig.add_tools(hover)
+    
+     # Панель инструментов
+    zoom = WheelZoomTool(dimensions="height", name = "Увеличение", description = "Увеличить по оси x")
+    pan =PanTool(dimensions = "height", name = "Передвижение", description = "Передвижение по оси x")
+    fig.add_tools(zoom)
+    fig.add_tools(pan)
+    fig.add_tools(ResetTool(name = "Сброс", description = "Сброс до начального положения"))
+    fig.add_tools(SaveTool(name = "Сохранить", description = "Сохранить текущий график как картинку"))
+    
+    # Активные инструменты
+    fig.toolbar.active_drag = pan
+    fig.toolbar.active_scroll = zoom
     
     html = file_html(fig, CDN, "my plot")
     
