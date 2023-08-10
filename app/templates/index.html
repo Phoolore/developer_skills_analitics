@@ -11,11 +11,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="static/css/MultyCheckBox">
+
 <div class="stand">
 <div class = "GraphDiv" id = "GeneralDateLineDiv">{{GeneralDateLine|indent(4)|safe}}</div>
 <div class = "GraphDiv" id = "GeneralLevelPieDiv">{{GeneralLevelPie|indent(4)|safe}}</div>
 <div class = "GraphDiv" id = "GeneralSalaryBoxDiv">{{GeneralSalaryBox|indent(4)|safe}}</div>
 </div>
+
 <div>
 
     <input type="date" min="2022-01-01" max="2022-12-31" />
@@ -25,84 +27,133 @@
     
     <input type="date" min="2020-01-01" max="2022-12-31" />
     
-    </div>
-    <div class="stand" id="MultyCheckBox">
-        <section class="ftco-section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 text-center mb-5">
-                        
-                    </div>
+</div>
+
+<div class="stand" id="MultyCheckBox">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-5 d-flex justify-content-center align-items-center">
-                        <div class="dropdown-container">
-                        <div class="dropdown-button noselect w-100">
-                        <div class="dropdown-label">Фильтры</div>
-                        <div class="dropdown-quantity">(<span class="quantity">любой</span>)</div>
-                        <i class="fa fa-chevron-down"></i>
-                        </div>
-                        <div class="dropdown-list" style="display: none;">
-    
-                        <input type="search" placeholder="" class="dropdown-search"/>
-                        <ul></ul>
-                        </div>
-                        </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-5 d-flex justify-content-center align-items-center">
+                    <div class="dropdown-container">
+                    <div class="dropdown-button noselect w-100">
+                    <div class="dropdown-label">Фильтры</div>
+                    <div class="dropdown-quantity">(<span class="quantity">любой</span>)</div>
+                    <i class="fa fa-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-list" style="display: none;">
+
+                    <input type="search" placeholder="" class="dropdown-search"/>
+                    <ul></ul>
+                    </div>
                     </div>
                 </div>
             </div>
-        </section>
-      <script> 
-      (function($) { 
-        "use strict"; 
-        // События 
-       $('.dropdown-container') 
-           .on('click', '.dropdown-button', function() { 
-               $(this).siblings('.dropdown-list').toggle(); 
-           }) 
-           .on('input', '.dropdown-search', function() { 
-               var target = $(this); 
-               var dropdownList = target.closest('.dropdown-list'); 
-               var search = target.val().toLowerCase(); 
-                if (!search) { 
-                   dropdownList.find('li').show(); 
-                   return false; 
-               } 
-                dropdownList.find('li').each(function() { 
-                   var text = $(this).text().toLowerCase(); 
-                   var match = text.indexOf(search) > -1; 
-                   $(this).toggle(match); 
-               }); 
-           }) 
-           .on('change', '[type="checkbox"]', function() { 
-               var container = $(this).closest('.dropdown-container'); 
-               var numChecked = container.find('[type="checkbox"]:checked').length; 
-               container.find('.quantity').text(numChecked || 'Любой'); 
-           }); 
-        var options = [ 
-           { name: 'tea', abbreviation: 'ча' }, 
-           { name: 'Кофе', abbreviation: 'AL' }, 
-           { name: 'Дети', abbreviation: '123' }, 
-           { name: 'АРИЗОНА', abbreviation: 'AZ' }, 
-           { name: 'АРКАНЗАС', abbreviation: 'AR' }, 
-         
-       ]; 
-        // Шаблон <li> 
-       var stateTemplate = _.template( 
-           '<li>' + 
-               '<label class="checkbox-wrap"><input name="<%= abbreviation %>" type="checkbox"> <span for="<%= abbreviation %>"><%= capName %></span> <span class="checkmark"></span></label>' + 
-           '</li>' 
-       ); 
-        // Заполнение списка штатов 
-       _.each(options, function(s) { 
-           s.capName = s.name; 
-           $('ul').append(stateTemplate(s)); 
-       }); 
-    })(jQuery);
-    </script>
-    <script src="static/js/jquery.min.js"></script>
-    <script src="static/js/popper.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+        </div>
+    </section>
+    <script> 
+    (function($) { 
+    "use strict"; 
+    // События 
+    $('.dropdown-container') 
+        .on('click', '.dropdown-button', function() { 
+            $(this).siblings('.dropdown-list').toggle(); 
+        }) 
+        .on('input', '.dropdown-search', function() { 
+            var target = $(this); 
+            var dropdownList = target.closest('.dropdown-list'); 
+            var search = target.val().toLowerCase(); 
+            if (!search) { 
+                dropdownList.find('li').show(); 
+                return false; 
+            } 
+            dropdownList.find('li').each(function() { 
+                var text = $(this).text().toLowerCase(); 
+                var match = text.indexOf(search) > -1; 
+                $(this).toggle(match); 
+            }); 
+        }) 
+        .on('change', '[type="checkbox"]', function() { 
+            var container = $(this).closest('.dropdown-container'); 
+            var numChecked = container.find('[type="checkbox"]:checked').length; 
+            container.find('.quantity').text(numChecked || 'Любой'); 
+        }); 
+    var options = [ 
+        { name: 'tea', abbreviation: 'ча' }, 
+        { name: 'Кофе', abbreviation: 'AL' }, 
+        { name: 'Дети', abbreviation: '123' }, 
+        { name: 'АРИЗОНА', abbreviation: 'AZ' }, 
+        { name: 'АРКАНЗАС', abbreviation: 'AR' }, 
+        
+    ]; 
+    // Шаблон <li> 
+    var stateTemplate = _.template( 
+        '<li>' + 
+            '<label class="checkbox-wrap"><input name="<%= abbreviation %>" type="checkbox"> <span for="<%= abbreviation %>"><%= capName %></span> <span class="checkmark"></span></label>' + 
+        '</li>' 
+    ); 
+    // Заполнение списка штатов 
+    _.each(options, function(s) { 
+        s.capName = s.name; 
+        $('ul').append(stateTemplate(s)); 
+    }); 
+})(jQuery);
+</script>
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/popper.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+</div>
+
+<!-- <div class="stand">
+    <div class="scroll-table">
+
+        <table>
+            <thead>
+                <tr>
+                    <td>ячейка</td>
+                </tr>
+            </thead>
+        </table>
+
+        <div class="scroll-table-body">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>ячейка</td>
+                    </tr>
+                    <tr>
+                        <td>ячейка</td>
+                    </tr>
+                    <tr>
+                        <td>ячейка</td>
+                    </tr>
+                    <tr>
+                        <td>ячейка</td>
+                    </tr>
+                    <tr>
+                        <td>ячейка</td>
+                    </tr>
+                    <tr>
+                        <td>ячейка</td>
+                    </tr>
+                    <tr>
+                        <td>ячейка</td>
+                    </tr>
+                    <tr>
+                        <td>ячейка</td>
+                    </tr>
+                    <tr>
+                        <td>ячейка</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
+</div> -->
 {% endblock  content%}
