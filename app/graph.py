@@ -8,7 +8,7 @@ from bokeh.embed import file_html
 from bokeh.plotting import figure
 from bokeh.transform import cumsum, factor_cmap
 from bokeh.layouts import column
-from bokeh.models import PrintfTickFormatter, ColumnDataSource, Legend, LegendItem, LabelSet, RangeTool, HoverTool, DatetimeTickFormatter, WheelZoomTool, WheelPanTool, UndoTool, RedoTool, ResetTool, SaveTool, Whisker, NumeralTickFormatter, PanTool
+from bokeh.models import ColumnDataSource, Legend, LegendItem, LabelSet, RangeTool, HoverTool, DatetimeTickFormatter, WheelZoomTool, WheelPanTool, UndoTool, RedoTool, ResetTool, SaveTool, Whisker, NumeralTickFormatter, PanTool
 
 
 size = 10 #размер текста на графиках
@@ -32,7 +32,7 @@ def counts(df_full, name):
     return df
 
 
-def DateLine(df_full):
+def DateLine(df_full, height = 300):
     """График DateLine типа scatter для дат по кол. вакансий за день"""
     color = "orange"
     background_color = "#efefef"
@@ -44,8 +44,8 @@ def DateLine(df_full):
     source = ColumnDataSource(data=dict(date=dates, y = df["counts"]))
     
     # Создание графика
-    fig = figure(height=300, width=800, background_fill_color=background_color, #визуальные настройки
-                 tools = [], toolbar_location="right",x_axis_type="datetime", x_axis_location="below",x_range=(dates.min(), dates.max())) #настройки
+    fig = figure(height= int(height/3*2), background_fill_color=background_color, #визуальные настройки
+                 tools = "", toolbar_location="right",x_axis_type="datetime", x_axis_location="below",x_range=(dates.min(), dates.max())) #настройки
     
     # Панель инструментов
     zoom = WheelZoomTool(dimensions="width", name = "Увеличение", description = "Увеличить по оси x")
@@ -61,7 +61,7 @@ def DateLine(df_full):
     fig.toolbar.active_scroll = zoom
     
     #Hover
-    hover = HoverTool(tooltips=[("Дата", "$x{%d/%m/%Y}"), ("Вакансий опубликованно за день", "$y{0}")], formatters={"$x": "datetime"}, name = "Описание", description = "Показывать описание точек")
+    hover = HoverTool(tooltips=[("Дата", "$x{%d/%m/%Y}"), ("Вакансий опубликованно за день", "$y{0a}")], formatters={"$x": "datetime"}, name = "Описание", description = "Показывать описание точек")
     fig.add_tools(hover)
     
     #Форматирование дат оси x
@@ -82,7 +82,7 @@ def DateLine(df_full):
     fig.outline_line_color = "black"
 
     #Создание ползунка
-    select = figure(height=130, width=800, y_range=fig.y_range,
+    select = figure(height = int(height / 3), y_range=fig.y_range,
                     x_axis_type="datetime", y_axis_type=None,
                     tools="", toolbar_location=None, background_fill_color=background_color)
 
@@ -103,12 +103,17 @@ def DateLine(df_full):
     select.outline_line_alpha = 1
     select.outline_line_color = "black"
     
-    html = file_html(column(fig, select), CDN, "my plot")
+    # Настройки оси х
+    select.xaxis.major_label_orientation = 1.2
+    select.xaxis.formatter = DatetimeTickFormatter(hours="%H:%M", days="%d/%m", months="%m/%y", years="%Y")
+    
+    html = file_html(column(fig, select, sizing_mode='stretch_width'), CDN, "my plot")
     
     return html
 
 
-def LevelPie(df_full):
+def LevelPie(df_full, height = 300):
+    """График Levelpie типа Pie по соотношению групп опыта"""
     df = counts(df_full, "experience")
     
     #Источник данных
@@ -139,12 +144,13 @@ def LevelPie(df_full):
 
     # Настройки для всплывающих подсказок
     TOOLTIPS = [
-        ("Value", "@value"),  # Значение сектора
-        ("Percentage", "@percentage{0.2f}%")  # Процент сектора
+        ("Название", "@name"),  # Название сектора
+        ("Значение", "@value{0a}"),  # Значение сектора
+        ("Процент", "@percentage{0.2f}%")  # Процент сектора
     ]
 
     # Создаем объект Figure для построения графика
-    fig = figure(height=600,width=600,x_range=(-1,1), y_range=(-1,1), tools='hover', tooltips=TOOLTIPS, toolbar_location=None)
+    fig = figure(height = height,x_range=(-0.5, 0.5), y_range=(-1, 1), tools='hover', tooltips=TOOLTIPS, toolbar_location=None)
     
     # Создаем кольцевые секторы диаграммы
     r = fig.annular_wedge(x=0, y=0, inner_radius=0.2, outer_radius=0.4,
@@ -160,7 +166,7 @@ def LevelPie(df_full):
 
     # Добавляем метки
     labels = LabelSet(x='cos', y='sin', text="label", y_offset=0,
-                      text_font_size = str(size) + "px", text_color="black",
+                      text_font_size = str(int(height / 40)) + "px", text_color="black",
                       source=source, text_align='center')
     fig.add_layout(labels)
 
@@ -176,12 +182,12 @@ def LevelPie(df_full):
     fig.legend.click_policy="hide"
 
     
-    html = file_html(fig, CDN, "my plot")
+    html = file_html(column(fig, sizing_mode='stretch_width'), CDN, "my plot")
     
     return html
 
 
-def SalaryBox(df_full):
+def SalaryBox(df_full, height = 300):
     """График SalaryBox типа vbox для отображения зарплат по пыту работы"""
     df = pd.concat([df_full.loc[:, "experience"], avg_sal(df_full.loc[:, ["min_salary", "max_salary"]], df_bool = True) ], axis=1)
 
@@ -200,8 +206,8 @@ def SalaryBox(df_full):
 
     source = ColumnDataSource(df)
 
-    fig = figure(x_range=kinds, tools="", toolbar_location="right",
-               background_fill_color="#eaefef", y_axis_label="Расход топлива (MPG)")
+    fig = figure(height = height,x_range=kinds, tools="", toolbar_location="right",
+               background_fill_color="#eaefef", y_axis_label="Руб.")
 
     # границы выбросов
     whisker = Whisker(base="experience", upper="upper", lower="lower", source=source)
@@ -225,9 +231,9 @@ def SalaryBox(df_full):
     #Hover
     hover = HoverTool(tooltips=[
         ("Группа", "@experience"),
-        ("Минимальное значение", "@lower{0.0}"),
-        ("Медиана", "@q2{0.0}"),
-        ("Максимальное значение", "@upper{0.0}")
+        ("Минимум", "@lower{0a}"),
+        ("Медиана", "@q2{0a}"),
+        ("Максимум", "@upper{0a}")
     ], mode='vline', line_policy="interp", toggleable = True)
     
     # hover.formatters = {"@experience": "printf", "@lower": "printf", "@q2": "printf", "@upper": "printf"}
@@ -236,7 +242,6 @@ def SalaryBox(df_full):
     # hover.formatters["@q2"] = "{'printf': function(x) { return x.toFixed(1); }}"
     # hover.formatters["@upper"] = "{'printf': function(x) { return x.toFixed(1); }}"
     
-    fig.yaxis[0].formatter = PrintfTickFormatter(format="0")
     fig.add_tools(hover)
     
      # Панель инструментов
@@ -251,6 +256,53 @@ def SalaryBox(df_full):
     fig.toolbar.active_drag = pan
     fig.toolbar.active_scroll = zoom
     
-    html = file_html(fig, CDN, "my plot")
+    # Настройки отображения чисел на оси y
+    fig.yaxis[0].formatter = NumeralTickFormatter(format="0.0a")
+
+    
+    html = file_html(column(fig, sizing_mode='stretch_width'), CDN, "my plot")
     
     return html
+
+
+def spec_table(df_full):
+    df_spec = df_full.loc[df_full["status"]]
+    spec_table = ""
+    
+    for spec in pd.concat([df_spec.loc[:, "specialization"], avg_sal(df_spec.loc[:, ["min_salary", "max_salary"]], df_bool = True) ], axis=1).groupby("specialization")["ср.зарплата"].sum().reset_index().sort_values("ср.зарплата", ascending = False)["specialization"]:#перебор специализаций
+        df = df_spec[df_spec['specialization'] == spec] #выборка по специализации
+        spec_table += f"""
+        <tr>
+            <td>IT</td>
+            <td>{spec}</td>
+            <td>{len(df)}</td>
+            <td>{DateLine(df)}</td>
+            <td>{LevelPie(df)}</td>
+            <td>{avg_sal(df)}</td>
+            <td>{SalaryBox(df)}</td>
+        </tr>
+        """
+    
+    return spec_table
+
+
+
+def skill_table(df_full):
+    df_skill = df_full.loc[df_full["status"]]
+    skill_table = ""
+  
+    for skills_packs in df_skill['key_skills'].unique(): #получение наборов навыков из вакансий без повторений
+            for skill in skills_packs.replace("[", "").replace("]", "").split(','):#перебор навыков
+                df = df_skill[df_skill['key_skills'].str.contains(skill)]
+                skill_table += f"""
+        <tr>
+            <td>IT</td>
+            <td>{skill}</td>
+            <td>{len(df)}</td>
+            <td>{DateLine(df)}</td>
+            <td>{LevelPie(df)}</td>
+            <td>{avg_sal(df)}</td>
+            <td>{SalaryBox(df)}</td>
+        </tr>
+        """
+    return skill_table

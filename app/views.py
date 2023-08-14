@@ -4,7 +4,7 @@ import pandas as pd
 from . import app
 from .GraphQL import schema
 from .forms import QueryForm
-from .graph import DateLine, LevelPie, SalaryBox,  missing
+from .graph import DateLine, LevelPie, SalaryBox, spec_table, skill_table, missing
 
 
 #кастомная страница ошибки 404
@@ -67,12 +67,16 @@ def index_page():
                     'city' : vac['node']['city']
                     }]
 
-    df_full = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
-    cities_list = df_full['city'].unique().tolist().remove(missing)
+    df = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
+    cities_list = df['city'].unique().tolist().remove(missing)
     filter_list = [] #хранитель вариантов для фильтров
-
+    
+    with open("data.txt", "w+") as f:
+        f.write(SalaryBox(df))
     return render_template("index.html", 
-                           GeneralDateLine = DateLine(df_full),
-                           GeneralLevelPie = LevelPie(df_full),
-                           GeneralSalaryBox = SalaryBox(df_full),
+                           GeneralDateLine = DateLine(df, 600),
+                           GeneralLevelPie = LevelPie(df, 600),
+                           GeneralSalaryBox = SalaryBox(df, 600),
+                           spec_table = spec_table(df),
+                           skill_table = skill_table(df)
                            )

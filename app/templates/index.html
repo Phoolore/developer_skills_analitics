@@ -55,7 +55,12 @@
             </div>
         </div>
     </section>
-    <script> 
+
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/popper.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+<script> 
     (function($) { 
     "use strict"; 
     // События 
@@ -103,57 +108,57 @@
     }); 
 })(jQuery);
 </script>
-<script src="static/js/jquery.min.js"></script>
-<script src="static/js/popper.js"></script>
-<script src="static/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
 </div>
-
-<!-- <div class="stand">
+<div class="stand" style="font-size: 14px; position: relative; padding: 15px 20px;">
     <div class="scroll-table">
-
         <table>
             <thead>
                 <tr>
-                    <td>ячейка</td>
+                    <th>Сфера</th>
+                    <th>Название</th>
+                    <th>Кол.вакансий</th>
+                    <th>Даты</th>
+                    <th>Соотношение уровней</th>
+                    <th>Ср.зарплата</th>
+                    <th>Зарплата по опыту работы</th>
                 </tr>
             </thead>
-        </table>
-
+        </table>	
         <div class="scroll-table-body">
             <table>
                 <tbody>
                     <tr>
-                        <td>ячейка</td>
-                    </tr>
-                    <tr>
-                        <td>ячейка</td>
-                    </tr>
-                    <tr>
-                        <td>ячейка</td>
-                    </tr>
-                    <tr>
-                        <td>ячейка</td>
-                    </tr>
-                    <tr>
-                        <td>ячейка</td>
-                    </tr>
-                    <tr>
-                        <td>ячейка</td>
-                    </tr>
-                    <tr>
-                        <td>ячейка</td>
-                    </tr>
-                    <tr>
-                        <td>ячейка</td>
-                    </tr>
-                    <tr>
-                        <td>ячейка</td>
+                        {{spec_table|indent(4)|safe}}
                     </tr>
                 </tbody>
             </table>
         </div>
-
     </div>
-</div> -->
+</div>
+<div class="stand" style="font-size: 14px; position: relative; padding: 15px 20px;">
+    <div class="scroll-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Сфера</th>
+                    <th>Название</th>
+                    <th>Кол.вакансий</th>
+                    <th>Даты</th>
+                    <th>Соотношение уровней</th>
+                    <th>Ср.зарплата</th>
+                    <th>Зарплата по опыту работы</th>
+                </tr>
+            </thead>
+        </table>	
+        <div class="scroll-table-body">
+            <table>
+                <tbody>
+                    <tr>
+                        {{skill_table|indent(4)|safe}}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock  content%}
