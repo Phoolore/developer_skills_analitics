@@ -281,7 +281,7 @@ def SalaryBox(df_full, height = 300):
     fig.toolbar.active_scroll = zoom
     
     # Настройки отображения чисел на оси y
-    fig.yaxis[0].formatter = NumeralTickFormatter(format="0.0a")
+    fig.yaxis[0].formatter = NumeralTickFormatter(format="0a")
 
     
     html = file_html(column(fig, sizing_mode='stretch_width'), CDN, "my plot")
