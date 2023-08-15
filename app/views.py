@@ -4,7 +4,7 @@ import pandas as pd
 from . import app
 from .GraphQL import schema
 from .forms import QueryForm
-from .graph import DateLine, LevelPie, SalaryBox, spec_table, skill_table, missing
+from .graph import DateLine, LevelPie, SalaryBox, spec_table, skill_table, to_table, counts, missing
 
 
 #кастомная страница ошибки 404
@@ -47,7 +47,7 @@ def index_page():
     mode = ["Специализации","Навыки"][0]
     rows = [] #хранитель строк будущего df с вакансиями
     with app.app_context():
-        query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt, status, city} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
+        query = '{getSpecializations{ edges { node {name, vacancies {edges { node {name, minSalary, maxSalary, experience, keySkills, publishedAt, status, city, schedule} } } } } } }' #Запрос к GraphQL для получения специализаций и прокрепленных к ним ваканиям
         data = schema.execute(query).data
 
     result = data['getSpecializations']['edges'] #открытие и переход к массиву с специализациями
@@ -64,7 +64,8 @@ def index_page():
                     'key_skills' : vac['node']['keySkills'].replace("'", ""),
                     'published_at' : vac['node']['publishedAt'], 
                     'status' : vac['node']['status'],
-                    'city' : vac['node']['city']
+                    'city' : vac['node']['city'],
+                    'schedule' : vac['node']['schedule']
                     }]
 
     df = pd.DataFrame(rows, index = [i for i in range(len(rows))]).fillna(missing)#полный df для специализаций и скиллов
@@ -72,11 +73,12 @@ def index_page():
     filter_list = [] #хранитель вариантов для фильтров
     
     with open("data.txt", "w+") as f:
-        f.write(SalaryBox(df))
+        f.write(str(df))
     return render_template("index.html", 
                            GeneralDateLine = DateLine(df, 600),
                            GeneralLevelPie = LevelPie(df, 600),
                            GeneralSalaryBox = SalaryBox(df, 600),
                            spec_table = spec_table(df),
-                           skill_table = skill_table(df)
+                           skill_table = skill_table(df),
+                           timetable_table = to_table(counts(df, "schedule",salary = True), ["Название", "Кол.вакансий", "Ср.зарплата"])
                            )

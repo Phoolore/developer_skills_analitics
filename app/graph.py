@@ -24,12 +24,43 @@ def avg_sal(df, df_bool = False):
     return avg
 
 
-def counts(df_full, name):
+def counts(df_full, name, salary = False):
     """Вспомогательная функция упорядочивания df по колл. вакансий в зависимости от столбца для группировки"""
     df = df_full.loc[df_full[name] != missing]
-    df = df.groupby(name)[name].count().rename("counts").reset_index()
+    if salary == True:
+        df_sal = pd.concat([df.loc[:, name], avg_sal(df.loc[:, ["min_salary", "max_salary"]], df_bool = True) ], axis=1)
+        df_counts = df.groupby(name)[name].count().rename("counts")
+        df = pd.concat([df_sal, df_counts], axis = 1).reset_index()
+    else:
+        df = df.groupby(name)[name].count().rename("counts").reset_index()
     
     return df
+
+
+def to_table(df, head = []):
+    thead = ""
+    for i in head:
+        thead += f"<th> {i}</th>"
+
+    table = f"""
+    <table>
+    <thead>
+    <tr>
+    {thead}
+    </tr>
+    </thead>
+    <tbody>
+    """
+    
+    for index, row in df.iterrows():
+        elements = ""
+        for i in row.values:
+            elements += f"<td>{i}</td>"
+        table += f"<tr>{elements}</tr>"
+   
+    table += "</tbody></table>"
+    
+    return table
 
 
 def DateLine(df_full, height = 300):
@@ -145,8 +176,8 @@ def LevelPie(df_full, height = 300):
     # Настройки для всплывающих подсказок
     TOOLTIPS = [
         ("Название", "@name"),  # Название сектора
-        ("Значение", "@value{0a}"),  # Значение сектора
-        ("Процент", "@percentage{0.2f}%")  # Процент сектора
+        ("Кол.вакансий", "@value{0a}"),  # Значение сектора
+        ("От общего кол.", "@percentage{0.2f}%")  # Процент сектора
     ]
 
     # Создаем объект Figure для построения графика
@@ -235,13 +266,6 @@ def SalaryBox(df_full, height = 300):
         ("Медиана", "@q2{0a}"),
         ("Максимум", "@upper{0a}")
     ], mode='vline', line_policy="interp", toggleable = True)
-    
-    # hover.formatters = {"@experience": "printf", "@lower": "printf", "@q2": "printf", "@upper": "printf"}
-    # hover.formatters["@experience"] = "{'printf': function(x) { return x.substring(0, 4); }}"
-    # hover.formatters["@lower"] = "{'printf': function(x) { return x.toFixed(1); }}"
-    # hover.formatters["@q2"] = "{'printf': function(x) { return x.toFixed(1); }}"
-    # hover.formatters["@upper"] = "{'printf': function(x) { return x.toFixed(1); }}"
-    
     fig.add_tools(hover)
     
      # Панель инструментов
@@ -284,7 +308,6 @@ def spec_table(df_full):
         """
     
     return spec_table
-
 
 
 def skill_table(df_full):
