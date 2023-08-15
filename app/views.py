@@ -80,5 +80,5 @@ def index_page():
                            GeneralSalaryBox = SalaryBox(df, 600),
                            spec_table = spec_table(df),
                            skill_table = skill_table(df),
-                           timetable_table = to_table(counts(df, "schedule",salary = True), ["Название", "Кол.вакансий", "Ср.зарплата"])
+                           timetable_table = to_table(counts(df, "schedule",salary = True), ["Название", "Ср.зарплата", "Кол.вакансий"])
                            )

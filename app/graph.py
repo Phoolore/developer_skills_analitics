@@ -28,7 +28,7 @@ def counts(df_full, name, salary = False):
     """Вспомогательная функция упорядочивания df по колл. вакансий в зависимости от столбца для группировки"""
     df = df_full.loc[df_full[name] != missing]
     if salary == True:
-        df_sal = pd.concat([df.loc[:, name], avg_sal(df.loc[:, ["min_salary", "max_salary"]], df_bool = True) ], axis=1)
+        df_sal = pd.concat([df.loc[:, name], avg_sal(df.loc[:, ["min_salary", "max_salary"]], df_bool = True) ], axis=1).groupby(name)["ср.зарплата"].sum()
         df_counts = df.groupby(name)[name].count().rename("counts")
         df = pd.concat([df_sal, df_counts], axis = 1).reset_index()
     else:
@@ -175,7 +175,7 @@ def LevelPie(df_full, height = 300):
 
     # Настройки для всплывающих подсказок
     TOOLTIPS = [
-        ("Название", "@name"),  # Название сектора
+        ("Группа", "@name"),  # Название сектора
         ("Кол.вакансий", "@value{0a}"),  # Значение сектора
         ("От общего кол.", "@percentage{0.2f}%")  # Процент сектора
     ]
